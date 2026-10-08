@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+ <SaveVersion>14</SaveVersion><Name>terminal-pm-2026.xml</Name><Title>Terminal shutdown October 2026</Title>
+ <Tasks>
+  <Task><UID>0</UID><ID>0</ID><Name>Terminal shutdown October 2026</Name><OutlineLevel>0</OutlineLevel><Summary>1</Summary></Task>
+  <Task><UID>1</UID><ID>1</ID><Name>Quay conveyor BC-01</Name><WBS>1</WBS><OutlineNumber>1</OutlineNumber><OutlineLevel>1</OutlineLevel><Summary>1</Summary><Start>2026-10-12T08:00:00</Start><Finish>2026-10-13T17:00:00</Finish></Task>
+  <Task><UID>2</UID><ID>2</ID><Name>Replace head pulley lagging</Name><WBS>1.1</WBS><OutlineLevel>2</OutlineLevel><Summary>0</Summary><Milestone>0</Milestone><Start>2026-10-12T08:00:00</Start><Finish>2026-10-12T17:00:00</Finish><Duration>PT8H0M0S</Duration><Work>PT16H0M0S</Work><PercentComplete>0</PercentComplete><Notes>Ceramic lagging, 1200 mm drum</Notes></Task>
+  <Task><UID>3</UID><ID>3</ID><Name>Belt splice inspection</Name><WBS>1.2</WBS><OutlineLevel>2</OutlineLevel><Summary>0</Summary><Start>2026-10-13T08:00:00</Start><Finish>2026-10-13T10:30:00</Finish><Duration>PT2H30M0S</Duration><Work>PT2H30M0S</Work><PercentComplete>0</PercentComplete></Task>
+  <Task><UID>4</UID><ID>4</ID><Name>Stacker-reclaimer SR-01 slew gearbox oil change</Name><WBS>2</WBS><OutlineLevel>1</OutlineLevel><Summary>0</Summary><Start>2026-10-14T08:00:00</Start><Finish>2026-10-14T12:45:00</Finish><Duration>PT4H45M0S</Duration><Work>PT9H30M0S</Work><PercentComplete>0</PercentComplete></Task>
+  <Task><UID>5</UID><ID>5</ID><Name>Shutdown complete</Name><WBS>3</WBS><OutlineLevel>1</OutlineLevel><Summary>0</Summary><Milestone>1</Milestone><Start>2026-10-14T17:00:00</Start><Finish>2026-10-14T17:00:00</Finish><Duration>PT0H0M0S</Duration><Work>PT0H0M0S</Work></Task>
+  <Task><UID>6</UID><ID>6</ID><Name>Main substation thermography</Name><WBS>4</WBS><OutlineLevel>1</OutlineLevel><Summary>0</Summary><Start>2026-10-01T08:00:00</Start><Finish>2026-10-01T12:00:00</Finish><Duration>PT4H0M0S</Duration><Work>PT4H0M0S</Work><PercentComplete>100</PercentComplete></Task>
+ </Tasks>
+ <Resources>
+  <Resource><UID>0</UID><ID>0</ID><Name></Name></Resource>
+  <Resource><UID>1</UID><ID>1</ID><Name>Giorgi Beridze</Name><Type>1</Type></Resource>
+  <Resource><UID>2</UID><ID>2</ID><Name>Davit Kapanadze</Name><Type>1</Type></Resource>
+  <Resource><UID>3</UID><ID>3</ID><Name>Zurab Meladze</Name><Type>1</Type></Resource>
+ </Resources>
+ <Assignments>
+  <Assignment><UID>1</UID><TaskUID>2</TaskUID><ResourceUID>1</ResourceUID><Work>PT8H0M0S</Work></Assignment>
+  <Assignment><UID>2</UID><TaskUID>2</TaskUID><ResourceUID>3</ResourceUID><Work>PT8H0M0S</Work></Assignment>
+  <Assignment><UID>3</UID><TaskUID>3</TaskUID><ResourceUID>3</ResourceUID><Work>PT2H30M0S</Work></Assignment>
+  <Assignment><UID>4</UID><TaskUID>4</TaskUID><ResourceUID>2</ResourceUID><Work>PT9H30M0S</Work></Assignment>
+ </Assignments>
+</Project>
