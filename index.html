@@ -723,8 +723,9 @@ const daysBetween=(a,b)=>Math.round((new Date(b+'T12:00:00')-new Date(a+'T12:00:
 const KA_M=['იან','თებ','მარ','აპრ','მაი','ივნ','ივლ','აგვ','სექ','ოქტ','ნოე','დეკ'];
 const KA_MF=['იანვარი','თებერვალი','მარტი','აპრილი','მაისი','ივნისი','ივლისი','აგვისტო','სექტემბერი','ოქტომბერი','ნოემბერი','დეკემბერი'];
 const KA_WD=['კვირა','ორშაბათი','სამშაბათი','ოთხშაბათი','ხუთშაბათი','პარასკევი','შაბათი'];
-const dShort=d=>LANG==='ka'?`${d.getDate()} ${KA_M[d.getMonth()]}`:d.toLocaleDateString(loc(),{day:'numeric',month:'short'});
-const dLong=d=>LANG==='ka'?`${KA_WD[d.getDay()]}, ${d.getDate()} ${KA_MF[d.getMonth()]}`:d.toLocaleDateString(loc(),{weekday:'long',day:'numeric',month:'long'});
+/* all dates are shown as dd/mm/yyyy, times as 24-hour HH:MM */
+const dShort=d=>`${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}`;
+const dLong=d=>(LANG==='ka'?KA_WD[d.getDay()]:d.toLocaleDateString(loc(),{weekday:'long'}))+', '+dShort(d);
 const fmtDate=iso=>iso?dShort(new Date(iso+'T12:00:00')):'—';
 const fmtTime=ts=>{const d=new Date(ts);return dShort(d)+' '+`${pad(d.getHours())}:${pad(d.getMinutes())}`};
 const newId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
@@ -1601,15 +1602,16 @@ async function importPlanFile(file,maxSide,opts={}){
 const fmtCsvN=n=>Math.round(n*100)/100;
 const q=v=>`"${String(v??'').replace(/"/g,'""')}"`;
 const csvOut=(head,rows)=>'﻿'+[head.map(h=>t(h,{c:cur()})),...rows].map(r=>r.map(q).join(',')).join('\r\n');
+const csvD=iso=>iso?fmtDate(String(iso).slice(0,10)):'';const csvT=ts=>ts?fmtTime(ts):'';
 function csvLines(kind){
   const rows=[];
-  if(kind==='labour'){S.tk.forEach(x=>{const e=eqById(x.assetId);(x.labour||[]).forEach(l=>rows.push([x.no,x.title,e?.code,tv(e?.zone),l.date,tv(l.who),l.people,l.hours,fmtCsvN(l.people*l.hours),l.note]))});
+  if(kind==='labour'){S.tk.forEach(x=>{const e=eqById(x.assetId);(x.labour||[]).forEach(l=>rows.push([x.no,x.title,e?.code,tv(e?.zone),csvD(l.date),tv(l.who),l.people,l.hours,fmtCsvN(l.people*l.hours),l.note]))});
     return {data:csvOut(['c.wo','c.title','c.eqCode','c.zone','c.date','c.who','c.people','c.hours','c.mh','c.note'],rows),n:rows.length}}
-  S.tk.forEach(x=>{const e=eqById(x.assetId);(x.materials||[]).forEach(m=>rows.push([x.no,x.title,e?.code,tv(e?.zone),m.date,m.name,m.part,m.qty,tv(m.unit),m.cost??'',fmtCsvN((+m.qty||0)*(+m.cost||0))]))});
+  S.tk.forEach(x=>{const e=eqById(x.assetId);(x.materials||[]).forEach(m=>rows.push([x.no,x.title,e?.code,tv(e?.zone),csvD(m.date),m.name,m.part,m.qty,tv(m.unit),m.cost??'',fmtCsvN((+m.qty||0)*(+m.cost||0))]))});
   return {data:csvOut(['c.wo','c.title','c.eqCode','c.zone','c.date','c.mat','c.part','c.qty','c.unit','c.unitCost','c.line'],rows),n:rows.length};
 }
 function csv(){
-  const rows=S.tk.map(x=>{const e=eqById(x.assetId);return [x.no,trT(x),stL(x.status),prL(x.priority),x.kind==='scheduled'?t('kind.scheduled'):t('kind.unscheduled'),tv(x.category),e?.code,e?.name,tv(e?.zone),tkGrid(x),pName(x.respId),pName(x.apprId),tv(x.crew),x.due?x.due+(x.dueTime?' '+x.dueTime:''):'',x.createdAt?.slice(0,10),x.closedAt?.slice(0,10),x.estHours??'',fmtCsvN(manHours(x)),(x.materials||[]).map(m=>`${m.name} × ${m.qty} ${tv(m.unit)}`).join('; '),fmtCsvN(matCost(x)),(x.checklist||[]).length?`${x.checklist.filter(c=>c.d).length}/${x.checklist.length}`:'',...SIG_ROLES.map(r=>{const g=sigOf(x.id,r);return g?g.name+' '+g.at.slice(0,16).replace('T',' '):''}),(x.photos||[]).length,T('tk',x.id,'desc',x.desc)]});
+  const rows=S.tk.map(x=>{const e=eqById(x.assetId);return [x.no,trT(x),stL(x.status),prL(x.priority),x.kind==='scheduled'?t('kind.scheduled'):t('kind.unscheduled'),tv(x.category),e?.code,e?.name,tv(e?.zone),tkGrid(x),pName(x.respId),pName(x.apprId),tv(x.crew),x.due?csvD(x.due)+(x.dueTime?' '+x.dueTime:''):'',csvD(x.createdAt),csvD(x.closedAt),x.estHours??'',fmtCsvN(manHours(x)),(x.materials||[]).map(m=>`${m.name} × ${m.qty} ${tv(m.unit)}`).join('; '),fmtCsvN(matCost(x)),(x.checklist||[]).length?`${x.checklist.filter(c=>c.d).length}/${x.checklist.length}`:'',...SIG_ROLES.map(r=>{const g=sigOf(x.id,r);return g?g.name+' '+csvT(g.at):''}),(x.photos||[]).length,T('tk',x.id,'desc',x.desc)]});
   return csvOut(['c.no','c.title','c.status','c.priority','c.type','c.disc','c.eqCode','c.eq','c.zone','plan.grid','c.resp','c.appr','c.crew','c.due','c.created','c.closed','c.est','c.actual','c.mats','c.matCost','c.cl','c.sigP','c.sigA','c.photos','c.desc'],rows);
 }
 async function exportCsv(kind='orders'){
