@@ -749,7 +749,7 @@ const ico=(n,cls='ico')=>`<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="t
 const mobile=matchMedia('(max-width:700px)').matches;
 const S={eq:[],tk:[],pm:[],site:{},log:[],view:'plan',
   f:{status:'active',prio:'all',zone:'all',kind:'all',resp:'all',q:''},people:[],sig:[],notes:[],
-  zoom:mobile?1.7:1,showEq:!mobile,showGrid:true,placing:null,drawer:null,confirmDel:false,confirmRow:null,
+  zoom:mobile?1.7:1,showEq:(()=>{try{const v=localStorage.getItem('mp-showEq');return v==null?true:v==='1'}catch{return true}})(),showGrid:true,placing:null,drawer:null,confirmDel:false,confirmRow:null,
   me:null,canWrite:true,db:null,user:null,assets:null,dl:null,ready:false,live:false,names:{},avatars:{},logUnsub:null,memBlobs:{}};
 
 /* ---------- utils ---------- */
@@ -1168,7 +1168,7 @@ function vPlan(){
      let ox=0,oy=0;if(n>1){const r=13+n*3,a=2*Math.PI*i/n-Math.PI/2;ox=Math.round(Math.cos(a)*r);oy=Math.round(Math.sin(a)*r)}
      const st=STATUS[x.status]||STATUS.open;
      return `<button class="pin${pinCls(x)}${sel===x.id?' sel':''}" style="left:${px}%;top:${py}%;--c:${st.c};--ox:${ox}px;--oy:${oy}px" data-act="open-tk" data-id="${x.id}" title="${esc(x.no+' · '+trT(x))}" aria-label="${esc(trT(x))}">${pinInner(x)}</button>`}).join('');
-  const eqs=(S.showEq||S.site.planImg)?S.eq.filter(e=>e.x!=null).map(e=>`<button class="eqm" style="left:${e.x}%;top:${e.y}%" data-act="open-eq" data-id="${e.id}" title="${esc(eqN(e))}"><i></i><span>${esc(e.code)}${(()=>{const n=S.tk.filter(x=>x.assetId===e.id&&x.status!=='done').length;return n?` <b class="eqm-n">${n}</b>`:''})()}</span></button>`).join(''):'';
+  const eqs=S.showEq?S.eq.filter(e=>e.x!=null).map(e=>`<button class="eqm" style="left:${e.x}%;top:${e.y}%" data-act="open-eq" data-id="${e.id}" title="${esc(eqN(e))}"><i></i><span>${esc(e.code)}${(()=>{const n=S.tk.filter(x=>x.assetId===e.id&&x.status!=='done').length;return n?` <b class="eqm-n">${n}</b>`:''})()}</span></button>`).join(''):'';
   const banner=pl?`<div class="placing-banner">${ico('pin')}<span class="grow">${pl.kind==='eq'?t('place.eq',{code:`<b>${esc(eqById(pl.id)?.code||'')}</b>`}):esc(pl.kind==='move'?t('place.move'):t('place.new'))}</span><button class="btn sm" data-act="cancel-place">${esc(t('btn.cancel'))}</button></div>`:'';
   return topbar(esc(t('nav.plan')),esc(t('plan.sub',{o:S.tk.filter(x=>x.status!=='done').length,e:S.eq.length})),newBtn())+
    (!S.eq.length&&!S.tk.length&&S.ready?`<div class="plan-card" style="margin-bottom:16px">${emptyAll()}</div>`:'')+
@@ -2749,7 +2749,7 @@ document.addEventListener('change',ev=>{
   else if(x.id==='mspAll'&&S.form?.type==='msp'){S.form.rows.forEach((r,i)=>{if(r.ex&&r.ex.status==='done')return;r.sel=x.checked;const cb=document.querySelector(`[data-msp-sel="${i}"]`);if(cb){cb.checked=x.checked;cb.closest('tr').classList.toggle('off',!x.checked)}});mspCount()}
   else if(x.id==='tResp'){const pr=personById(x.value),c=$('#tCrew');if(pr?.crew&&c&&!c.value.trim())c.value=tv(pr.crew)}
   else if(x.id==='pResp'){const pr=personById(x.value),c=$('#pCrew');if(pr?.crew&&c&&!c.value.trim())c.value=tv(pr.crew)}
-  else if(x.id==='showEq'){S.showEq=x.checked;renderAll()}
+  else if(x.id==='showEq'){S.showEq=x.checked;try{localStorage.setItem('mp-showEq',x.checked?'1':'0')}catch{}renderAll()}
   else if(x.id==='showGrid'){S.showGrid=x.checked;renderAll()}
   else if(x.id==='langSel'){setLang(x.value)}
 });
