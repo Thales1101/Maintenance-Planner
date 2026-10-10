@@ -138,8 +138,8 @@ input.search{min-width:0;width:220px}
 .pin.shp-pent{--cp:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%);width:31px;height:30px}.pin.shp-pent .shp-in{inset:4.5px 4.5px 3px}.pin.shp-pent b{top:1px}
 .pin.shp-star{--cp:polygon(50% 0,62% 34%,98% 36%,70% 58%,80% 95%,50% 74%,20% 95%,30% 58%,2% 36%,38% 34%);width:34px;height:33px}.pin.shp-star .shp-in{inset:6px}.pin.shp-star b{top:1px;font-size:9px}
 .pin.shp.sel{outline:0;filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px var(--steel)) drop-shadow(0 0 3px var(--steel))}
-.pin.shp.crit-p::after{border-color:currentColor;color:var(--crit)}
-.pin.shp-tri.crit-p::after{color:#2563EB;border-width:3px;opacity:.75;top:-14px;bottom:-19px;left:-15px;right:-15px}
+.pin.shp.crit-p::after{border-color:currentColor;color:var(--ring,var(--crit))}
+.pin.shp-tri.crit-p::after{color:var(--ring,#2563EB);border-width:3px;opacity:.75;top:-14px;bottom:-19px;left:-15px;right:-15px}
 .pin.mini.shp{transform:translate(-50%,-50%) scale(.7)}
 .lg-shp{width:14px!important;height:14px!important;border-radius:0!important;background:var(--sc)!important}
 .lg-circle{border-radius:50%!important;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
@@ -1106,7 +1106,9 @@ const isElec=x=>crewStyle(x)?.k==='elec';
 const shaped=x=>{const st=crewStyle(x);return st&&st.shape!=='circle'?st:null};
 const pinCls=x=>(x.priority==='critical'&&x.status!=='done'?' crit-p':'')+(shaped(x)?' shp shp-'+shaped(x).shape:'');
 const pinMark=x=>x.priority==='critical'?'!':x.kind==='scheduled'?'P':'';
-const pinInner=x=>{const st=shaped(x);if(!st)return pinMark(x);const fill=x.status&&x.status!=='open'?(STATUS[x.status]||STATUS.open).c:st.c;
+/* the colour a shaped pin is filled with (and its pulsing ring): crew colour while open, status colour afterwards */
+const pinFill=x=>{const st=shaped(x);return !st?(STATUS[x.status]||STATUS.open).c:x.status&&x.status!=='open'?(STATUS[x.status]||STATUS.open).c:st.c};
+const pinInner=x=>{const st=shaped(x);if(!st)return pinMark(x);const fill=pinFill(x);
   return `<span class="shp-out"></span><span class="shp-in" style="background:${fill}"></span><b>${pinMark(x)}</b>`};
 const crewTag=x=>{const st=crewStyle(x);return st?`<span class="tag crew" style="background:${st.tagBg};color:${st.tagFg};border-color:${st.tagFg}55" title="${esc(st.label)}" aria-label="${esc(st.label)}">${esc(st.icon)}</span>`:''};
 /* legend: only the crews that are on the plan right now */
@@ -1168,7 +1170,7 @@ function vPlan(){
   const pins=pinLayout(list,.62,30/planPx*100).map(({x,px,py,i,n})=>{
      let ox=0,oy=0;if(n>1){const r=13+n*3,a=2*Math.PI*i/n-Math.PI/2;ox=Math.round(Math.cos(a)*r);oy=Math.round(Math.sin(a)*r)}
      const st=STATUS[x.status]||STATUS.open;
-     return `<button class="pin${pinCls(x)}${sel===x.id?' sel':''}" style="left:${px}%;top:${py}%;--c:${st.c};--ox:${ox}px;--oy:${oy}px" data-act="open-tk" data-id="${x.id}" title="${esc(x.no+' · '+trT(x))}" aria-label="${esc(trT(x))}">${pinInner(x)}</button>`}).join('');
+     return `<button class="pin${pinCls(x)}${sel===x.id?' sel':''}" style="left:${px}%;top:${py}%;--c:${st.c};--ring:${pinFill(x)};--ox:${ox}px;--oy:${oy}px" data-act="open-tk" data-id="${x.id}" title="${esc(x.no+' · '+trT(x))}" aria-label="${esc(trT(x))}">${pinInner(x)}</button>`}).join('');
   const eqs=S.showEq?S.eq.filter(e=>e.x!=null).map(e=>`<button class="eqm" style="left:${e.x}%;top:${e.y}%" data-act="open-eq" data-id="${e.id}" title="${esc(eqN(e))}"><i></i><span>${esc(e.code)}${(()=>{const n=S.tk.filter(x=>x.assetId===e.id&&x.status!=='done').length;return n?` <b class="eqm-n">${n}</b>`:''})()}</span></button>`).join(''):'';
   const banner=pl?`<div class="placing-banner">${ico('pin')}<span class="grow">${pl.kind==='eq'?t('place.eq',{code:`<b>${esc(eqById(pl.id)?.code||'')}</b>`}):esc(pl.kind==='move'?t('place.move'):t('place.new'))}</span><button class="btn sm" data-act="cancel-place">${esc(t('btn.cancel'))}</button></div>`:'';
   return topbar(esc(t('nav.plan')),esc(t('plan.sub',{o:S.tk.filter(x=>x.status!=='done').length,e:S.eq.length})),newBtn())+
@@ -1379,7 +1381,7 @@ function trNote(x){
 }
 const dwgLink=d=>d?.pdf?`<a class="btn sm" href="${esc(blobSrc(d.pdf))}" target="_blank" rel="noopener">${ico('dl')}${esc(t('dw.openPdf'))}</a>`:'';
 const dwgMeta=d=>esc(d.name||'')+(d.page?' · '+esc(t('dw.page',{n:d.page})):'');
-function miniPins(list,selId){return list.map(x=>{const st=STATUS[x.status]||STATUS.open;return `<span class="pin mini${x.id===selId?' sel':''}" style="left:${x.dx}%;top:${x.dy}%;--c:${st.c}"></span>`}).join('')}
+function miniPins(list,selId){return list.map(x=>{const st=STATUS[x.status]||STATUS.open;return `<span class="pin mini${x.id===selId?' sel':''}" style="left:${x.dx}%;top:${x.dy}%;--c:${st.c};--ring:${pinFill(x)}"></span>`}).join('')}
 function eqDrawingSec(e){
   const d=e.drawing,canUp=S.canWrite&&(S.assets||!S.db);
   if(!d) return `<div class="sec"><h3>${esc(t('dw.title'))}</h3><div class="dwg-empty"><p>${esc(t('dw.none'))}</p>${canUp?`<button class="btn sm primary" data-act="dwg-upload" data-id="${e.id}">${ico('plus')}${esc(t('dw.upload'))}</button><span class="hint">${esc(t('dw.hint'))}</span>`:''}</div></div>`;
@@ -1404,7 +1406,7 @@ function renderViewer(){
   if(!v||!e?.drawing){r.innerHTML='';if(v)S.viewer=null;return}
   const sc=$('#vwScroll');const sx=sc?.scrollLeft,sy=sc?.scrollTop;
   const list=S.tk.filter(x=>x.assetId===e.id&&x.dx!=null&&(x.status!=='done'||x.id===v.tkId));
-  const pins=list.map(x=>{const st=STATUS[x.status]||STATUS.open;return `<button class="pin${pinCls(x)}${x.id===v.tkId?' sel':''}" style="left:${x.dx}%;top:${x.dy}%;--c:${st.c}" data-act="open-tk" data-id="${x.id}" title="${esc(x.no+' · '+trT(x))}" aria-label="${esc(trT(x))}">${pinInner(x)}</button>`}).join('');
+  const pins=list.map(x=>{const st=STATUS[x.status]||STATUS.open;return `<button class="pin${pinCls(x)}${x.id===v.tkId?' sel':''}" style="left:${x.dx}%;top:${x.dy}%;--c:${st.c};--ring:${pinFill(x)}" data-act="open-tk" data-id="${x.id}" title="${esc(x.no+' · '+trT(x))}" aria-label="${esc(trT(x))}">${pinInner(x)}</button>`}).join('');
   const place=v.mode==='place';const tk=v.tkId&&S.tk.find(x=>x.id===v.tkId);
   r.innerHTML=`<div class="viewer" role="dialog" aria-modal="true" aria-label="${esc(t('dw.title'))} ${esc(e.code)}">
    <div class="vw-head"><div class="grow" style="min-width:0"><div class="wo-top"><span class="eq-code">${esc(e.code)}</span><span>${esc(eqN(e))}</span></div><div class="dwg-meta" style="margin:0">${dwgMeta(e.drawing)}${tk?` · <code>${esc(tk.no)}</code>`:''}</div></div>
