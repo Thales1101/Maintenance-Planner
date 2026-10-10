@@ -137,6 +137,7 @@ input.search{min-width:0;width:220px}
 .lg-elec,.lg-mech{width:14px!important;height:13px!important;box-sizing:border-box}
 .lg-elec{border-radius:0!important;background:#2563EB!important;clip-path:polygon(50% 0,100% 100%,0 100%)}.lg-mech{border-radius:50%;background:var(--muted)!important;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
 .tag.elec{background:#DBEAFE;color:#1D4ED8;border-color:#93C5FD}
+.tag.mech{background:#FDEBD3;color:#9A4F00;border-color:#F3C48B}
 .pin.crit-p::after{content:"";position:absolute;inset:-16.5px;border-radius:50%;border:2.5px solid var(--c);pointer-events:none;opacity:.6;animation:pulse 1.8s ease-out infinite}
 @keyframes pulse{from{transform:scale(.6);opacity:.8}to{transform:scale(1.25);opacity:0}}
 @media (prefers-reduced-motion:reduce){.pin.crit-p::after{animation:none;opacity:.5}}
@@ -544,7 +545,7 @@ en:{
  'empty.title':'No equipment or work orders yet','empty.text':'Start by adding your conveyors, warehouses and structures, or load an example terminal to see how pins, work orders and preventive maintenance fit together.',
  'btn.addEq':'Add equipment','btn.loadDemo':'Load example terminal','btn.newWo':'New work order','btn.export':'Export CSV','btn.cancel':'Cancel','btn.save':'Save changes','btn.done':'Done','btn.edit':'Edit','btn.close':'Close','btn.copy':'Copy','btn.post':'Post',
  'plan.sub':'{o} open work orders · {e} equipment items','place.eq':'Tap the plan where {code} is located','place.move':'Tap the new position for this work order','place.new':'Tap the plan where the problem is',
- 'plan.pm':'Scheduled PM','plan.elec':'Electrical crew','plan.elecTag':'Electrical','plan.mech':'Mechanical / other','plan.eqLabels':'Equipment labels','plan.onPlan':'On the plan','plan.shown':'{n} shown','plan.noMatch':'No work orders match these filters.','zoom.in':'Zoom in','zoom.out':'Zoom out','plan.alt':'Site plan',
+ 'plan.pm':'Scheduled PM','plan.elec':'Electrical crew','plan.elecTag':'Electrical','plan.mechTag':'Mechanical crew','plan.mech':'Mechanical / other','plan.eqLabels':'Equipment labels','plan.onPlan':'On the plan','plan.shown':'{n} shown','plan.noMatch':'No work orders match these filters.','zoom.in':'Zoom in','zoom.out':'Zoom out','plan.alt':'Site plan',
  'tk.sub':'{n} of {m} shown',
  'pm.title':'Preventive maintenance','pm.sub':'Recurring inspections, lubrication and tests. Completing a PM work order schedules the next one.','pm.new':'New PM plan','pm.every':'every {n} d','pm.last':'Last done {d}','pm.never':'never','pm.openWo':'Open {no}','pm.createWo':'Create work order','pm.markDone':'Mark done','pm.edit':'Edit plan',
  'pm.gOver':'Overdue','pm.gSoon':'Due within 7 days','pm.gLater':'Upcoming','pm.emptyT':'No maintenance plans yet','pm.emptyP':'Create a plan for each recurring job, such as a weekly belt and idler inspection or a quarterly gearbox oil change.',
@@ -586,7 +587,7 @@ ka:{
  'empty.title':'აღჭურვილობა და სამუშაო დავალებები ჯერ არ არის','empty.text':'დაამატეთ თქვენი კონვეიერები, საწყობები და ნაგებობები, ან ჩატვირთეთ სანიმუშო ტერმინალი, რომ ნახოთ, როგორ მუშაობს ნიშნულები, დავალებები და გეგმიური ტექმომსახურება.',
  'btn.addEq':'აღჭურვილობის დამატება','btn.loadDemo':'სანიმუშო ტერმინალის ჩატვირთვა','btn.newWo':'ახალი დავალება','btn.export':'CSV ექსპორტი','btn.cancel':'გაუქმება','btn.save':'შენახვა','btn.done':'მზადაა','btn.edit':'რედაქტირება','btn.close':'დახურვა','btn.copy':'კოპირება','btn.post':'გაგზავნა',
  'plan.sub':'ღია დავალებები: {o} · აღჭურვილობა: {e}','place.eq':'მიუთითეთ გეგმაზე, სად მდებარეობს {code}','place.move':'მიუთითეთ დავალების ახალი ადგილი','place.new':'მიუთითეთ გეგმაზე პრობლემის ადგილი',
- 'plan.pm':'გეგმიური ტმ','plan.elec':'ელექტრო ბრიგადა','plan.elecTag':'ელექტრო','plan.mech':'მექანიკური / სხვა','plan.eqLabels':'აღჭურვილობის კოდები','plan.onPlan':'გეგმაზე','plan.shown':'ნაჩვენებია: {n}','plan.noMatch':'ფილტრებს არცერთი დავალება არ შეესაბამება.','zoom.in':'გადიდება','zoom.out':'დაპატარავება','plan.alt':'ტერიტორიის გეგმა',
+ 'plan.pm':'გეგმიური ტმ','plan.elec':'ელექტრო ბრიგადა','plan.elecTag':'ელექტრო','plan.mechTag':'მექანიკური ბრიგადა','plan.mech':'მექანიკური / სხვა','plan.eqLabels':'აღჭურვილობის კოდები','plan.onPlan':'გეგმაზე','plan.shown':'ნაჩვენებია: {n}','plan.noMatch':'ფილტრებს არცერთი დავალება არ შეესაბამება.','zoom.in':'გადიდება','zoom.out':'დაპატარავება','plan.alt':'ტერიტორიის გეგმა',
  'tk.sub':'ნაჩვენებია {n} / {m}',
  'pm.title':'გეგმიური ტექმომსახურება','pm.sub':'პერიოდული შემოწმებები, შეზეთვა და ტესტები. დავალების დასრულებისას შემდეგი ავტომატურად იგეგმება.','pm.new':'ახალი გეგმა','pm.every':'ყოველ {n} დღეში','pm.last':'ბოლოს: {d}','pm.never':'არასდროს','pm.openWo':'გახსნა {no}','pm.createWo':'დავალების შექმნა','pm.markDone':'შესრულებულია','pm.edit':'გეგმის რედაქტირება',
  'pm.gOver':'ვადაგადაცილებული','pm.gSoon':'7 დღის განმავლობაში','pm.gLater':'მომავალი','pm.emptyT':'ტექმომსახურების გეგმები ჯერ არ არის','pm.emptyP':'შექმენით გეგმა ყოველი პერიოდული სამუშაოსთვის, მაგალითად ლენტისა და როლიკების ყოველკვირეული შემოწმება ან რედუქტორის ზეთის კვარტალური შეცვლა.',
@@ -628,7 +629,7 @@ ru:{
  'empty.title':'Оборудования и нарядов пока нет','empty.text':'Добавьте свои конвейеры, склады и сооружения или загрузите пример терминала, чтобы увидеть, как работают метки, наряды и плановое ТО.',
  'btn.addEq':'Добавить оборудование','btn.loadDemo':'Загрузить пример терминала','btn.newWo':'Новый наряд','btn.export':'Экспорт CSV','btn.cancel':'Отмена','btn.save':'Сохранить','btn.done':'Готово','btn.edit':'Изменить','btn.close':'Закрыть','btn.copy':'Копировать','btn.post':'Отправить',
  'plan.sub':'Открытых нарядов: {o} · единиц оборудования: {e}','place.eq':'Укажите на плане, где находится {code}','place.move':'Укажите новое место для наряда','place.new':'Укажите на плане место неисправности',
- 'plan.pm':'Плановое ТО','plan.elec':'Электробригада','plan.elecTag':'Электро','plan.mech':'Механическая / другая','plan.eqLabels':'Коды оборудования','plan.onPlan':'На плане','plan.shown':'Показано: {n}','plan.noMatch':'Нет нарядов, подходящих под фильтры.','zoom.in':'Увеличить','zoom.out':'Уменьшить','plan.alt':'План территории',
+ 'plan.pm':'Плановое ТО','plan.elec':'Электробригада','plan.elecTag':'Электро','plan.mechTag':'Механическая бригада','plan.mech':'Механическая / другая','plan.eqLabels':'Коды оборудования','plan.onPlan':'На плане','plan.shown':'Показано: {n}','plan.noMatch':'Нет нарядов, подходящих под фильтры.','zoom.in':'Увеличить','zoom.out':'Уменьшить','plan.alt':'План территории',
  'tk.sub':'Показано {n} из {m}',
  'pm.title':'Планово-предупредительное ТО','pm.sub':'Периодические осмотры, смазка и испытания. При закрытии наряда следующий срок планируется автоматически.','pm.new':'Новый план ТО','pm.every':'каждые {n} дн.','pm.last':'Последнее: {d}','pm.never':'никогда','pm.openWo':'Открыть {no}','pm.createWo':'Создать наряд','pm.markDone':'Отметить выполненным','pm.edit':'Изменить план',
  'pm.gOver':'Просрочено','pm.gSoon':'В ближайшие 7 дней','pm.gLater':'Предстоящие','pm.emptyT':'Планов ТО пока нет','pm.emptyP':'Создайте план для каждой периодической работы, например еженедельный осмотр ленты и роликов или ежеквартальную замену масла в редукторе.',
@@ -1076,6 +1077,8 @@ async function bulkDelete(){
 /* electrical crew orders get a violet pin ring and a ⚡ mark; the fill keeps showing the status */
 const ELEC=/electr|ელექტრ|электр/i;
 const isElec=x=>{const c=x.crew||personById(x.respId)?.crew||'';return ELEC.test(c)||ELEC.test(tv(c)||'')};
+const MECH=/mechan|მექანიკ|механ/i;
+const isMech=x=>{if(isElec(x))return false;const c=x.crew||personById(x.respId)?.crew||'';return MECH.test(c)||MECH.test(tv(c)||'')};
 const pinCls=x=>(x.priority==='critical'&&x.status!=='done'?' crit-p':'')+(isElec(x)?' elec':'');
 const pinMark=x=>x.priority==='critical'?'!':x.kind==='scheduled'?'P':'';
 /* electrical: triangle with a white edge — blue while open, then the status colour (in progress, on hold, done) */
@@ -1085,7 +1088,7 @@ function woRow(x,sel){
   const bk=(bulkOn('tk')&&S.view==='tickets')||(bulkOn('sch')&&S.view==='schedule'),key=bulkOn('sch')?'tk:'+x.id:x.id,on=bk&&S.bulk.ids.has(key),can=bk&&tkSelectable(x);
   return `<button class="wo${sel?' sel':''}${bk?' bulk':''}${on?' picked':''}${bk&&!can?' locked':''}" data-act="${bk?'bulk-toggle':'open-tk'}" data-id="${bk?key:x.id}" style="--p:${pr.c}" ${bk&&!can?'disabled':''}>${bk?chk(on):''}
    <span class="wo-stripe"></span>
-   <span class="wo-main"><span class="wo-top"><code>${esc(x.no)}</code>${x.kind==='scheduled'?'<span class="tag sched">PM</span>':''}${isElec(x)?`<span class="tag elec" title="${esc(t('plan.elec'))}" aria-label="${esc(t('plan.elec'))}">⚡</span>`:''}${needsSig(x)?`<span class="tag sig">${esc(t('sg.await'))}</span>`:''}${x.demo?exTag():''}</span>
+   <span class="wo-main"><span class="wo-top"><code>${esc(x.no)}</code>${x.kind==='scheduled'?'<span class="tag sched">PM</span>':''}${isElec(x)?`<span class="tag elec" title="${esc(t('plan.elec'))}" aria-label="${esc(t('plan.elec'))}">⚡</span>`:isMech(x)?`<span class="tag mech" title="${esc(t('plan.mechTag'))}" aria-label="${esc(t('plan.mechTag'))}">🔧</span>`:''}${needsSig(x)?`<span class="tag sig">${esc(t('sg.await'))}</span>`:''}${x.demo?exTag():''}</span>
    <span class="wo-title">${esc(trT(x))}</span>
    <span class="wo-meta">${e?`<code>${esc(e.code)}</code> ${esc(eqN(e))}`:esc(t('row.noEq'))}${x.respId&&pName(x.respId)?' · '+esc(pName(x.respId)):x.crew?' · '+esc(tv(x.crew)):''}${(x.labour||[]).length?' · '+esc(t('row.mh',{n:fmtDur(manHours(x))})):''}${(x.materials||[]).length?' · '+esc(t('row.mat',{n:x.materials.length})):''}</span></span>
    <span class="wo-side">${x.start&&x.status!=='done'?`<span class="due">▸ ${fmtDate(x.start)}${x.startTime&&x.startTime!=='00:00'?' '+x.startTime:''}</span>`:''}<span class="pill" style="--c:${st.c}">${esc(stL(x.status))}</span><span class="due ${di.cls}">${esc(di.txt)}</span><span style="color:${pr.c};font-weight:600">${esc(prL(x.priority))}</span></span>
