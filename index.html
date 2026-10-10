@@ -127,17 +127,24 @@ input.search{min-width:0;width:220px}
 .pin{position:absolute;transform:translate(calc(-50% + var(--ox,0px)),calc(-50% + var(--oy,0px)));width:24px;height:24px;border-radius:50%;border:3px solid var(--surface);background:var(--c,var(--crit));box-shadow:0 1px 4px rgba(0,0,0,.35);padding:0;display:grid;place-items:center;color:#fff;font:700 11px/1 var(--f-display);z-index:2}
 .pin:hover,.pin.sel{transform:translate(calc(-50% + var(--ox,0px)),calc(-50% + var(--oy,0px))) scale(1.3);z-index:4}
 .pin.sel{outline:3px solid var(--steel);outline-offset:1px}
-.pin.elec{width:32px;height:29px;background:none;border:0;border-radius:0;box-shadow:none;place-items:end center;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45))}
-.pin.elec .tri{position:absolute;inset:0;background:#fff;clip-path:polygon(50% 0,100% 100%,0 100%)}
-.pin.elec .tri-in{position:absolute;left:4px;right:4px;top:5px;bottom:2px;background:linear-gradient(160deg,#3B82F6,#1D4ED8);clip-path:polygon(50% 0,100% 100%,0 100%)}
-.pin.elec b{position:relative;font-size:11px;line-height:1;padding-bottom:4px;color:#fff}
-.pin.elec.sel{outline:0;filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px var(--steel)) drop-shadow(0 0 3px var(--steel))}
-.pin.elec.crit-p::after{border-color:#2563EB;top:-12px}
-.pin.mini.elec{width:22px;height:20px}.pin.mini.elec .tri-in{left:3px;right:3px;top:4px;bottom:1px}.pin.mini.elec b{font-size:8px;padding-bottom:2px}
-.lg-elec,.lg-mech{width:14px!important;height:13px!important;box-sizing:border-box}
-.lg-elec{border-radius:0!important;background:#2563EB!important;clip-path:polygon(50% 0,100% 100%,0 100%)}.lg-mech{border-radius:50%;background:var(--muted)!important;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
-.tag.elec{background:#DBEAFE;color:#1D4ED8;border-color:#93C5FD}
-.tag.mech{background:#FDEBD3;color:#9A4F00;border-color:#F3C48B}
+.pin.shp{width:30px;height:30px;background:none;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45))}
+.pin.shp .shp-out,.pin.shp .shp-in{position:absolute;clip-path:var(--cp)}
+.pin.shp .shp-out{inset:0;background:#fff}.pin.shp .shp-in{inset:3.5px}
+.pin.shp b{position:relative;font-size:11px;line-height:1;color:#fff}
+.pin.shp-tri{--cp:polygon(50% 0,100% 100%,0 100%);width:32px;height:29px;place-items:end center}.pin.shp-tri .shp-in{left:4px;right:4px;top:5px;bottom:2px}.pin.shp-tri b{padding-bottom:4px}
+.pin.shp-square{--cp:inset(0 round 5px);width:27px;height:27px}
+.pin.shp-diamond{--cp:polygon(50% 0,100% 50%,50% 100%,0 50%);width:32px;height:32px}.pin.shp-diamond .shp-in{inset:5px}
+.pin.shp-hex{--cp:polygon(25% 2%,75% 2%,100% 50%,75% 98%,25% 98%,0 50%);width:32px;height:28px}.pin.shp-hex .shp-in{inset:3.5px 4px}
+.pin.shp-pent{--cp:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%);width:31px;height:30px}.pin.shp-pent .shp-in{inset:4.5px 4.5px 3px}.pin.shp-pent b{top:1px}
+.pin.shp-star{--cp:polygon(50% 0,62% 34%,98% 36%,70% 58%,80% 95%,50% 74%,20% 95%,30% 58%,2% 36%,38% 34%);width:34px;height:33px}.pin.shp-star .shp-in{inset:6px}.pin.shp-star b{top:1px;font-size:9px}
+.pin.shp.sel{outline:0;filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px var(--steel)) drop-shadow(0 0 3px var(--steel))}
+.pin.shp.crit-p::after{border-color:currentColor;color:var(--crit)}
+.pin.mini.shp{transform:translate(-50%,-50%) scale(.7)}
+.lg-shp{width:14px!important;height:14px!important;border-radius:0!important;background:var(--sc)!important}
+.lg-circle{border-radius:50%!important;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.lg-tri{clip-path:polygon(50% 0,100% 100%,0 100%)}.lg-square{border-radius:3px!important}.lg-diamond{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.lg-hex{clip-path:polygon(25% 2%,75% 2%,100% 50%,75% 98%,25% 98%,0 50%)}.lg-pent{clip-path:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%)}
+.lg-star{clip-path:polygon(50% 0,62% 34%,98% 36%,70% 58%,80% 95%,50% 74%,20% 95%,30% 58%,2% 36%,38% 34%)}
 .nt-h{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:6px 0 6px}.nt-h b{color:var(--ink)}
 .nt-list+.nt-h{margin-top:14px}.nt-ico.due{color:var(--warn)}.nt-ico.due.over{color:var(--crit)}.nt-item.due.over{border-left:3px solid var(--crit)}.nt-item.due.soon{border-left:3px solid var(--warn)}
 .pin.crit-p::after{content:"";position:absolute;inset:-16.5px;border-radius:50%;border:2.5px solid var(--c);pointer-events:none;opacity:.6;animation:pulse 1.8s ease-out infinite}
@@ -1077,20 +1084,39 @@ async function bulkDelete(){
   S.bulk=null;renderAll();toast(failed?t('bulk.partial',{n:done,f:failed}):t('bulk.deleted',{n:done}),5000);
 }
 /* electrical crew orders get a violet pin ring and a ⚡ mark; the fill keeps showing the status */
-const ELEC=/electr|ელექტრ|электр/i;
-const isElec=x=>{const c=x.crew||personById(x.respId)?.crew||'';return ELEC.test(c)||ELEC.test(tv(c)||'')};
-const MECH=/mechan|მექანიკ|механ/i;
-const isMech=x=>{if(isElec(x))return false;const c=x.crew||personById(x.respId)?.crew||'';return MECH.test(c)||MECH.test(tv(c)||'')};
-const pinCls=x=>(x.priority==='critical'&&x.status!=='done'?' crit-p':'')+(isElec(x)?' elec':'');
+/* crew pin styles: each crew has its own shape and colour. The pin shows the crew colour while the order is open
+   and the status colour afterwards (in progress, on hold, done). Mechanical crew keeps the classic round pin. */
+const CREW_STYLES=[
+  {k:'elec', re:/electr|ელექტრ|электр/i,          shape:'tri',  c:'#2563EB',icon:'⚡',tagBg:'#DBEAFE',tagFg:'#1D4ED8'},
+  {k:'mech', re:/mechan|მექანიკ|механ/i,          shape:'circle',c:null,     icon:'🔧',tagBg:'#FDEBD3',tagFg:'#9A4F00'},
+  {k:'civil',re:/civil|struct|სამშენ|კონსტრ|строит|конструк/i, shape:'square',c:'#92400E',icon:'🏗️',tagBg:'#F3E8DC',tagFg:'#7C3A0E'},
+  {k:'lube', re:/lubric|oil|შეზეთ|смаз/i,         shape:'diamond',c:'#0F766E',icon:'🛢️',tagBg:'#D5F5EF',tagFg:'#0F5F58'},
+  {k:'safe', re:/safety|უსაფრთ|безопас|охран/i,    shape:'hex',  c:'#DB2777',icon:'🦺',tagBg:'#FCE4F0',tagFg:'#A3195B'},
+  {k:'ext',  re:/contract|კონტრაქ|подряд/i,        shape:'pent', c:'#7C3AED',icon:'👷',tagBg:'#EDE4FF',tagFg:'#5B21B6'},
+];
+const EXTRA_COLORS=['#B45309','#0369A1','#4D7C0F','#BE123C','#6D28D9','#0E7490'];
+const crewOf=x=>x.crew||personById(x.respId)?.crew||'';
+function crewStyle(x){const c=crewOf(x);if(!c)return null;const lbl=tv(c)||c;
+  for(const st of CREW_STYLES)if(st.re.test(c)||st.re.test(lbl))return {...st,label:lbl};
+  /* any other crew the administrator added: a star in a colour picked from its name */
+  let h=0;for(const ch of c)h=(h*31+ch.charCodeAt(0))>>>0;const col=EXTRA_COLORS[h%EXTRA_COLORS.length];
+  return {k:'x'+h,shape:'star',c:col,icon:lbl.trim().charAt(0).toUpperCase(),tagBg:col+'22',tagFg:col,label:lbl}}
+const isElec=x=>crewStyle(x)?.k==='elec';
+const shaped=x=>{const st=crewStyle(x);return st&&st.shape!=='circle'?st:null};
+const pinCls=x=>(x.priority==='critical'&&x.status!=='done'?' crit-p':'')+(shaped(x)?' shp shp-'+shaped(x).shape:'');
 const pinMark=x=>x.priority==='critical'?'!':x.kind==='scheduled'?'P':'';
-/* electrical: triangle with a white edge — blue while open, then the status colour (in progress, on hold, done) */
-const pinInner=x=>isElec(x)?`<span class="tri"></span><span class="tri-in"${x.status&&x.status!=='open'?` style="background:${(STATUS[x.status]||STATUS.open).c}"`:''}></span><b>${pinMark(x)}</b>`:pinMark(x);
+const pinInner=x=>{const st=shaped(x);if(!st)return pinMark(x);const fill=x.status&&x.status!=='open'?(STATUS[x.status]||STATUS.open).c:st.c;
+  return `<span class="shp-out"></span><span class="shp-in" style="background:${fill}"></span><b>${pinMark(x)}</b>`};
+const crewTag=x=>{const st=crewStyle(x);return st?`<span class="tag crew" style="background:${st.tagBg};color:${st.tagFg};border-color:${st.tagFg}55" title="${esc(st.label)}" aria-label="${esc(st.label)}">${esc(st.icon)}</span>`:''};
+/* legend: only the crews that are on the plan right now */
+function crewLegend(list){const seen=new Map();list.forEach(x=>{const st=crewStyle(x);if(st&&!seen.has(st.k))seen.set(st.k,st)});
+  return [...seen.values()].map(st=>`<span class="lg"><i class="lg-shp lg-${st.shape}" style="--sc:${st.c||'var(--muted)'}"></i>${esc(st.label)}</span>`).join('')}
 function woRow(x,sel){
   const e=eqById(x.assetId),di=dueInfo(x),st=STATUS[x.status]||STATUS.open,pr=PRIO[x.priority]||PRIO.medium;
   const bk=(bulkOn('tk')&&S.view==='tickets')||(bulkOn('sch')&&S.view==='schedule'),key=bulkOn('sch')?'tk:'+x.id:x.id,on=bk&&S.bulk.ids.has(key),can=bk&&tkSelectable(x);
   return `<button class="wo${sel?' sel':''}${bk?' bulk':''}${on?' picked':''}${bk&&!can?' locked':''}" data-act="${bk?'bulk-toggle':'open-tk'}" data-id="${bk?key:x.id}" style="--p:${pr.c}" ${bk&&!can?'disabled':''}>${bk?chk(on):''}
    <span class="wo-stripe"></span>
-   <span class="wo-main"><span class="wo-top"><code>${esc(x.no)}</code>${x.kind==='scheduled'?'<span class="tag sched">PM</span>':''}${isElec(x)?`<span class="tag elec" title="${esc(t('plan.elec'))}" aria-label="${esc(t('plan.elec'))}">⚡</span>`:isMech(x)?`<span class="tag mech" title="${esc(t('plan.mechTag'))}" aria-label="${esc(t('plan.mechTag'))}">🔧</span>`:''}${needsSig(x)?`<span class="tag sig">${esc(t('sg.await'))}</span>`:''}${x.demo?exTag():''}</span>
+   <span class="wo-main"><span class="wo-top"><code>${esc(x.no)}</code>${x.kind==='scheduled'?'<span class="tag sched">PM</span>':''}${crewTag(x)}${needsSig(x)?`<span class="tag sig">${esc(t('sg.await'))}</span>`:''}${x.demo?exTag():''}</span>
    <span class="wo-title">${esc(trT(x))}</span>
    <span class="wo-meta">${e?`<code>${esc(e.code)}</code> ${esc(eqN(e))}`:esc(t('row.noEq'))}${x.respId&&pName(x.respId)?' · '+esc(pName(x.respId)):x.crew?' · '+esc(tv(x.crew)):''}${(x.labour||[]).length?' · '+esc(t('row.mh',{n:fmtDur(manHours(x))})):''}${(x.materials||[]).length?' · '+esc(t('row.mat',{n:x.materials.length})):''}</span></span>
    <span class="wo-side">${x.start&&x.status!=='done'?`<span class="due">▸ ${fmtDate(x.start)}${x.startTime&&x.startTime!=='00:00'?' '+x.startTime:''}</span>`:''}<span class="pill" style="--c:${st.c}">${esc(stL(x.status))}</span><span class="due ${di.cls}">${esc(di.txt)}</span><span style="color:${pr.c};font-weight:600">${esc(prL(x.priority))}</span></span>
@@ -1150,7 +1176,7 @@ function vPlan(){
    `<div class="plan-layout"><div class="plan-card">${banner}
      <div style="position:relative"><div class="zoom"><button data-act="zoom" data-id="1" aria-label="${esc(t('zoom.in'))}">+</button><button data-act="zoom" data-id="-1" aria-label="${esc(t('zoom.out'))}">−</button></div>
      <div class="plan-scroll" id="planScroll"><div class="plan-canvas${pl?' placing':''}" id="planCanvas" style="width:${S.zoom*100}%">${plan}${S.showGrid?gridHtml():''}<div class="pins" id="pins">${eqs}${pins}</div></div></div></div>
-     <div class="plan-foot">${Object.entries(STATUS).map(([k,s])=>`<span class="lg"><i style="background:${s.c}"></i>${esc(stL(k))}</span>`).join('')}<span class="lg"><b>!</b> ${esc(prL('critical'))}</span><span class="lg"><b>P</b> ${esc(t('plan.pm'))}</span><span class="lg"><i class="lg-elec"></i>${esc(t('plan.elec'))}</span><span class="lg"><i class="lg-mech"></i>${esc(t('plan.mech'))}</span>
+     <div class="plan-foot">${Object.entries(STATUS).map(([k,s])=>`<span class="lg"><i style="background:${s.c}"></i>${esc(stL(k))}</span>`).join('')}<span class="lg"><b>!</b> ${esc(prL('critical'))}</span><span class="lg"><b>P</b> ${esc(t('plan.pm'))}</span>${crewLegend(list)}
       <label class="check" style="margin-left:auto"><input type="checkbox" id="showGrid" ${S.showGrid?'checked':''}> ${esc(t('plan.grid'))}</label>
       <label class="check"><input type="checkbox" id="showEq" ${S.showEq?'checked':''}> ${esc(t('plan.eqLabels'))}</label>
       <span class="plan-up">${S.site.planPdf?`<a class="btn sm" href="${esc(blobSrc(S.site.planPdf))}" target="_blank" rel="noopener">${ico('dl')}${esc(t('plan.openPdf'))}</a>`:''}${S.canWrite&&(S.assets||!S.db)?`<button class="btn sm" data-act="upload-plan">${ico('plan')}${esc(S.site.planImg?t('plan.replace'):t('plan.upload'))}</button>`:''}</span></div>
