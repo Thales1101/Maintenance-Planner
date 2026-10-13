@@ -152,6 +152,20 @@ input.search{min-width:0;width:220px}
 .pin-cl{position:absolute;transform:translate(-50%,-50%);min-width:34px;height:34px;padding:0 9px;border-radius:17px;border:3px solid var(--surface);background:var(--c);color:#fff;font:700 13px/1 var(--f-display);box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 28%,transparent),0 2px 6px rgba(0,0,0,.35);z-index:3;cursor:pointer;display:grid;place-items:center}
 .pin-cl:hover{filter:brightness(1.08)}
 .fab[hidden]{display:none!important}
+.ch-row[hidden]{display:none}
+.ch-row.ch-recbar{align-items:center}
+.ch-rec-l{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:899px){.ch-row{gap:6px}.ch-row>.iconbtn{width:38px;height:38px;flex:none}.ch-row textarea{font-size:16px}}
+.ch-recbar{align-items:center;background:color-mix(in srgb,var(--crit) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--crit) 35%,var(--line));border-radius:12px;padding:4px 4px 4px 12px}
+.ch-recdot{width:11px;height:11px;border-radius:50%;background:var(--crit);animation:recblink 1s ease-in-out infinite;flex:none}
+@keyframes recblink{50%{opacity:.25}}@media (prefers-reduced-motion:reduce){.ch-recdot{animation:none}}
+#vrTime{font:700 15px/1 var(--f-mono);min-width:40px}.ch-rec-l{flex:1;color:var(--muted);font-size:13px}
+.ch-voice{display:flex;align-items:center;gap:9px;min-width:190px}
+.ch-play{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:var(--ink);color:var(--accent);display:grid;place-items:center;padding:0;cursor:pointer}
+.ch-play .ico,.ch-play svg{width:16px;height:16px;fill:currentColor}
+.ch-vbar{flex:1;height:5px;border-radius:3px;background:color-mix(in srgb,var(--ink) 15%,transparent);overflow:hidden}.ch-vbar i{display:block;height:100%;background:var(--ink);border-radius:3px}
+.ch-vdur{font:600 12px/1 var(--f-mono);color:var(--muted);min-width:34px;text-align:right}
+.sg-ask{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .chat{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;height:calc(100dvh - 150px);min-height:440px}
 .ch-list,.ch-conv{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-height:0;display:flex;flex-direction:column}
 .ch-list{overflow:auto;padding-bottom:8px}
@@ -608,7 +622,7 @@ en:{
  'st.open':'Open','st.progress':'In progress','st.hold':'On hold','st.done':'Done','status':'Status',
  'pr.critical':'Critical','pr.high':'High','pr.medium':'Medium','pr.low':'Low',
  'kind.scheduled':'Scheduled (PM)','kind.unscheduled':'Unscheduled','kind.tag':'Scheduled PM','kind.formUns':'Unscheduled (breakdown / defect)',
- 'f.active':'Active','f.overdue':'Overdue','f.done':'Done','f.all':'All','nav.chat':'Chat','ch.remove':'Remove','ch.sub':'Talk with your team','ch.team':'Whole team','ch.teamSub':'Everyone in the app','ch.crewSub':'Crew channel','ch.channels':'Channels','ch.direct':'Direct messages','ch.noAcc':'Hasn\'t signed in yet','ch.noPeople':'No other people yet.','ch.pick':'Choose a conversation','ch.empty':'No messages yet. Say hello!','ch.ph':'Write a message…','ch.send':'Send','ch.attachTk':'Attach a work order','ch.attachPhoto':'Add a photo','ch.photo':'📷 Photo','ch.deleted':'Message deleted','ch.del':'Delete message','ch.today':'Today','ch.yesterday':'Yesterday','ch.earlier':'Show earlier messages','ch.you':'You','ch.back':'Back to conversations','ch.private':'Only you and {n} can read these messages','ch.noRights':'The message wasn\'t sent. Check the connection; if it keeps failing, the administrator needs to run the chat update in Supabase (README, step 8).','ch.discuss':'Discuss in chat','ch.pickTk':'Attach a work order','ch.searchTk':'Search by number, title or equipment…','ch.tkGone':'Work order no longer exists','f.closedL':'Period for completed orders','f.closed.7':'Closed in the last 7 days','f.closed.30':'Closed in the last 30 days','f.closed.90':'Closed in the last 3 months','f.closed.year':'Closed this year','f.closed.all':'Closed: all time','cl.title':'{n} work orders here','dr.historyAll':'All {n} completed orders','f.allPrio':'All priorities','f.allZones':'All zones','f.allKinds':'Scheduled + unscheduled','f.search':'Search title, code, crew…',
+ 'f.active':'Active','f.overdue':'Overdue','f.done':'Done','f.all':'All','nav.chat':'Chat','vr.rec':'Record a voice message','vr.stop':'Send voice message','vr.cancel':'Cancel','vr.recording':'Recording…','vr.denied':'Microphone access was refused. Allow the microphone for this app in the phone or browser settings.','vr.unsupported':'This browser can\'t record voice messages.','vr.voice':'🎤 Voice message','vr.loading':'Loading the voice message, tap again in a moment.','vr.cantPlay':'This voice message can\'t be played on this device.','vr.tooShort':'Too short. Record a little longer.','vr.sending':'Sending voice message…','vr.play':'Play','vr.pause':'Pause','sg.title':'Sound and notifications','sg.p':'A sound and vibration when a new chat message or notification arrives, and a notification on this device while the app is in the background. Each device has its own setting.','sg.soundOn':'Sound on','sg.soundOff':'Sound off','sg.allow':'Allow notifications','sg.allowed':'Notifications are on for this device.','sg.blocked':'Notifications are blocked for this site. Allow them in the browser\'s site settings.','sg.na':'This browser can\'t show notifications; the sound still works.','sg.test':'Test','sg.testMsg':'This is how new messages will look and sound.','sg.ask':'Get a sound and a notification on this device when new messages arrive.','sg.later':'Not now','ch.remove':'Remove','ch.sub':'Talk with your team','ch.team':'Whole team','ch.teamSub':'Everyone in the app','ch.crewSub':'Crew channel','ch.channels':'Channels','ch.direct':'Direct messages','ch.noAcc':'Hasn\'t signed in yet','ch.noPeople':'No other people yet.','ch.pick':'Choose a conversation','ch.empty':'No messages yet. Say hello!','ch.ph':'Write a message…','ch.send':'Send','ch.attachTk':'Attach a work order','ch.attachPhoto':'Add a photo','ch.photo':'📷 Photo','ch.deleted':'Message deleted','ch.del':'Delete message','ch.today':'Today','ch.yesterday':'Yesterday','ch.earlier':'Show earlier messages','ch.you':'You','ch.back':'Back to conversations','ch.private':'Only you and {n} can read these messages','ch.noRights':'The message wasn\'t sent. Check the connection; if it keeps failing, the administrator needs to run the chat update in Supabase (README, step 8).','ch.discuss':'Discuss in chat','ch.pickTk':'Attach a work order','ch.searchTk':'Search by number, title or equipment…','ch.tkGone':'Work order no longer exists','f.closedL':'Period for completed orders','f.closed.7':'Closed in the last 7 days','f.closed.30':'Closed in the last 30 days','f.closed.90':'Closed in the last 3 months','f.closed.year':'Closed this year','f.closed.all':'Closed: all time','cl.title':'{n} work orders here','dr.historyAll':'All {n} completed orders','f.allPrio':'All priorities','f.allZones':'All zones','f.allKinds':'Scheduled + unscheduled','f.search':'Search title, code, crew…',
  'due.none':'No due date','due.on':'Due {d}','due.over':'{n} d overdue','due.today':'Due today','due.todayAt':'Due today at {t}','due.overT':'Overdue since {t}','fm.timeOpt':'Time (optional)','due.in':'Due in {n} d','pm.notSched':'Not scheduled',
  'tag.example':'Example','row.noEq':'No equipment','row.mh':'{n}','row.mat':'materials ×{n}',
  'empty.loading':'Loading terminal data…','empty.loadingP':'Fetching equipment, work orders and maintenance plans.',
@@ -650,7 +664,7 @@ ka:{
  'st.open':'ღია','st.progress':'მიმდინარე','st.hold':'შეჩერებული','st.done':'დასრულებული','status':'სტატუსი',
  'pr.critical':'კრიტიკული','pr.high':'მაღალი','pr.medium':'საშუალო','pr.low':'დაბალი',
  'kind.scheduled':'გეგმიური (გტმ)','kind.unscheduled':'არაგეგმიური','kind.tag':'გეგმიური ტმ','kind.formUns':'არაგეგმიური (ავარია / დეფექტი)',
- 'f.active':'აქტიური','f.overdue':'ვადაგადაცილებული','f.done':'დასრულებული','f.all':'ყველა','nav.chat':'ჩატი','ch.remove':'მოხსნა','ch.sub':'ისაუბრეთ გუნდთან','ch.team':'მთელი გუნდი','ch.teamSub':'აპის ყველა მომხმარებელი','ch.crewSub':'ბრიგადის არხი','ch.channels':'არხები','ch.direct':'პირადი შეტყობინებები','ch.noAcc':'ჯერ არ შესულა აპში','ch.noPeople':'სხვა პირები ჯერ არ არის.','ch.pick':'აირჩიეთ საუბარი','ch.empty':'შეტყობინებები ჯერ არ არის. მიესალმეთ!','ch.ph':'დაწერეთ შეტყობინება…','ch.send':'გაგზავნა','ch.attachTk':'დავალების მიმაგრება','ch.attachPhoto':'ფოტოს დამატება','ch.photo':'📷 ფოტო','ch.deleted':'შეტყობინება წაიშალა','ch.del':'შეტყობინების წაშლა','ch.today':'დღეს','ch.yesterday':'გუშინ','ch.earlier':'ადრინდელი შეტყობინებები','ch.you':'თქვენ','ch.back':'საუბრებზე დაბრუნება','ch.private':'ამ შეტყობინებებს კითხულობთ მხოლოდ თქვენ და {n}','ch.noRights':'შეტყობინება ვერ გაიგზავნა. შეამოწმეთ კავშირი; თუ ისევ არ გაიგზავნა, ადმინისტრატორმა Supabase-ში უნდა გაუშვას ჩატის განახლება (README, ნაბიჯი 8).','ch.discuss':'ჩატში განხილვა','ch.pickTk':'დავალების მიმაგრება','ch.searchTk':'ძებნა ნომრით, სათაურით ან აღჭურვილობით…','ch.tkGone':'დავალება აღარ არსებობს','f.closedL':'დასრულებული დავალებების პერიოდი','f.closed.7':'დასრულდა ბოლო 7 დღეში','f.closed.30':'დასრულდა ბოლო 30 დღეში','f.closed.90':'დასრულდა ბოლო 3 თვეში','f.closed.year':'დასრულდა წელს','f.closed.all':'დასრულებული: ყველა','cl.title':'აქ {n} დავალებაა','dr.historyAll':'ყველა დასრულებული ({n})','f.allPrio':'ყველა პრიორიტეტი','f.allZones':'ყველა ზონა','f.allKinds':'გეგმიური + არაგეგმიური','f.search':'ძიება: სათაური, კოდი, ბრიგადა…',
+ 'f.active':'აქტიური','f.overdue':'ვადაგადაცილებული','f.done':'დასრულებული','f.all':'ყველა','nav.chat':'ჩატი','vr.rec':'ხმოვანი შეტყობინების ჩაწერა','vr.stop':'ხმოვანის გაგზავნა','vr.cancel':'გაუქმება','vr.recording':'იწერება…','vr.denied':'მიკროფონზე წვდომა უარყოფილია. დაუშვით მიკროფონი ამ აპისთვის ტელეფონის ან ბრაუზერის პარამეტრებში.','vr.unsupported':'ეს ბრაუზერი ხმოვან შეტყობინებებს ვერ წერს.','vr.voice':'🎤 ხმოვანი შეტყობინება','vr.loading':'ხმოვანი იტვირთება, ცოტა ხანში ისევ დააჭირეთ.','vr.cantPlay':'ეს ხმოვანი შეტყობინება ამ მოწყობილობაზე ვერ ჩაირთვება.','vr.tooShort':'ძალიან მოკლეა. ცოტა მეტხანს ჩაწერეთ.','vr.sending':'ხმოვანი იგზავნება…','vr.play':'მოსმენა','vr.pause':'პაუზა','sg.title':'ხმა და შეტყობინებები','sg.p':'ხმა და ვიბრაცია ახალი ჩატის შეტყობინების ან შეტყობინების მოსვლისას, ხოლო როცა აპი ფონურ რეჟიმშია — შეტყობინება ამ მოწყობილობაზე. თითოეულ მოწყობილობას საკუთარი პარამეტრი აქვს.','sg.soundOn':'ხმა ჩართულია','sg.soundOff':'ხმა გამორთულია','sg.allow':'შეტყობინებების დაშვება','sg.allowed':'შეტყობინებები ჩართულია ამ მოწყობილობაზე.','sg.blocked':'შეტყობინებები დაბლოკილია ამ საიტისთვის. დაუშვით ისინი ბრაუზერის საიტის პარამეტრებში.','sg.na':'ეს ბრაუზერი შეტყობინებებს ვერ აჩვენებს; ხმა მაინც მუშაობს.','sg.test':'შემოწმება','sg.testMsg':'ასე გამოჩნდება და გაჟღერდება ახალი შეტყობინებები.','sg.ask':'მიიღეთ ხმა და შეტყობინება ამ მოწყობილობაზე ახალი შეტყობინებების მოსვლისას.','sg.later':'ახლა არა','ch.remove':'მოხსნა','ch.sub':'ისაუბრეთ გუნდთან','ch.team':'მთელი გუნდი','ch.teamSub':'აპის ყველა მომხმარებელი','ch.crewSub':'ბრიგადის არხი','ch.channels':'არხები','ch.direct':'პირადი შეტყობინებები','ch.noAcc':'ჯერ არ შესულა აპში','ch.noPeople':'სხვა პირები ჯერ არ არის.','ch.pick':'აირჩიეთ საუბარი','ch.empty':'შეტყობინებები ჯერ არ არის. მიესალმეთ!','ch.ph':'დაწერეთ შეტყობინება…','ch.send':'გაგზავნა','ch.attachTk':'დავალების მიმაგრება','ch.attachPhoto':'ფოტოს დამატება','ch.photo':'📷 ფოტო','ch.deleted':'შეტყობინება წაიშალა','ch.del':'შეტყობინების წაშლა','ch.today':'დღეს','ch.yesterday':'გუშინ','ch.earlier':'ადრინდელი შეტყობინებები','ch.you':'თქვენ','ch.back':'საუბრებზე დაბრუნება','ch.private':'ამ შეტყობინებებს კითხულობთ მხოლოდ თქვენ და {n}','ch.noRights':'შეტყობინება ვერ გაიგზავნა. შეამოწმეთ კავშირი; თუ ისევ არ გაიგზავნა, ადმინისტრატორმა Supabase-ში უნდა გაუშვას ჩატის განახლება (README, ნაბიჯი 8).','ch.discuss':'ჩატში განხილვა','ch.pickTk':'დავალების მიმაგრება','ch.searchTk':'ძებნა ნომრით, სათაურით ან აღჭურვილობით…','ch.tkGone':'დავალება აღარ არსებობს','f.closedL':'დასრულებული დავალებების პერიოდი','f.closed.7':'დასრულდა ბოლო 7 დღეში','f.closed.30':'დასრულდა ბოლო 30 დღეში','f.closed.90':'დასრულდა ბოლო 3 თვეში','f.closed.year':'დასრულდა წელს','f.closed.all':'დასრულებული: ყველა','cl.title':'აქ {n} დავალებაა','dr.historyAll':'ყველა დასრულებული ({n})','f.allPrio':'ყველა პრიორიტეტი','f.allZones':'ყველა ზონა','f.allKinds':'გეგმიური + არაგეგმიური','f.search':'ძიება: სათაური, კოდი, ბრიგადა…',
  'due.none':'ვადა არ არის','due.on':'ვადა {d}','due.over':'{n} დღით გადაცილებული','due.today':'ვადა დღესაა','due.todayAt':'ვადა დღეს, {t}','due.overT':'გადაცილებულია {t}-დან','fm.timeOpt':'დრო (არასავალდებულო)','due.in':'ვადამდე {n} დღე','pm.notSched':'არ არის დაგეგმილი',
  'tag.example':'მაგალითი','row.noEq':'აღჭურვილობის გარეშე','row.mh':'{n}','row.mat':'მასალა ×{n}',
  'empty.loading':'ტერმინალის მონაცემები იტვირთება…','empty.loadingP':'იტვირთება აღჭურვილობა, სამუშაო დავალებები და ტექმომსახურების გეგმები.',
@@ -692,7 +706,7 @@ ru:{
  'st.open':'Открыт','st.progress':'В работе','st.hold':'Приостановлен','st.done':'Выполнен','status':'Статус',
  'pr.critical':'Критический','pr.high':'Высокий','pr.medium':'Средний','pr.low':'Низкий',
  'kind.scheduled':'Плановый (ППР)','kind.unscheduled':'Внеплановый','kind.tag':'Плановое ТО','kind.formUns':'Внеплановый (авария / дефект)',
- 'f.active':'Активные','f.overdue':'Просроченные','f.done':'Выполненные','f.all':'Все','nav.chat':'Чат','ch.remove':'Убрать','ch.sub':'Общение с командой','ch.team':'Вся команда','ch.teamSub':'Все пользователи приложения','ch.crewSub':'Канал бригады','ch.channels':'Каналы','ch.direct':'Личные сообщения','ch.noAcc':'Ещё не входил(а) в приложение','ch.noPeople':'Других сотрудников пока нет.','ch.pick':'Выберите беседу','ch.empty':'Сообщений пока нет. Поздоровайтесь!','ch.ph':'Напишите сообщение…','ch.send':'Отправить','ch.attachTk':'Прикрепить наряд','ch.attachPhoto':'Добавить фото','ch.photo':'📷 Фото','ch.deleted':'Сообщение удалено','ch.del':'Удалить сообщение','ch.today':'Сегодня','ch.yesterday':'Вчера','ch.earlier':'Показать более ранние','ch.you':'Вы','ch.back':'К списку бесед','ch.private':'Эти сообщения видите только вы и {n}','ch.noRights':'Сообщение не отправлено. Проверьте связь; если ошибка повторяется, администратору нужно выполнить обновление чата в Supabase (README, шаг 8).','ch.discuss':'Обсудить в чате','ch.pickTk':'Прикрепить наряд','ch.searchTk':'Поиск по номеру, названию или оборудованию…','ch.tkGone':'Наряд больше не существует','f.closedL':'Период выполненных нарядов','f.closed.7':'Выполнены за 7 дней','f.closed.30':'Выполнены за 30 дней','f.closed.90':'Выполнены за 3 месяца','f.closed.year':'Выполнены в этом году','f.closed.all':'Выполненные: за всё время','cl.title':'Нарядов здесь: {n}','dr.historyAll':'Все выполненные ({n})','f.allPrio':'Все приоритеты','f.allZones':'Все зоны','f.allKinds':'Плановые + внеплановые','f.search':'Поиск: название, код, бригада…',
+ 'f.active':'Активные','f.overdue':'Просроченные','f.done':'Выполненные','f.all':'Все','nav.chat':'Чат','vr.rec':'Записать голосовое сообщение','vr.stop':'Отправить голосовое','vr.cancel':'Отмена','vr.recording':'Запись…','vr.denied':'Доступ к микрофону запрещён. Разрешите микрофон для этого приложения в настройках телефона или браузера.','vr.unsupported':'Этот браузер не умеет записывать голосовые сообщения.','vr.voice':'🎤 Голосовое сообщение','vr.loading':'Голосовое загружается, нажмите ещё раз через секунду.','vr.cantPlay':'Это голосовое сообщение нельзя воспроизвести на этом устройстве.','vr.tooShort':'Слишком коротко. Запишите чуть дольше.','vr.sending':'Отправка голосового…','vr.play':'Слушать','vr.pause':'Пауза','sg.title':'Звук и уведомления','sg.p':'Звук и вибрация при новом сообщении в чате или уведомлении, а когда приложение в фоне — уведомление на этом устройстве. У каждого устройства своя настройка.','sg.soundOn':'Звук вкл.','sg.soundOff':'Звук выкл.','sg.allow':'Разрешить уведомления','sg.allowed':'Уведомления на этом устройстве включены.','sg.blocked':'Уведомления для этого сайта заблокированы. Разрешите их в настройках сайта в браузере.','sg.na':'Этот браузер не показывает уведомления; звук работает.','sg.test':'Проверить','sg.testMsg':'Так будут выглядеть и звучать новые сообщения.','sg.ask':'Получайте звук и уведомление на этом устройстве о новых сообщениях.','sg.later':'Не сейчас','ch.remove':'Убрать','ch.sub':'Общение с командой','ch.team':'Вся команда','ch.teamSub':'Все пользователи приложения','ch.crewSub':'Канал бригады','ch.channels':'Каналы','ch.direct':'Личные сообщения','ch.noAcc':'Ещё не входил(а) в приложение','ch.noPeople':'Других сотрудников пока нет.','ch.pick':'Выберите беседу','ch.empty':'Сообщений пока нет. Поздоровайтесь!','ch.ph':'Напишите сообщение…','ch.send':'Отправить','ch.attachTk':'Прикрепить наряд','ch.attachPhoto':'Добавить фото','ch.photo':'📷 Фото','ch.deleted':'Сообщение удалено','ch.del':'Удалить сообщение','ch.today':'Сегодня','ch.yesterday':'Вчера','ch.earlier':'Показать более ранние','ch.you':'Вы','ch.back':'К списку бесед','ch.private':'Эти сообщения видите только вы и {n}','ch.noRights':'Сообщение не отправлено. Проверьте связь; если ошибка повторяется, администратору нужно выполнить обновление чата в Supabase (README, шаг 8).','ch.discuss':'Обсудить в чате','ch.pickTk':'Прикрепить наряд','ch.searchTk':'Поиск по номеру, названию или оборудованию…','ch.tkGone':'Наряд больше не существует','f.closedL':'Период выполненных нарядов','f.closed.7':'Выполнены за 7 дней','f.closed.30':'Выполнены за 30 дней','f.closed.90':'Выполнены за 3 месяца','f.closed.year':'Выполнены в этом году','f.closed.all':'Выполненные: за всё время','cl.title':'Нарядов здесь: {n}','dr.historyAll':'Все выполненные ({n})','f.allPrio':'Все приоритеты','f.allZones':'Все зоны','f.allKinds':'Плановые + внеплановые','f.search':'Поиск: название, код, бригада…',
  'due.none':'Без срока','due.on':'Срок {d}','due.over':'Просрочен на {n} дн.','due.today':'Срок сегодня','due.todayAt':'Срок сегодня в {t}','due.overT':'Просрочен с {t}','fm.timeOpt':'Время (необязательно)','due.in':'Через {n} дн.','pm.notSched':'Не запланировано',
  'tag.example':'Пример','row.noEq':'Без оборудования','row.mh':'{n}','row.mat':'материалы ×{n}',
  'empty.loading':'Загрузка данных терминала…','empty.loadingP':'Загружаем оборудование, наряды и графики ТО.',
@@ -800,6 +814,7 @@ const ICONS={
  doc:'<path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 13h7M9 17h7"/>',
  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.6a3.4 3.4 0 010 6.6M18.5 14.8c1.8.8 2.8 2.5 3 5.2"/>',
  sign:'<path d="M3 21h18"/><path d="M5 17l3-1 10-10-2-2L6 14z"/><path d="M14 6l2 2"/>',
+ mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/>',play:'<path d="M8 5v14l11-7z"/>',pause:'<path d="M9 5v14M15 5v14"/>',
  chat:'<path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/>',send:'<path d="M4 12L20 4l-5 16-3-6.5z"/><path d="M12 13.5L20 4"/>',
  bell:'<path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 004 0"/>',
  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
@@ -1693,6 +1708,7 @@ function settingsSheet(){
     ${row('s.plan',esc((S.site.planImg?t('s.planCustom')+(S.site.planName?' ('+S.site.planName+')':''):t('s.planBuiltin'))+' '+t('s.planP')),`<div class="row-actions">${S.canWrite&&(S.assets||!S.db)?`<button type="button" class="btn sm" data-act="upload-plan">${esc(t('s.upload'))}</button>`:''}${S.site.planPdf?`<a class="btn sm" href="${esc(blobSrc(S.site.planPdf))}" target="_blank" rel="noopener">${esc(t('plan.openPdf'))}</a>`:''}${S.site.planImg&&S.canWrite&&(S.assets||!S.db)?(planPortrait()?`<button type="button" class="btn sm primary" data-act="rot-layout" data-id="ccw">${esc(t('rot.left'))}</button><button type="button" class="btn sm primary" data-act="rot-layout" data-id="cw">${esc(t('rot.right'))}</button>`:`<button type="button" class="btn sm" data-act="rot-layout" data-id="180">${esc(t('rot.flip'))}</button>`):''}${S.site.planImg&&S.canWrite?`<button type="button" class="btn sm ghost" data-act="reset-plan">${esc(t('s.useSchem'))}</button>`:''}</div>`)}
     ${row('ac.settings',esc(t(S.sb?'ac.settingsSb':'ac.settingsP',{e:S.people.filter(p=>p.access!=='view').length,v:S.people.filter(p=>p.access==='view').length})),`<button type="button" class="btn sm" data-act="view" data-id="people">${ico('users')}${esc(t('s.peopleOpen'))}</button>`)}
     ${S.canWrite&&isAdmin()?listEditor('zones')+listEditor('crews'):''}
+    ${row('sg.title',esc(t('sg.p'))+(sigPerm()==='denied'?'<br><b>'+esc(t('sg.blocked'))+'</b>':sigPerm()==='na'?'<br>'+esc(t('sg.na')):''),`<div class="row-actions"><div class="opt-row"><button type="button" data-act="sg-sound" data-id="on" aria-pressed="${SIG.on}">${esc(t('sg.soundOn'))}</button><button type="button" data-act="sg-sound" data-id="off" aria-pressed="${!SIG.on}">${esc(t('sg.soundOff'))}</button></div>${sigPerm()==='default'?`<button type="button" class="btn sm primary" data-act="sg-allow">${ico('bell')}${esc(t('sg.allow'))}</button>`:sigPerm()==='granted'?`<span class="ro-note">${esc(t('sg.allowed'))}</span>`:''}<button type="button" class="btn sm" data-act="sg-test">${esc(t('sg.test'))}</button></div>`)}
     ${row('s.people',esc(t('s.peopleP')),`<button type="button" class="btn sm" data-act="view" data-id="people">${ico('users')}${esc(t('s.peopleOpen'))}</button>`)}
     ${row('s.demo',esc(demo?t('s.demoOn'):t('s.demoOff')),S.canWrite?(demo&&canDel()?`<button type="button" class="btn sm danger" data-act="demo-clear">${esc(S.confirmDel?t('s.demoRmC'):t('s.demoRm'))}</button>`:`<button type="button" class="btn sm" data-act="demo-load">${esc(t('s.demoLoad'))}</button>`):'')}
     ${row('s.export',esc(t('s.exportP')),`<div class="row-actions"><button type="button" class="btn sm" data-act="export">${ico('dl')}${esc(t('s.exOrders'))}</button><button type="button" class="btn sm" data-act="export" data-id="labour">${esc(t('s.exMh'))}</button><button type="button" class="btn sm" data-act="export" data-id="materials">${esc(t('s.exMat'))}</button></div>`)}
@@ -1746,9 +1762,9 @@ async function resizeImage(file,max=1600){
     c.getContext('2d').drawImage(img,0,0,c.width,c.height);return await new Promise(r=>c.toBlob(r,'image/jpeg',.82));
   }finally{URL.revokeObjectURL(url)}
 }
-async function storeBlob(blob,type){
+async function storeBlob(blob,type,prefix){
   if(!S.db){const id='m'+newId();S.memBlobs[id]=URL.createObjectURL(blob);idbPut(id,blob,'blobs');return id}
-  try{const r=await S.assets.upload(blob,{type});return r.id}
+  try{const r=await S.assets.upload(blob,prefix&&S.sb?{type,prefix}:{type});return r.id}
   catch(e){toast(e?.code==='too_large'?t('ts.imgLarge'):e?.code==='quota_or_state'?t('ts.photoFull'):t('ts.uploadFail'));throw e}
 }
 async function uploadImage(file,max){return storeBlob(await resizeImage(file,max),'image/jpeg')}
@@ -1984,7 +2000,7 @@ function onNotes(list){
   S.notes=list;const mine=myNotes();ntCleanup();
   if(NT_SEEN===null){NT_SEEN=new Set(mine.map(n=>n.id));return}
   const fresh=mine.filter(n=>!NT_SEEN.has(n.id)&&isUnread(n));mine.forEach(n=>NT_SEEN.add(n.id));
-  if(fresh.length){toast(t('nt.toast',{m:noteText(fresh[0])}),7000);if(S.form?.type==='notes')notesSheet()}
+  if(fresh.length){toast(t('nt.toast',{m:noteText(fresh[0])}),7000);alertUser(t('nt.title'),noteText(fresh[0]),fresh[0].tid?{tk:fresh[0].tid}:null);if(S.form?.type==='notes')notesSheet()}
 }
 const bellBtn=cls=>`<button class="${cls}" data-act="notes" aria-label="${esc(t('nt.title'))}">${ico('bell')}${cls==='iconbtn'?'':`<span class="nav-l">${esc(t('nt.title'))}</span>`}${unreadCount()?`<span class="nt-badge">${unreadCount()}</span>`:''}</button>`;
 /* ---------- team chat ----------
@@ -2020,7 +2036,8 @@ function chOnThreads(map){
   for(const [th,s] of Object.entries(CH.threads)){const o=prev[th];
     if(!mine.has(th)||!s?.lastAt||s.lastBy===myUid()||(o&&o.lastAt===s.lastAt))continue;
     if(S.view==='chat'&&CH.th===th&&document.visibilityState==='visible')continue;
-    const x=mine.get(th);toast('💬 '+(x.kind==='dm'?'':x.name+' · ')+(s.lastName||'')+': '+(s.last||''),6000);break}
+    const x=mine.get(th);toast('💬 '+(x.kind==='dm'?'':x.name+' · ')+(s.lastName||'')+': '+(s.last||''),6000);
+    alertUser(x.kind==='dm'?(s.lastName||x.name):x.name,(x.kind==='dm'?'':(s.lastName||'')+': ')+(s.last||''),{th});break}
 }
 function chSubscribe(db){
   db.collection('chat').onSnapshot(s=>{const m={};s.docs.forEach(d=>{m[d.id]=d.data()});chOnThreads(m);renderAll()},()=>{});
@@ -2033,7 +2050,7 @@ async function chWrite(p,d,base){
   try{await S.db.doc(p).update(d)}catch(e){if(S.sb)throw e;await S.db.doc(p).set({...base,...d})}
 }
 function chOpen(th){
-  if(!th)return;CH.unsub?.();CH.unsub=null;CH.th=th;CH.msgs=[];CH.limit=150;CH.stick=true;S.view='chat';S.drawer=null;
+  if(!th)return;if(VR.rec)vrStop(false);CH.unsub?.();CH.unsub=null;CH.th=th;CH.msgs=[];CH.limit=150;CH.stick=true;S.view='chat';S.drawer=null;
   if(S.db){CH.unsub=S.db.collection(`chat/${th}/m`).orderBy('at').onSnapshot(s=>{CH.msgs=s.docs.map(d=>({id:d.id,...d.data()}));if(S.view==='chat')renderAll()},()=>{});renderAll()}
   else memNotify();
 }
@@ -2045,26 +2062,31 @@ function chMarkRead(){
   chWrite('chatread/'+myUid(),{[th]:last},CH.read).catch(()=>{});setTimeout(renderNav,0);
 }
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.view==='chat'){chMarkRead();renderNav()}});
-async function chSend(){
+async function chSend(voice){
   const th=CH.th;if(!th||CH.sending)return;
+  if(voice){const keep={draft:String($('#chText')?.value??CH.draft),tk:CH.draftTk,ph:CH.draftPhoto};CH.draft='';CH.draftTk=null;CH.draftPhoto=null;
+    try{return await chSend2(th,'',null,null,voice)}finally{CH.draft=keep.draft;CH.draftTk=keep.tk;CH.draftPhoto=keep.ph;renderAll()}}
   const text=String($('#chText')?.value??CH.draft).trim();
   if(!text&&!CH.draftTk&&!CH.draftPhoto)return;
+  return chSend2(th,text,CH.draftTk,CH.draftPhoto,null);
+}
+async function chSend2(th,text,tkId,photo,voice){
   const x=chatThreads().find(r=>r.id===th),at=nowIso(),me=myUid(),nm=myName()||S.me?.email||t('ch.you');
-  const msg={by:me,name:nm,text,at,tk:CH.draftTk||null,photo:CH.draftPhoto||null};
+  const msg={by:me,name:nm,text,at,tk:tkId||null,photo:photo||null,...(voice?{voice:voice.id,dur:Math.round(voice.dur*10)/10,vtype:voice.type}:{})};
   const tk=msg.tk&&S.tk.find(r=>r.id===msg.tk);
-  const last=(text||(msg.photo?t('ch.photo'):'')||(tk?tk.no+' · '+trT(tk):'')).replace(/\s+/g,' ').slice(0,140);
+  const last=(text||(msg.voice?t('vr.voice')+' '+fmtSec(msg.dur):'')||(msg.photo?t('ch.photo'):'')||(tk?tk.no+' · '+trT(tk):'')).replace(/\s+/g,' ').slice(0,140);
   CH.sending=true;CH.draft='';CH.draftTk=null;CH.draftPhoto=null;CH.stick=true;
   try{
     await chWrite(`chat/${th}/m/${newId()}`,msg);
     await chWrite('chat/'+th,{lastAt:at,lastBy:me,lastName:nm,last,...(x?.kind==='dm'?{members:[me,x.uid].sort()}:{})},CH.threads[th]||{});
     CH.readLocal={...CH.readLocal,[th]:at};CH.read={...CH.read,[th]:at};chWrite('chatread/'+me,{[th]:at},CH.read).catch(()=>{});
-  }catch(e){console.error(e);CH.draft=text;CH.draftTk=msg.tk;CH.draftPhoto=msg.photo;toast(t('ch.noRights'),9000)}
+  }catch(e){console.error(e);if(!voice){CH.draft=text;CH.draftTk=msg.tk;CH.draftPhoto=msg.photo}toast(t('ch.noRights'),9000)}
   finally{CH.sending=false;renderAll();setTimeout(()=>$('#chText')?.focus(),0)}
 }
 async function chDel(id){
   const m=CH.msgs.find(r=>r.id===id);if(!m||(m.by!==myUid()&&!canDel()))return;
   const {id:_,...v}=m;
-  try{await chWrite(`chat/${CH.th}/m/${id}`,{...v,del:true,text:'',photo:null,tk:null,delAt:nowIso()})}catch(e){console.error(e);toast(t('ts.saveFail'))}
+  try{await chWrite(`chat/${CH.th}/m/${id}`,{...v,del:true,text:'',photo:null,tk:null,voice:null,delAt:nowIso()})}catch(e){console.error(e);toast(t('ts.saveFail'))}
 }
 const chText=s=>esc(s).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>')
   .replace(/\b(WO-[A-Z0-9]+-[A-Z0-9]+)\b/g,w=>{const x=S.tk.find(r=>r.no===w);return x?`<a href="#" class="ch-wo" data-act="open-tk" data-id="${x.id}">${w}</a>`:w}).replace(/\n/g,'<br>');
@@ -2076,7 +2098,7 @@ function chMsg(m,prev){
   const mine=m.by===myUid(),cont=!sep&&prev&&prev.by===m.by&&!prev.del&&Date.parse(m.at)-Date.parse(prev.at)<5*60e3;
   const tk=m.tk&&S.tk.find(x=>x.id===m.tk);
   const body=m.del?`<i class="ch-delt">${esc(t('ch.deleted'))}</i>`:
-    `${m.photo?`<a class="ch-img" href="${esc(blobSrc(m.photo))}" target="_blank" rel="noopener"><img src="${esc(blobSrc(m.photo))}" alt="${esc(t('ch.photo'))}" loading="lazy"></a>`:''}${tk?chTkChip(tk,'open-tk'):m.tk?`<span class="ch-tk gone">${esc(t('ch.tkGone'))}</span>`:''}${m.text?`<div class="ch-text">${chText(m.text)}</div>`:''}`;
+    `${m.voice?vrPlayer(m):''}${m.photo?`<a class="ch-img" href="${esc(blobSrc(m.photo))}" target="_blank" rel="noopener"><img src="${esc(blobSrc(m.photo))}" alt="${esc(t('ch.photo'))}" loading="lazy"></a>`:''}${tk?chTkChip(tk,'open-tk'):m.tk?`<span class="ch-tk gone">${esc(t('ch.tkGone'))}</span>`:''}${m.text?`<div class="ch-text">${chText(m.text)}</div>`:''}`;
   const canX=!m.del&&(mine||canDel());
   return sep+`<div class="ch-msg${mine?' me':''}${cont?' cont':''}">${!mine&&!cont?`<div class="ch-who">${esc(m.name||nameOf(m.by))}</div>`:''}<div class="ch-bub">${body}<span class="ch-time">${pad(d.getHours())}:${pad(d.getMinutes())}</span>${canX?`<button type="button" class="ch-x" data-act="ch-del" data-id="${m.id}" aria-label="${esc(t('ch.del'))}" title="${esc(t('ch.del'))}">${ico('trash')}</button>`:''}</div></div>`;
 }
@@ -2097,10 +2119,10 @@ function vChat(){
     conv=`<div class="ch-conv${phone?' ph':''}">
       <div class="ch-head">${phone?`<button type="button" class="iconbtn ch-back" data-act="ch-back" aria-label="${esc(t('ch.back'))}"><span aria-hidden="true">‹</span></button>`:''}${chAv(cur)}<div class="ch-hd-t"><b>${esc(cur.name)}</b><small>${esc(cur.kind==='dm'?t('ch.private',{n:cur.name}):cur.sub)}</small></div></div>
       <div class="ch-msgs" id="chMsgs" data-th="${esc(cur.id)}">${more?`<button type="button" class="btn sm ghost ch-more" data-act="ch-more">${esc(t('ch.earlier'))}</button>`:''}${vis.length?vis.map((m,i)=>chMsg(m,vis[i-1])).join(''):`<div class="empty ch-empty"><p>${esc(t('ch.empty'))}</p></div>`}</div>
-      <div class="ch-comp">${att}<div class="ch-row"><button type="button" class="iconbtn" data-act="ch-tk" aria-label="${esc(t('ch.attachTk'))}" title="${esc(t('ch.attachTk'))}">${ico('list')}</button>${S.canWrite&&(S.assets||!S.db)?`<button type="button" class="iconbtn" data-act="ch-photo" aria-label="${esc(t('ch.attachPhoto'))}" title="${esc(t('ch.attachPhoto'))}">${ico('cam')}</button>`:''}<textarea id="chText" rows="1" placeholder="${esc(t('ch.ph'))}" aria-label="${esc(t('ch.ph'))}">${esc(CH.draft)}</textarea><button type="button" class="btn primary ch-send" data-act="ch-send" aria-label="${esc(t('ch.send'))}" title="${esc(t('ch.send'))}"${CH.sending?' disabled':''}>${ico('send')}</button></div></div>
+      <div class="ch-comp">${att}${CH.rec?`<div class="ch-row ch-recbar"><span class="ch-recdot" aria-hidden="true"></span><b id="vrTime">${fmtSec((Date.now()-VR.start)/1000)}</b><span class="ch-rec-l">${esc(t('vr.recording'))}</span><button type="button" class="btn sm ghost" data-act="vr-cancel">${esc(t('vr.cancel'))}</button><button type="button" class="btn primary ch-send" data-act="vr-send" aria-label="${esc(t('vr.stop'))}" title="${esc(t('vr.stop'))}">${ico('send')}</button></div>`:''}<div class="ch-row"${CH.rec?' hidden':''}><button type="button" class="iconbtn" data-act="ch-tk" aria-label="${esc(t('ch.attachTk'))}" title="${esc(t('ch.attachTk'))}">${ico('list')}</button>${(S.canWrite||S.sb)&&(S.assets||!S.db)?`<button type="button" class="iconbtn" data-act="ch-photo" aria-label="${esc(t('ch.attachPhoto'))}" title="${esc(t('ch.attachPhoto'))}">${ico('cam')}</button>`:''}<button type="button" class="iconbtn ch-mic" data-act="vr-start" aria-label="${esc(t('vr.rec'))}" title="${esc(t('vr.rec'))}">${ico('mic')}</button><textarea id="chText" rows="1" placeholder="${esc(t('ch.ph'))}" aria-label="${esc(t('ch.ph'))}">${esc(CH.draft)}</textarea><button type="button" class="btn primary ch-send" data-act="ch-send" aria-label="${esc(t('ch.send'))}" title="${esc(t('ch.send'))}"${CH.sending?' disabled':''}>${ico('send')}</button></div></div>
     </div>`;
   }
-  return topbar(esc(t('nav.chat')),esc(t('ch.sub')))+`<div class="chat${cur?' has-th':''}">${list}${conv}</div>`;
+  return topbar(esc(t('nav.chat')),esc(t('ch.sub')))+sgBanner()+`<div class="chat${cur?' has-th':''}">${list}${conv}</div>`;
 }
 function chSnap(){const el=$('#chMsgs');return el?{th:el.dataset.th,top:el.scrollTop,bottom:el.scrollHeight-el.scrollTop-el.clientHeight<80}:null}
 function chAfter(prev){
@@ -2118,6 +2140,83 @@ function chTkList(q){const ql=q.trim().toLowerCase();
     .sort((a,b)=>(a.status==='done')-(b.status==='done')||String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||''))).slice(0,40);
   return list.map(x=>woRow(x).replace('data-act="open-tk"','data-act="ch-tk-pick"')).join('')||`<p class="ro-note">${esc(t('plan.noMatch'))}</p>`}
 document.addEventListener('load',ev=>{const im=ev.target;if(im?.tagName!=='IMG'||!im.closest?.('#chMsgs'))return;const el=$('#chMsgs');if(el&&el.scrollHeight-el.scrollTop-el.clientHeight<im.clientHeight+120)el.scrollTop=el.scrollHeight},true);
+/* ---------- voice messages ---------- */
+const VR={rec:null,chunks:[],start:0,timer:null,stream:null};
+const fmtSec=s=>{s=Math.max(0,Math.round(+s||0));return Math.floor(s/60)+':'+pad(s%60)};
+async function vrStart(){
+  if(VR.rec)return;
+  if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){toast(t('vr.unsupported'),6000);return}
+  try{VR.stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}})}catch(e){console.warn(e);toast(t('vr.denied'),8000);return}
+  const type=['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus'].find(x=>MediaRecorder.isTypeSupported?.(x))||'';
+  try{VR.rec=new MediaRecorder(VR.stream,type?{mimeType:type,audioBitsPerSecond:32000}:{})}catch{VR.rec=new MediaRecorder(VR.stream)}
+  VR.chunks=[];VR.rec.ondataavailable=e=>{if(e.data?.size)VR.chunks.push(e.data)};VR.rec.start(250);VR.start=Date.now();
+  VR.timer=setInterval(()=>{const s=(Date.now()-VR.start)/1000,el=$('#vrTime');if(el)el.textContent=fmtSec(s);if(s>=180)vrStop(true)},250);
+  CH.rec=true;renderAll();
+}
+function vrStop(send){
+  const r=VR.rec;if(!r)return Promise.resolve();VR.rec=null;clearInterval(VR.timer);const dur=(Date.now()-VR.start)/1000;
+  return new Promise(res=>{r.onstop=async()=>{try{VR.stream?.getTracks().forEach(x=>x.stop())}catch{}VR.stream=null;CH.rec=false;
+      const type=(r.mimeType||VR.chunks[0]?.type||'audio/webm').split(';')[0];const blob=new Blob(VR.chunks,{type});VR.chunks=[];renderAll();
+      if(send){if(dur<0.8||!blob.size)toast(t('vr.tooShort'));else{toast(t('vr.sending'));try{const id=await storeBlob(blob,type,'chat');await chSend({id,dur,type})}catch(e){console.error(e)}}}
+      res()};
+    try{r.stop()}catch{r.onstop()}});
+}
+const AU={el:null,mid:null};
+function vrPlayer(m){blobSrc(m.voice);/* asks for the file link early so it plays on the first tap */const on=AU.mid===m.id&&AU.el&&!AU.el.paused,pc=AU.mid===m.id&&AU.el?.duration?Math.min(100,AU.el.currentTime/AU.el.duration*100):0;
+  return `<div class="ch-voice${on?' on':''}" data-vm="${m.id}"><button type="button" class="ch-play" data-act="vr-play" data-id="${m.id}" aria-label="${esc(on?t('vr.pause'):t('vr.play'))}">${ico(on?'pause':'play')}</button><span class="ch-vbar"><i style="width:${pc}%"></i></span><span class="ch-vdur">${fmtSec(m.dur)}</span></div>`}
+function vrPlay(mid){
+  const m=CH.msgs.find(r=>r.id===mid);if(!m?.voice)return;
+  if(!AU.el){AU.el=new Audio();AU.el.preload='auto';
+    const upd=()=>{const w=document.querySelector(`[data-vm="${AU.mid}"]`);if(!w)return;const d=AU.el.duration||0;w.querySelector('.ch-vbar i').style.width=(d?Math.min(100,AU.el.currentTime/d*100):0)+'%';w.querySelector('.ch-vdur').textContent=fmtSec(d&&!AU.el.paused?AU.el.currentTime:(CH.msgs.find(r=>r.id===AU.mid)?.dur||d))};
+    const st=()=>{document.querySelectorAll('.ch-voice').forEach(w=>{const on=w.dataset.vm===AU.mid&&!AU.el.paused;w.classList.toggle('on',on);const b=w.querySelector('.ch-play');if(b)b.innerHTML=ico(on?'pause':'play')});upd()};
+    AU.el.addEventListener('timeupdate',upd);AU.el.addEventListener('play',st);AU.el.addEventListener('pause',st);AU.el.addEventListener('ended',()=>{AU.el.currentTime=0;st()});
+    AU.el.addEventListener('error',()=>{toast(t('vr.cantPlay'),6000);st()})}
+  if(AU.mid===mid&&!AU.el.paused){AU.el.pause();return}
+  const src=blobSrc(m.voice);if(!src){toast(t('vr.loading'));return}
+  if(AU.mid!==mid||AU.el.src!==src){AU.el.src=src;AU.mid=mid}
+  AU.el.play().catch(e=>{console.warn(e);toast(t('vr.cantPlay'),6000)});
+}
+
+/* ---------- signal for new messages and notifications ----------
+   A short sound (and vibration on phones) when something new arrives, and a system notification
+   when the app is in the background. Each device remembers its own choice. */
+const SIG={ctx:null,on:(()=>{try{return localStorage.getItem('mp-sound')!=='0'}catch{return true}})()};
+function sigUnlock(){if(!SIG.ctx){try{const C=window.AudioContext||window.webkitAudioContext;if(C)SIG.ctx=new C()}catch{}}try{SIG.ctx?.resume?.()}catch{}}
+document.addEventListener('pointerdown',sigUnlock,{capture:true,passive:true});
+document.addEventListener('keydown',sigUnlock,{capture:true});
+function beep(force){
+  if(!SIG.on&&!force)return;
+  const c=SIG.ctx;if(c){try{c.resume?.();const t0=c.currentTime+.01;[[880,0],[1318.5,.15]].forEach(([f,d])=>{const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=f;
+      g.gain.setValueAtTime(0.0001,t0+d);g.gain.exponentialRampToValueAtTime(.3,t0+d+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+d+.24);o.connect(g);g.connect(c.destination);o.start(t0+d);o.stop(t0+d+.26)})}catch{}}
+  try{navigator.vibrate?.([140,80,140])}catch{}
+  try{window.mpNativeHaptic?.()}catch{}
+}
+const sigPerm=()=>window.mpNativeNotify?(window.mpNativePerm||'granted'):!('Notification' in window)?'na':Notification.permission;
+async function sigAsk(){
+  try{localStorage.setItem('mp-sg-asked','1')}catch{}
+  if(window.mpNativeAsk){await window.mpNativeAsk();return}
+  if(!('Notification' in window)){toast(t('sg.na'));return}
+  try{const r=await Notification.requestPermission();if(r==='granted'){sigSw();toast(t('sg.allowed'))}else if(r==='denied')toast(t('sg.blocked'),7000)}catch{}
+}
+/* browsers on Android show notifications only through a service worker (sw.js next to index.html) */
+let SW=null;
+function sigSw(){if(SW||!('serviceWorker' in navigator)||window.claude?.use||window.Capacitor?.isNativePlatform?.()||!/^https:|^http:\/\/localhost/.test(location.href))return;
+  SW=navigator.serviceWorker.register('sw.js').catch(()=>null);
+  navigator.serviceWorker.addEventListener('message',ev=>{if(ev.data?.mpGo)sigGo(ev.data.mpGo)});}
+async function sysNotify(title,body,go,force){
+  if(!force&&document.visibilityState==='visible')return;
+  if(window.mpNativeNotify){try{window.mpNativeNotify(title,body,go)}catch{}return}
+  if(!('Notification' in window)||Notification.permission!=='granted')return;
+  const opts={body,tag:'mp-'+(go?.th||go?.tk||'x'),renotify:true,icon:SIG.icon||undefined,data:{mpGo:go||null}};
+  try{const n=new Notification(title,opts);n.onclick=()=>{try{window.focus()}catch{}sigGo(go);n.close()};return}catch{}
+  try{const r=await (SW||Promise.resolve(null));const reg=r||await navigator.serviceWorker?.getRegistration?.();await reg?.showNotification(title,opts)}catch{}
+}
+function sigGo(go){if(!go)return;if(go.th)chOpen(go.th);else if(go.tk){if(S.view==='chat')S.view='plan';openTicket(go.tk)}}
+window.mpGo=sigGo;
+function alertUser(title,body,go){beep();sysNotify(title,body,go)}
+if('Notification' in window&&Notification.permission==='granted')setTimeout(sigSw,0);
+const sgBanner=()=>{let asked=false;try{asked=localStorage.getItem('mp-sg-asked')==='1'}catch{}
+  return !asked&&sigPerm()==='default'&&!window.claude?.use?`<div class="notice sg-ask">${ico('bell')}<span class="grow">${esc(t('sg.ask'))}</span><button type="button" class="btn sm primary" data-act="sg-allow">${esc(t('sg.allow'))}</button><button type="button" class="btn sm ghost" data-act="sg-later">${esc(t('sg.later'))}</button></div>`:''};
 /* people register */
 /* people in the Management crew are shown on the People page only to administrators */
 const MGMT=['management','менеджмент','руководство','მენეჯმენტი','ხელმძღვანელობა'];
@@ -2915,12 +3014,20 @@ document.addEventListener('click',async ev=>{
     case 'tr-toggle':TR.origTk=TR.origTk===id?null:id;renderAll();break;
     case 'tr-on':setTrOn(true);break;
     case 'tr-off':setTrOn(false);break;
-    case 'view':closeSheet();S.bulk=null;if(id==='chat'&&S.view!=='chat'&&CH.th&&!isPhone()){chOpen(CH.th);break}S.view=id;S.placing=null;if(S.drawer)S.drawer=null;renderAll();scrollTo(0,0);break;
+    case 'view':closeSheet();S.bulk=null;if(VR.rec&&id!=='chat')vrStop(false);if(id==='chat'&&S.view!=='chat'&&CH.th&&!isPhone()){chOpen(CH.th);break}S.view=id;S.placing=null;if(S.drawer)S.drawer=null;renderAll();scrollTo(0,0);break;
     case 'settings':settingsSheet();break;
     case 'f-status':S.f.status=id;renderAll();break;
     case 'ch-open':chOpen(id);break;
-    case 'ch-back':CH.unsub?.();CH.unsub=null;CH.th=null;renderAll();break;
+    case 'ch-back':if(VR.rec)vrStop(false);CH.unsub?.();CH.unsub=null;CH.th=null;renderAll();break;
     case 'ch-send':chSend();break;
+    case 'vr-start':vrStart();break;
+    case 'vr-send':vrStop(true);break;
+    case 'vr-cancel':vrStop(false);break;
+    case 'vr-play':vrPlay(id);break;
+    case 'sg-sound':SIG.on=id==='on';try{localStorage.setItem('mp-sound',SIG.on?'1':'0')}catch{};if(SIG.on){sigUnlock();beep(true)}settingsSheet();break;
+    case 'sg-allow':await sigAsk();if(S.form?.type==='settings')settingsSheet();else renderAll();break;
+    case 'sg-later':try{localStorage.setItem('mp-sg-asked','1')}catch{};renderAll();break;
+    case 'sg-test':sigUnlock();beep(true);sysNotify(t('app.name'),t('sg.testMsg'),null,true);break;
     case 'ch-del':chDel(id);break;
     case 'ch-more':CH.limit+=150;{const el=$('#chMsgs');const h0=el?.scrollHeight||0;renderAll();const el2=$('#chMsgs');if(el2)el2.scrollTop=el2.scrollHeight-h0}break;
     case 'ch-tk':chTkSheet();break;
@@ -3050,7 +3157,7 @@ $('#photoInput').addEventListener('change',async ev=>{
   try{const id=await uploadImage(file,1600);const x=S.tk.find(r=>r.id===tid);await Store.update('tickets/'+tid,{photos:[...(x.photos||[]),id],updatedAt:nowIso()});await addSys(tid,'log.photo');toast(t('ts.photoAdded'))}catch(e){console.error(e)}
 });
 $('#chPhotoIn').addEventListener('change',async ev=>{const f=ev.target.files[0];ev.target.value='';if(!f||!CH.th)return;toast(t('ts.uploadingPhoto'));
-  try{CH.draftPhoto=await uploadImage(f,1600);renderAll();setTimeout(()=>$('#chText')?.focus(),0)}catch(e){console.error(e);toast(t('ts.saveFail'))}});
+  try{CH.draftPhoto=await storeBlob(await resizeImage(f,1600),'image/jpeg','chat');renderAll();setTimeout(()=>$('#chText')?.focus(),0)}catch(e){console.error(e);toast(t('ts.saveFail'))}});
 $('#bkInput').addEventListener('change',async ev=>{const f=ev.target.files[0];ev.target.value='';if(f)await importBackup(f)});
 $('#mspInput').addEventListener('change',async ev=>{const f=ev.target.files[0];ev.target.value='';if(f)await importMSFile(f)});
 $('#dwgInput').addEventListener('change',async ev=>{
@@ -3119,7 +3226,7 @@ async function sbSign(){const ids=[...SIGN.want];SIGN.want.clear();if(!ids.lengt
 function sbScan(){if(!S.sb)return;const add=id=>{if(id&&!S.memBlobs[id])sbWant(id)};add(S.site?.planImg);add(S.site?.planPdf);
   S.eq.forEach(e=>{add(e.drawing?.img);add(e.drawing?.pdf)});S.tk.forEach(x=>(x.photos||[]).forEach(add))}
 const sbAssets=sb=>({
-  upload:async(blob,{type}={})=>{const id=(crypto.randomUUID?crypto.randomUUID():newId()+newId()).replace(/-/g,'');const {error}=await sb.storage.from('files').upload(id,blob,{contentType:type||blob.type||'application/octet-stream',upsert:false});if(error)throw sbErr(error);S.memBlobs[id]=URL.createObjectURL(blob);return {id}},
+  upload:async(blob,{type,prefix}={})=>{const id=(prefix||'')+(crypto.randomUUID?crypto.randomUUID():newId()+newId()).replace(/-/g,'');const {error}=await sb.storage.from('files').upload(id,blob,{contentType:type||blob.type||'application/octet-stream',upsert:false});if(error)throw sbErr(error);S.memBlobs[id]=URL.createObjectURL(blob);return {id}},
   delete:async id=>{await sb.storage.from('files').remove([id])}
 });
 function sbUser(sb,session,db){
