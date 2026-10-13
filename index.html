@@ -140,7 +140,7 @@ input.search{min-width:0;width:220px}
 .pin.shp.sel{outline:0;filter:drop-shadow(0 0 0 #fff) drop-shadow(0 0 3px var(--steel)) drop-shadow(0 0 3px var(--steel))}
 .pin.shp.crit-p::after{border-color:currentColor;color:var(--ring,var(--crit))}
 .pin.shp-tri.crit-p::after{color:var(--ring,#2563EB);border-width:3px;opacity:.75;top:-14px;bottom:-19px;left:-15px;right:-15px}
-.pin.mini.shp{transform:translate(-50%,-50%) scale(.7)}
+.pin.mini.shp{transform:translate(-50%,-50%) scale(.75)}.pin.mini.shp.sel{transform:translate(-50%,-50%) scale(.95)}.pin.mini{font-size:9px}.pin.mini.crit-p::after{inset:-10px}
 .lg-shp{width:14px!important;height:14px!important;border-radius:0!important;background:var(--sc)!important}
 .lg-circle{border-radius:50%!important;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
 .lg-tri{clip-path:polygon(50% 0,100% 100%,0 100%)}.lg-square{border-radius:3px!important}.lg-diamond{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
@@ -391,8 +391,8 @@ html[lang="ru"] .pl-label{font-size:13px}
 .dwg-thumb:hover{border-color:var(--muted)}
 .dwg-box{position:relative;display:block}
 .dwg-box img{display:block;width:100%;height:auto}
-.pin.mini{width:16px;height:16px;border-width:2px;pointer-events:none}
-.pin.mini.sel{width:20px;height:20px;outline-width:2px;transform:translate(-50%,-50%)}
+.pin.mini{pointer-events:none}.pin.mini:not(.shp){width:16px;height:16px;border-width:2px}
+.pin.mini.sel:not(.shp){width:20px;height:20px;outline-width:2px;transform:translate(-50%,-50%)}
 .dwg-meta{font-size:12px;color:var(--muted);margin:6px 0 8px;overflow-wrap:anywhere}
 .dwg-empty{border:1px dashed var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;background:var(--surface)}
 .dwg-empty p{margin:0;color:var(--muted);font-size:14px}
@@ -1398,7 +1398,7 @@ function trNote(x){
 }
 const dwgLink=d=>d?.pdf?`<a class="btn sm" href="${esc(blobSrc(d.pdf))}" target="_blank" rel="noopener">${ico('dl')}${esc(t('dw.openPdf'))}</a>`:'';
 const dwgMeta=d=>esc(d.name||'')+(d.page?' · '+esc(t('dw.page',{n:d.page})):'');
-function miniPins(list,selId){return list.map(x=>{const st=STATUS[x.status]||STATUS.open;return `<span class="pin mini${x.id===selId?' sel':''}" style="left:${x.dx}%;top:${x.dy}%;--c:${st.c};--ring:${pinFill(x)}"></span>`}).join('')}
+function miniPins(list,selId){return list.map(x=>{const st=STATUS[x.status]||STATUS.open;return `<span class="pin mini${pinCls(x)}${x.id===selId?' sel':''}" style="left:${x.dx}%;top:${x.dy}%;--c:${st.c};--ring:${pinFill(x)}">${pinInner(x)}</span>`}).join('')}
 function eqDrawingSec(e){
   const d=e.drawing,canUp=S.canWrite&&(S.assets||!S.db);
   if(!d) return `<div class="sec"><h3>${esc(t('dw.title'))}</h3><div class="dwg-empty"><p>${esc(t('dw.none'))}</p>${canUp?`<button class="btn sm primary" data-act="dwg-upload" data-id="${e.id}">${ico('plus')}${esc(t('dw.upload'))}</button><span class="hint">${esc(t('dw.hint'))}</span>`:''}</div></div>`;
