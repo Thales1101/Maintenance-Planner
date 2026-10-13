@@ -151,6 +151,57 @@ input.search{min-width:0;width:220px}
 .pin.done-p{opacity:.78;scale:.82}.pin.done-p.sel,.pin.done-p:hover{opacity:1;scale:1}
 .pin-cl{position:absolute;transform:translate(-50%,-50%);min-width:34px;height:34px;padding:0 9px;border-radius:17px;border:3px solid var(--surface);background:var(--c);color:#fff;font:700 13px/1 var(--f-display);box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 28%,transparent),0 2px 6px rgba(0,0,0,.35);z-index:3;cursor:pointer;display:grid;place-items:center}
 .pin-cl:hover{filter:brightness(1.08)}
+.fab[hidden]{display:none!important}
+.chat{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;height:calc(100dvh - 150px);min-height:440px}
+.ch-list,.ch-conv{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-height:0;display:flex;flex-direction:column}
+.ch-list{overflow:auto;padding-bottom:8px}
+.ch-h{font:700 11px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:16px 14px 8px}
+.ch-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;padding:8px 14px;color:var(--ink);cursor:pointer;position:relative}
+.ch-item:hover:not(:disabled){background:var(--surface-2)}.ch-item.on{background:color-mix(in srgb,var(--accent) 16%,transparent)}
+.ch-item:disabled{opacity:.55;cursor:default}
+.ch-av{flex:none;width:34px;height:34px;border-radius:50%;background:var(--surface-2);color:var(--ink);display:grid;place-items:center;font:700 12px/1 var(--f-body)}
+.ch-av-c{border-radius:9px;background:var(--ink);color:var(--accent);font-size:16px}.ch-av-c .ico,.ch-av-c svg{width:17px;height:17px}
+.ch-it-main{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}
+.ch-it-top{display:flex;align-items:baseline;gap:8px}.ch-it-top b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ch-it-top small{margin-left:auto;color:var(--muted);font-size:11px;flex:none}
+.ch-it-sub{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ch-item.un .ch-it-top b,.ch-item.un .ch-it-sub{color:var(--ink);font-weight:700}
+.ch-dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--crit)}
+.ch-none{display:grid;place-items:center;color:var(--muted)}.ch-none .ico,.ch-none svg{width:34px;height:34px;opacity:.5}
+.ch-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.ch-hd-t{min-width:0;display:flex;flex-direction:column}.ch-hd-t b{font-size:15px}.ch-hd-t small{color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ch-back span{font-size:28px;line-height:1;margin-top:-3px}
+.ch-msgs{flex:1;min-height:0;overflow:auto;padding:12px 16px 16px;display:flex;flex-direction:column;gap:3px;background:var(--bg)}
+.ch-more{align-self:center;margin-bottom:8px}
+.ch-empty{margin:auto}
+.ch-day{text-align:center;margin:14px 0 8px}.ch-day span{background:var(--surface);border:1px solid var(--line);color:var(--muted);font-size:11.5px;padding:3px 10px;border-radius:10px}
+.ch-msg{display:flex;flex-direction:column;align-items:flex-start;max-width:78%;margin-top:8px}.ch-msg.cont{margin-top:0}
+.ch-msg.me{align-self:flex-end;align-items:flex-end}
+.ch-who{font-size:12px;font-weight:700;color:var(--muted);margin:0 0 3px 10px}
+.ch-bub{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:7px 11px 6px;font-size:14.5px;line-height:1.4;min-width:64px;display:flex;flex-direction:column;gap:6px}
+.ch-msg.me .ch-bub{background:color-mix(in srgb,var(--accent) 22%,var(--surface));border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.ch-text{white-space:normal;overflow-wrap:anywhere}.ch-text a{color:inherit;text-decoration:underline}
+.ch-time{align-self:flex-end;font-size:10.5px;color:var(--muted);margin-top:-2px}
+.ch-x{position:absolute;top:-9px;right:-9px;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);display:none;place-items:center;padding:0;cursor:pointer}
+.ch-x .ico,.ch-x svg{width:13px;height:13px}.ch-bub:hover .ch-x,.ch-x:focus-visible{display:grid}
+@media (hover:none){.ch-x{display:grid;position:static;width:22px;height:22px;align-self:flex-end;margin-top:-4px;border:0;background:none}}
+.ch-delt{color:var(--muted);font-size:13.5px}
+.ch-img img{display:block;max-width:min(280px,100%);max-height:260px;border-radius:9px;object-fit:cover}
+.ch-tk{display:flex;align-items:center;gap:8px;flex-wrap:wrap;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:6px 9px;color:var(--ink);font-size:13px;cursor:pointer;max-width:100%}
+.ch-tk code{font-size:11.5px;color:var(--muted)}.ch-tk-t{font-weight:600;min-width:0}.ch-tk.gone{color:var(--muted);cursor:default;font-style:italic}
+.ch-comp{border-top:1px solid var(--line);padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.ch-row{display:flex;align-items:flex-end;gap:8px}
+.ch-row textarea{flex:1;min-width:0;resize:none;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px;padding:9px 12px;max-height:140px;line-height:1.35}
+.ch-send{flex:none;width:44px;height:40px;padding:0;display:grid;place-items:center;border-radius:12px}
+.ch-att{display:flex;gap:8px;flex-wrap:wrap}.ch-att-i{position:relative;display:inline-flex}.ch-att-i img{width:64px;height:64px;object-fit:cover;border-radius:9px;border:1px solid var(--line)}
+.ch-att-x{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;padding:0;cursor:pointer;color:var(--ink)}.ch-att-x .ico,.ch-att-x svg{width:12px;height:12px}
+@media (max-width:899px){
+ .chat{display:block;height:auto;min-height:0}
+ .ch-list{border-radius:12px}
+ .ch-conv.ph{position:fixed;inset:0;z-index:35;border:0;border-radius:0;padding-top:var(--safe-area-inset-top,env(safe-area-inset-top,0px))}
+ .ch-conv.ph .ch-comp{padding-bottom:calc(10px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)))}
+ .ch-msg{max-width:86%}
+ .chat.has-th .ch-list{display:none}
+}
 .pin-cl.crit::after{content:"!";position:absolute;top:-8px;right:-8px;width:17px;height:17px;border-radius:50%;background:var(--crit);color:#fff;font-size:11px;display:grid;place-items:center;border:2px solid var(--surface)}
 .closed-sel{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}.closed-sel .ico,.closed-sel svg{flex:none}
 .pin.crit-p::after{content:"";position:absolute;inset:-16.5px;border-radius:50%;border:2.5px solid var(--c);pointer-events:none;opacity:.6;animation:pulse 1.8s ease-out infinite}
@@ -537,6 +588,7 @@ table.msp select{max-width:220px;border:1px solid var(--line);background:var(--b
 <div id="trChip"></div>
 <input type="file" id="photoInput" accept="image/*" hidden>
 <input type="file" id="photoCam" accept="image/*" capture="environment" hidden>
+<input type="file" id="chPhotoIn" accept="image/*" hidden>
 <input type="file" id="planInput" accept="application/pdf,.pdf,image/png,image/jpeg,image/webp" hidden>
 <input type="file" id="bkInput" accept=".json,application/json" hidden>
 <input type="file" id="mspInput" accept=".xml,.csv,.mpp,text/xml,application/xml,text/csv" hidden>
@@ -556,7 +608,7 @@ en:{
  'st.open':'Open','st.progress':'In progress','st.hold':'On hold','st.done':'Done','status':'Status',
  'pr.critical':'Critical','pr.high':'High','pr.medium':'Medium','pr.low':'Low',
  'kind.scheduled':'Scheduled (PM)','kind.unscheduled':'Unscheduled','kind.tag':'Scheduled PM','kind.formUns':'Unscheduled (breakdown / defect)',
- 'f.active':'Active','f.overdue':'Overdue','f.done':'Done','f.all':'All','f.closedL':'Period for completed orders','f.closed.7':'Closed in the last 7 days','f.closed.30':'Closed in the last 30 days','f.closed.90':'Closed in the last 3 months','f.closed.year':'Closed this year','f.closed.all':'Closed: all time','cl.title':'{n} work orders here','dr.historyAll':'All {n} completed orders','f.allPrio':'All priorities','f.allZones':'All zones','f.allKinds':'Scheduled + unscheduled','f.search':'Search title, code, crew…',
+ 'f.active':'Active','f.overdue':'Overdue','f.done':'Done','f.all':'All','nav.chat':'Chat','ch.remove':'Remove','ch.sub':'Talk with your team','ch.team':'Whole team','ch.teamSub':'Everyone in the app','ch.crewSub':'Crew channel','ch.channels':'Channels','ch.direct':'Direct messages','ch.noAcc':'Hasn\'t signed in yet','ch.noPeople':'No other people yet.','ch.pick':'Choose a conversation','ch.empty':'No messages yet. Say hello!','ch.ph':'Write a message…','ch.send':'Send','ch.attachTk':'Attach a work order','ch.attachPhoto':'Add a photo','ch.photo':'📷 Photo','ch.deleted':'Message deleted','ch.del':'Delete message','ch.today':'Today','ch.yesterday':'Yesterday','ch.earlier':'Show earlier messages','ch.you':'You','ch.back':'Back to conversations','ch.private':'Only you and {n} can read these messages','ch.noRights':'The message wasn\'t sent. Check the connection; if it keeps failing, the administrator needs to run the chat update in Supabase (README, step 8).','ch.discuss':'Discuss in chat','ch.pickTk':'Attach a work order','ch.searchTk':'Search by number, title or equipment…','ch.tkGone':'Work order no longer exists','f.closedL':'Period for completed orders','f.closed.7':'Closed in the last 7 days','f.closed.30':'Closed in the last 30 days','f.closed.90':'Closed in the last 3 months','f.closed.year':'Closed this year','f.closed.all':'Closed: all time','cl.title':'{n} work orders here','dr.historyAll':'All {n} completed orders','f.allPrio':'All priorities','f.allZones':'All zones','f.allKinds':'Scheduled + unscheduled','f.search':'Search title, code, crew…',
  'due.none':'No due date','due.on':'Due {d}','due.over':'{n} d overdue','due.today':'Due today','due.todayAt':'Due today at {t}','due.overT':'Overdue since {t}','fm.timeOpt':'Time (optional)','due.in':'Due in {n} d','pm.notSched':'Not scheduled',
  'tag.example':'Example','row.noEq':'No equipment','row.mh':'{n}','row.mat':'materials ×{n}',
  'empty.loading':'Loading terminal data…','empty.loadingP':'Fetching equipment, work orders and maintenance plans.',
@@ -598,7 +650,7 @@ ka:{
  'st.open':'ღია','st.progress':'მიმდინარე','st.hold':'შეჩერებული','st.done':'დასრულებული','status':'სტატუსი',
  'pr.critical':'კრიტიკული','pr.high':'მაღალი','pr.medium':'საშუალო','pr.low':'დაბალი',
  'kind.scheduled':'გეგმიური (გტმ)','kind.unscheduled':'არაგეგმიური','kind.tag':'გეგმიური ტმ','kind.formUns':'არაგეგმიური (ავარია / დეფექტი)',
- 'f.active':'აქტიური','f.overdue':'ვადაგადაცილებული','f.done':'დასრულებული','f.all':'ყველა','f.closedL':'დასრულებული დავალებების პერიოდი','f.closed.7':'დასრულდა ბოლო 7 დღეში','f.closed.30':'დასრულდა ბოლო 30 დღეში','f.closed.90':'დასრულდა ბოლო 3 თვეში','f.closed.year':'დასრულდა წელს','f.closed.all':'დასრულებული: ყველა','cl.title':'აქ {n} დავალებაა','dr.historyAll':'ყველა დასრულებული ({n})','f.allPrio':'ყველა პრიორიტეტი','f.allZones':'ყველა ზონა','f.allKinds':'გეგმიური + არაგეგმიური','f.search':'ძიება: სათაური, კოდი, ბრიგადა…',
+ 'f.active':'აქტიური','f.overdue':'ვადაგადაცილებული','f.done':'დასრულებული','f.all':'ყველა','nav.chat':'ჩატი','ch.remove':'მოხსნა','ch.sub':'ისაუბრეთ გუნდთან','ch.team':'მთელი გუნდი','ch.teamSub':'აპის ყველა მომხმარებელი','ch.crewSub':'ბრიგადის არხი','ch.channels':'არხები','ch.direct':'პირადი შეტყობინებები','ch.noAcc':'ჯერ არ შესულა აპში','ch.noPeople':'სხვა პირები ჯერ არ არის.','ch.pick':'აირჩიეთ საუბარი','ch.empty':'შეტყობინებები ჯერ არ არის. მიესალმეთ!','ch.ph':'დაწერეთ შეტყობინება…','ch.send':'გაგზავნა','ch.attachTk':'დავალების მიმაგრება','ch.attachPhoto':'ფოტოს დამატება','ch.photo':'📷 ფოტო','ch.deleted':'შეტყობინება წაიშალა','ch.del':'შეტყობინების წაშლა','ch.today':'დღეს','ch.yesterday':'გუშინ','ch.earlier':'ადრინდელი შეტყობინებები','ch.you':'თქვენ','ch.back':'საუბრებზე დაბრუნება','ch.private':'ამ შეტყობინებებს კითხულობთ მხოლოდ თქვენ და {n}','ch.noRights':'შეტყობინება ვერ გაიგზავნა. შეამოწმეთ კავშირი; თუ ისევ არ გაიგზავნა, ადმინისტრატორმა Supabase-ში უნდა გაუშვას ჩატის განახლება (README, ნაბიჯი 8).','ch.discuss':'ჩატში განხილვა','ch.pickTk':'დავალების მიმაგრება','ch.searchTk':'ძებნა ნომრით, სათაურით ან აღჭურვილობით…','ch.tkGone':'დავალება აღარ არსებობს','f.closedL':'დასრულებული დავალებების პერიოდი','f.closed.7':'დასრულდა ბოლო 7 დღეში','f.closed.30':'დასრულდა ბოლო 30 დღეში','f.closed.90':'დასრულდა ბოლო 3 თვეში','f.closed.year':'დასრულდა წელს','f.closed.all':'დასრულებული: ყველა','cl.title':'აქ {n} დავალებაა','dr.historyAll':'ყველა დასრულებული ({n})','f.allPrio':'ყველა პრიორიტეტი','f.allZones':'ყველა ზონა','f.allKinds':'გეგმიური + არაგეგმიური','f.search':'ძიება: სათაური, კოდი, ბრიგადა…',
  'due.none':'ვადა არ არის','due.on':'ვადა {d}','due.over':'{n} დღით გადაცილებული','due.today':'ვადა დღესაა','due.todayAt':'ვადა დღეს, {t}','due.overT':'გადაცილებულია {t}-დან','fm.timeOpt':'დრო (არასავალდებულო)','due.in':'ვადამდე {n} დღე','pm.notSched':'არ არის დაგეგმილი',
  'tag.example':'მაგალითი','row.noEq':'აღჭურვილობის გარეშე','row.mh':'{n}','row.mat':'მასალა ×{n}',
  'empty.loading':'ტერმინალის მონაცემები იტვირთება…','empty.loadingP':'იტვირთება აღჭურვილობა, სამუშაო დავალებები და ტექმომსახურების გეგმები.',
@@ -640,7 +692,7 @@ ru:{
  'st.open':'Открыт','st.progress':'В работе','st.hold':'Приостановлен','st.done':'Выполнен','status':'Статус',
  'pr.critical':'Критический','pr.high':'Высокий','pr.medium':'Средний','pr.low':'Низкий',
  'kind.scheduled':'Плановый (ППР)','kind.unscheduled':'Внеплановый','kind.tag':'Плановое ТО','kind.formUns':'Внеплановый (авария / дефект)',
- 'f.active':'Активные','f.overdue':'Просроченные','f.done':'Выполненные','f.all':'Все','f.closedL':'Период выполненных нарядов','f.closed.7':'Выполнены за 7 дней','f.closed.30':'Выполнены за 30 дней','f.closed.90':'Выполнены за 3 месяца','f.closed.year':'Выполнены в этом году','f.closed.all':'Выполненные: за всё время','cl.title':'Нарядов здесь: {n}','dr.historyAll':'Все выполненные ({n})','f.allPrio':'Все приоритеты','f.allZones':'Все зоны','f.allKinds':'Плановые + внеплановые','f.search':'Поиск: название, код, бригада…',
+ 'f.active':'Активные','f.overdue':'Просроченные','f.done':'Выполненные','f.all':'Все','nav.chat':'Чат','ch.remove':'Убрать','ch.sub':'Общение с командой','ch.team':'Вся команда','ch.teamSub':'Все пользователи приложения','ch.crewSub':'Канал бригады','ch.channels':'Каналы','ch.direct':'Личные сообщения','ch.noAcc':'Ещё не входил(а) в приложение','ch.noPeople':'Других сотрудников пока нет.','ch.pick':'Выберите беседу','ch.empty':'Сообщений пока нет. Поздоровайтесь!','ch.ph':'Напишите сообщение…','ch.send':'Отправить','ch.attachTk':'Прикрепить наряд','ch.attachPhoto':'Добавить фото','ch.photo':'📷 Фото','ch.deleted':'Сообщение удалено','ch.del':'Удалить сообщение','ch.today':'Сегодня','ch.yesterday':'Вчера','ch.earlier':'Показать более ранние','ch.you':'Вы','ch.back':'К списку бесед','ch.private':'Эти сообщения видите только вы и {n}','ch.noRights':'Сообщение не отправлено. Проверьте связь; если ошибка повторяется, администратору нужно выполнить обновление чата в Supabase (README, шаг 8).','ch.discuss':'Обсудить в чате','ch.pickTk':'Прикрепить наряд','ch.searchTk':'Поиск по номеру, названию или оборудованию…','ch.tkGone':'Наряд больше не существует','f.closedL':'Период выполненных нарядов','f.closed.7':'Выполнены за 7 дней','f.closed.30':'Выполнены за 30 дней','f.closed.90':'Выполнены за 3 месяца','f.closed.year':'Выполнены в этом году','f.closed.all':'Выполненные: за всё время','cl.title':'Нарядов здесь: {n}','dr.historyAll':'Все выполненные ({n})','f.allPrio':'Все приоритеты','f.allZones':'Все зоны','f.allKinds':'Плановые + внеплановые','f.search':'Поиск: название, код, бригада…',
  'due.none':'Без срока','due.on':'Срок {d}','due.over':'Просрочен на {n} дн.','due.today':'Срок сегодня','due.todayAt':'Срок сегодня в {t}','due.overT':'Просрочен с {t}','fm.timeOpt':'Время (необязательно)','due.in':'Через {n} дн.','pm.notSched':'Не запланировано',
  'tag.example':'Пример','row.noEq':'Без оборудования','row.mh':'{n}','row.mat':'материалы ×{n}',
  'empty.loading':'Загрузка данных терминала…','empty.loadingP':'Загружаем оборудование, наряды и графики ТО.',
@@ -677,7 +729,7 @@ ru:{
 }};
 /* stored vocabulary values (kept in English in the data, shown translated) */
 const VAL={
-ka:{'Mechanical':'მექანიკური','Electrical':'ელექტრო','Structural':'კონსტრუქციული','Lubrication':'შეპოხვა','Safety':'უსაფრთხოება','Inspection':'ინსპექცია','Cleaning':'დასუფთავება',
+ka:{'Mechanical':'მექანიკური','Electrical':'ელექტრო','Structural':'კონსტრუქციული','Lubrication':'შეზეთვა','Safety':'უსაფრთხოება','Inspection':'ინსპექცია','Cleaning':'დასუფთავება',
  'Belt conveyor':'ლენტური კონვეიერი','Transfer tower':'გადამტვირთავი კოშკი','Ship unloader':'გემის გადმომტვირთავი','Stacker-reclaimer':'შტაბელერ-რეკლაიმერი','Silo':'სილოსი','Warehouse':'საწყობი','Bagging plant':'დაფასოების საამქრო','Truck loading':'ავტოდატვირთვა','Weighbridge':'ავტოსასწორი','Substation':'ქვესადგური','Building':'შენობა','Mobile equipment':'მობილური ტექნიკა',
  'Quay':'ნავმისადგომი','Conveyor line':'კონვეიერის ხაზი','Warehouses':'საწყობები','Silos':'სილოსები','Stockyard':'ღია საწყობი','Loading':'დატვირთვა','Utilities':'ინჟინერია','Unassigned':'ზონის გარეშე',
  'Mechanical crew':'მექანიკოსების ბრიგადა','Electrical crew':'ელექტრიკოსების ბრიგადა','Civil / structural':'სამშენებლო ბრიგადა','Lubrication team':'შეზეთვის ჯგუფი','Safety officer':'შრომის უსაფრთხოების სპეციალისტი','External contractor':'გარე კონტრაქტორი',
@@ -748,6 +800,7 @@ const ICONS={
  doc:'<path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 13h7M9 17h7"/>',
  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.6a3.4 3.4 0 010 6.6M18.5 14.8c1.8.8 2.8 2.5 3 5.2"/>',
  sign:'<path d="M3 21h18"/><path d="M5 17l3-1 10-10-2-2L6 14z"/><path d="M14 6l2 2"/>',
+ chat:'<path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/>',send:'<path d="M4 12L20 4l-5 16-3-6.5z"/><path d="M12 13.5L20 4"/>',
  bell:'<path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 004 0"/>',
  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>',
@@ -760,6 +813,8 @@ const S={eq:[],tk:[],pm:[],site:{},log:[],view:'plan',
   f:{status:'active',prio:'all',zone:'all',kind:'all',resp:'all',q:''},people:[],sig:[],notes:[],
   zoom:mobile?1.7:1,showEq:(()=>{try{const v=localStorage.getItem('mp-showEq');return v==null?true:v==='1'}catch{return true}})(),showGrid:true,closed:(()=>{try{return localStorage.getItem('mp-closed')||'30'}catch{return '30'}})(),clusters:[],placing:null,drawer:null,confirmDel:false,confirmRow:null,
   me:null,canWrite:true,db:null,user:null,assets:null,dl:null,ready:false,live:false,names:{},avatars:{},logUnsub:null,memBlobs:{}};
+/* team chat state (see "team chat" below) */
+const CH={th:null,msgs:[],unsub:null,threads:{},read:{},readLocal:{},draft:'',draftTk:null,draftPhoto:null,uidByEmail:{},limit:150,seen:null,stick:false,sending:false};
 
 /* ---------- utils ---------- */
 const $=s=>document.querySelector(s);
@@ -856,6 +911,8 @@ function memNotify(){
   const col=(c)=>[...mem].filter(([k])=>k.startsWith(c+'/')&&k.split('/').length===2).map(([k,v])=>({id:k.split('/')[1],...v}));
   S.eq=col('equipment');S.tk=col('tickets');S.pm=col('pm');setPeople(col('people'));S.sig=col('signatures');onNotes(col('notifications'));S.site=mem.get('meta/site')||{};
   for(const [k,v] of mem)if(k.startsWith('i18n/')&&!TR.cache[k.slice(5)])TR.cache[k.slice(5)]=v;
+  {const m={};for(const [k,v] of mem)if(k.startsWith('chat/')&&k.split('/').length===2)m[k.slice(5)]=v;chOnThreads(m);CH.read={...(mem.get('chatread/'+myUid())||{}),...CH.readLocal};
+   if(CH.th)CH.msgs=[...mem].filter(([k])=>k.startsWith(`chat/${CH.th}/m/`)).map(([k,v])=>({id:k.split('/').pop(),...v})).sort((a,b)=>a.at<b.at?-1:1)}
   if(S.drawer?.type==='tk'){S.log=[...mem].filter(([k])=>k.startsWith(`tickets/${S.drawer.id}/log/`)).map(([k,v])=>({id:k,...v})).sort((a,b)=>a.at<b.at?-1:1)}
   renderAll();
 }
@@ -1035,7 +1092,7 @@ function renderNav(){
   const count={tickets:open,schedule:pmDue};
   $('#nav').innerHTML=`<div class="brand"><span class="brand-mark">${brandSvg()}</span><span><div class="brand-name">${esc(t('app.name'))}</div><div class="brand-sub">${esc(t('app.sub'))}</div></span></div>`+
     VIEWS.map(([k,i])=>`<button data-act="view" data-id="${k}" ${S.view===k?'aria-current="page"':''}>${ico(i)}<span class="nav-l">${esc(t('nav.'+k))}</span>${count[k]?`<span class="nav-count">${count[k]}</span>`:''}</button>`).join('')+
-    `${bellBtn('nav-bell')}<div class="spacer"></div>${meChip()}${langSwitch()}<button data-act="settings">${ico('gear')}${esc(t('nav.settings'))}</button>`;
+    `<button data-act="view" data-id="chat" ${S.view==='chat'?'aria-current="page"':''}>${ico('chat')}<span class="nav-l">${esc(t('nav.chat'))}</span>${chUnreadN()?`<span class="nt-badge">${chUnreadN()}</span>`:''}</button>${bellBtn('nav-bell')}<div class="spacer"></div>${meChip()}${langSwitch()}<button data-act="settings">${ico('gear')}${esc(t('nav.settings'))}</button>`;
   $('#tabbar').innerHTML=VIEWS.map(([k,i])=>`<button data-act="view" data-id="${k}" ${S.view===k?'aria-current="page"':''}>${ico(i)}<span>${esc(t('tab.'+k))}</span></button>`).join('');
 }
 const meInfo=()=>{if(!S.me)return null;const mp=myPerson();const name=mp?.name||S.me.name||S.me.email||'';const role=S.isOwner?t('me.admin'):S.viewOnly?t('ac.view'):t('ac.edit');
@@ -1047,7 +1104,7 @@ const brandSvg=()=>`<svg viewBox="0 0 24 24" width="20" height="20" fill="none" 
 function topbar(title,sub,actions=''){
   if(S.viewOnly||(!S.canWrite&&S.live))actions=`<span class="ro-pill">${ico('lock')}${esc(t('ac.roPill'))}</span>`+actions;
   const desk=matchMedia('(min-width:900px)').matches;
-  return `<div class="topbar"><div class="mobile-brand"><span class="brand-mark">${brandSvg()}</span></div><div style="min-width:0"><h1>${title}</h1>${sub?`<div class="sub">${sub}</div>`:''}</div><div class="grow"></div>${actions}${desk?'':`<label class="lang-mini">${ico('globe')}<select id="langSel" aria-label="${esc(t('s.lang'))}">${LANGS.map(([k,full,short])=>`<option value="${k}" ${LANG===k?'selected':''}>${short}</option>`).join('')}</select></label>${bellBtn('iconbtn')}${meBtn()}<button class="iconbtn" data-act="settings" aria-label="${esc(t('nav.settings'))}">${ico('gear')}</button>`}</div>`;
+  return `<div class="topbar"><div class="mobile-brand"><span class="brand-mark">${brandSvg()}</span></div><div style="min-width:0"><h1>${title}</h1>${sub?`<div class="sub">${sub}</div>`:''}</div><div class="grow"></div>${actions}${desk?'':`<label class="lang-mini">${ico('globe')}<select id="langSel" aria-label="${esc(t('s.lang'))}">${LANGS.map(([k,full,short])=>`<option value="${k}" ${LANG===k?'selected':''}>${short}</option>`).join('')}</select></label>${S.view==='chat'?'':chatBtn()}${bellBtn('iconbtn')}${meBtn()}<button class="iconbtn" data-act="settings" aria-label="${esc(t('nav.settings'))}">${ico('gear')}</button>`}</div>`;
 }
 const newBtn=()=>S.canWrite?`<button class="btn primary desk-only" data-act="new-pin">${ico('pin')}${esc(t('btn.newWo'))}</button>`:'';
 
@@ -1367,6 +1424,7 @@ function renderDrawer(){
       ${!tkPos(x)?`<p class="dwg-warn" style="width:100%;margin:0">${ico('pin')}<span>${esc(e?t('up.eq',{c:e.code}):t('up.none'))}</span></p>${S.canWrite?(e?`<button class="btn sm primary" data-act="place-eq" data-id="${e.id}">${ico('pin')}${esc(t('up.placeEq',{c:e.code}))}</button>`:(ed?`<button class="btn sm primary" data-act="move-pin" data-id="${x.id}">${ico('pin')}${esc(t('dr.placeOnPlan'))}</button>`:'')):''}`:''}
       <button class="btn sm" data-act="show-on-plan" data-id="${x.id}">${ico('plan')}${esc(t('dr.showPlan'))}</button>
       <button class="btn sm" data-act="report" data-id="${x.id}">${ico('doc')}${esc(t('rp.btn'))}</button>
+      <button class="btn sm" data-act="tk-chat" data-id="${x.id}">${ico('chat')}${esc(t('ch.discuss'))}</button>
       ${ed?`<button class="btn sm" data-act="edit-tk" data-id="${x.id}">${ico('edit')}${esc(t('btn.edit'))}</button><button class="btn sm" data-act="move-pin" data-id="${x.id}">${ico('pin')}${esc(t('dr.movePin'))}</button>`:''}
      </div>
      ${tkDrawingSec(x,e,ed)}
@@ -1929,6 +1987,137 @@ function onNotes(list){
   if(fresh.length){toast(t('nt.toast',{m:noteText(fresh[0])}),7000);if(S.form?.type==='notes')notesSheet()}
 }
 const bellBtn=cls=>`<button class="${cls}" data-act="notes" aria-label="${esc(t('nt.title'))}">${ico('bell')}${cls==='iconbtn'?'':`<span class="nav-l">${esc(t('nt.title'))}</span>`}${unreadCount()?`<span class="nt-badge">${unreadCount()}</span>`:''}</button>`;
+/* ---------- team chat ----------
+   Threads: "team" (everyone), one channel per crew, and direct messages between two accounts.
+   chat/<thread>           summary: last message, its time and author (drives the unread badges)
+   chat/<thread>/m/<id>    messages {by, name, text, at, tk (work order), photo, del}
+   chatread/<account>      when this account last read each thread {<thread>: time}
+   With Supabase, direct messages can only be read by the two people in them (supabase-setup.sql, part 7). */
+const myUid=()=>S.me?.id||'local';
+const chHash=s=>{let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))>>>0;return h.toString(36)};
+const crewTh=c=>'crew_'+chHash(String(c).trim().toLowerCase());
+const dmTh=(a,b)=>'dm_'+[a,b].sort().join('_');
+const uidOf=p=>p?(p.userId||CH.uidByEmail[(p.email||'').trim().toLowerCase()]||null):null;
+const chIni=n=>String(n||'?').split(/[\s.@_-]+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('')||'?';
+function chatThreads(){
+  const me=myUid(),mp=myPerson(),out=[{id:'team',kind:'team',name:t('ch.team'),sub:t('ch.teamSub')}];
+  crewNames().forEach(c=>out.push({id:crewTh(c),kind:'crew',name:tv(c)||c,sub:t('ch.crewSub')}));
+  const seen=new Set([me]);
+  [...S.people].filter(p=>p.active!==false&&p.id!==mp?.id).sort((a,b)=>String(a.name).localeCompare(String(b.name))).forEach(p=>{const u=uidOf(p);if(u&&seen.has(u))return;if(u)seen.add(u);
+    out.push({id:u&&S.me?dmTh(me,u):null,kind:'dm',name:p.name,uid:u,pid:p.id,sub:[p.position,tv(p.crew)].filter(Boolean).join(' · ')})});
+  return out;
+}
+const chUnread=th=>{const s=th&&CH.threads[th];if(!s||!s.lastAt||s.lastBy===myUid())return false;const r=CH.read[th];return !r||String(s.lastAt)>String(r)};
+const chUnreadN=()=>chatThreads().filter(x=>chUnread(x.id)).length;
+const chatBtn=()=>{const n=chUnreadN();return `<button class="iconbtn" data-act="view" data-id="chat" aria-label="${esc(t('nav.chat'))}" title="${esc(t('nav.chat'))}">${ico('chat')}${n?`<span class="nt-badge">${n}</span>`:''}</button>`};
+const dayKey=ts=>{const d=new Date(ts);return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`};
+const chWhen=ts=>{if(!ts)return '';const d=new Date(ts);return dayKey(ts)===today()?`${pad(d.getHours())}:${pad(d.getMinutes())}`:fmtDate(dayKey(ts)).replace(/\/\d{4}$/,'')};
+/* new messages elsewhere: a short pop-up, unless that conversation is open on screen */
+function chOnThreads(map){
+  const prev=CH.threads;CH.threads=map||{};
+  if(CH.seen===null){CH.seen=true;return}
+  const mine=new Map(chatThreads().filter(x=>x.id).map(x=>[x.id,x]));
+  for(const [th,s] of Object.entries(CH.threads)){const o=prev[th];
+    if(!mine.has(th)||!s?.lastAt||s.lastBy===myUid()||(o&&o.lastAt===s.lastAt))continue;
+    if(S.view==='chat'&&CH.th===th&&document.visibilityState==='visible')continue;
+    const x=mine.get(th);toast('💬 '+(x.kind==='dm'?'':x.name+' · ')+(s.lastName||'')+': '+(s.last||''),6000);break}
+}
+function chSubscribe(db){
+  db.collection('chat').onSnapshot(s=>{const m={};s.docs.forEach(d=>{m[d.id]=d.data()});chOnThreads(m);renderAll()},()=>{});
+  db.doc('chatread/'+myUid()).onSnapshot(s=>{CH.read={...(s.exists?s.data():{}),...CH.readLocal};renderNav()},()=>{});
+}
+/* chat writes don't go through Store: view-only people may chat too, and a refusal must not lock the rest of the app */
+async function chWrite(p,d,base){
+  if(!S.db){const v=base?{...(mem.get(p)||{}),...d}:d;mem.set(p,v);idbPut(p,v);memNotify();return}
+  if(!base){await S.db.doc(p).set(d);return}
+  try{await S.db.doc(p).update(d)}catch(e){if(S.sb)throw e;await S.db.doc(p).set({...base,...d})}
+}
+function chOpen(th){
+  if(!th)return;CH.unsub?.();CH.unsub=null;CH.th=th;CH.msgs=[];CH.limit=150;CH.stick=true;S.view='chat';S.drawer=null;
+  if(S.db){CH.unsub=S.db.collection(`chat/${th}/m`).orderBy('at').onSnapshot(s=>{CH.msgs=s.docs.map(d=>({id:d.id,...d.data()}));if(S.view==='chat')renderAll()},()=>{});renderAll()}
+  else memNotify();
+}
+function chMarkRead(){
+  const th=CH.th;if(!th||S.view!=='chat'||document.visibilityState!=='visible')return;
+  const last=[CH.threads[th]?.lastAt,CH.msgs[CH.msgs.length-1]?.at].filter(Boolean).sort().pop();
+  if(!last||String(CH.read[th]||'')>=String(last))return;
+  CH.readLocal={...CH.readLocal,[th]:last};CH.read={...CH.read,[th]:last};
+  chWrite('chatread/'+myUid(),{[th]:last},CH.read).catch(()=>{});setTimeout(renderNav,0);
+}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.view==='chat'){chMarkRead();renderNav()}});
+async function chSend(){
+  const th=CH.th;if(!th||CH.sending)return;
+  const text=String($('#chText')?.value??CH.draft).trim();
+  if(!text&&!CH.draftTk&&!CH.draftPhoto)return;
+  const x=chatThreads().find(r=>r.id===th),at=nowIso(),me=myUid(),nm=myName()||S.me?.email||t('ch.you');
+  const msg={by:me,name:nm,text,at,tk:CH.draftTk||null,photo:CH.draftPhoto||null};
+  const tk=msg.tk&&S.tk.find(r=>r.id===msg.tk);
+  const last=(text||(msg.photo?t('ch.photo'):'')||(tk?tk.no+' · '+trT(tk):'')).replace(/\s+/g,' ').slice(0,140);
+  CH.sending=true;CH.draft='';CH.draftTk=null;CH.draftPhoto=null;CH.stick=true;
+  try{
+    await chWrite(`chat/${th}/m/${newId()}`,msg);
+    await chWrite('chat/'+th,{lastAt:at,lastBy:me,lastName:nm,last,...(x?.kind==='dm'?{members:[me,x.uid].sort()}:{})},CH.threads[th]||{});
+    CH.readLocal={...CH.readLocal,[th]:at};CH.read={...CH.read,[th]:at};chWrite('chatread/'+me,{[th]:at},CH.read).catch(()=>{});
+  }catch(e){console.error(e);CH.draft=text;CH.draftTk=msg.tk;CH.draftPhoto=msg.photo;toast(t('ch.noRights'),9000)}
+  finally{CH.sending=false;renderAll();setTimeout(()=>$('#chText')?.focus(),0)}
+}
+async function chDel(id){
+  const m=CH.msgs.find(r=>r.id===id);if(!m||(m.by!==myUid()&&!canDel()))return;
+  const {id:_,...v}=m;
+  try{await chWrite(`chat/${CH.th}/m/${id}`,{...v,del:true,text:'',photo:null,tk:null,delAt:nowIso()})}catch(e){console.error(e);toast(t('ts.saveFail'))}
+}
+const chText=s=>esc(s).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>')
+  .replace(/\b(WO-[A-Z0-9]+-[A-Z0-9]+)\b/g,w=>{const x=S.tk.find(r=>r.no===w);return x?`<a href="#" class="ch-wo" data-act="open-tk" data-id="${x.id}">${w}</a>`:w}).replace(/\n/g,'<br>');
+function chTkChip(x,act){const st=STATUS[x.status]||STATUS.open;
+  return `<button type="button" class="ch-tk" data-act="${act}" data-id="${x.id}"><code>${esc(x.no)}</code><span class="ch-tk-t">${esc(trT(x))}</span><span class="pill" style="--c:${st.c}">${esc(stL(x.status))}</span></button>`}
+function chMsg(m,prev){
+  const d=new Date(m.at),dk=dayKey(m.at),pk=prev?dayKey(prev.at):null;
+  const sep=dk!==pk?`<div class="ch-day"><span>${esc(dk===today()?t('ch.today'):dk===addDays(today(),-1)?t('ch.yesterday'):fmtDate(dk))}</span></div>`:'';
+  const mine=m.by===myUid(),cont=!sep&&prev&&prev.by===m.by&&!prev.del&&Date.parse(m.at)-Date.parse(prev.at)<5*60e3;
+  const tk=m.tk&&S.tk.find(x=>x.id===m.tk);
+  const body=m.del?`<i class="ch-delt">${esc(t('ch.deleted'))}</i>`:
+    `${m.photo?`<a class="ch-img" href="${esc(blobSrc(m.photo))}" target="_blank" rel="noopener"><img src="${esc(blobSrc(m.photo))}" alt="${esc(t('ch.photo'))}" loading="lazy"></a>`:''}${tk?chTkChip(tk,'open-tk'):m.tk?`<span class="ch-tk gone">${esc(t('ch.tkGone'))}</span>`:''}${m.text?`<div class="ch-text">${chText(m.text)}</div>`:''}`;
+  const canX=!m.del&&(mine||canDel());
+  return sep+`<div class="ch-msg${mine?' me':''}${cont?' cont':''}">${!mine&&!cont?`<div class="ch-who">${esc(m.name||nameOf(m.by))}</div>`:''}<div class="ch-bub">${body}<span class="ch-time">${pad(d.getHours())}:${pad(d.getMinutes())}</span>${canX?`<button type="button" class="ch-x" data-act="ch-del" data-id="${m.id}" aria-label="${esc(t('ch.del'))}" title="${esc(t('ch.del'))}">${ico('trash')}</button>`:''}</div></div>`;
+}
+const chAv=x=>x.kind==='dm'?`<span class="ch-av">${esc(chIni(x.name))}</span>`:`<span class="ch-av ch-av-c">${x.kind==='team'?ico('users'):'#'}</span>`;
+function vChat(){
+  const ths=chatThreads(),cur=CH.th&&ths.find(x=>x.id===CH.th),phone=isPhone();
+  if(CH.th&&!cur){CH.th=null}
+  const item=x=>{const s=x.id&&CH.threads[x.id],un=chUnread(x.id);
+    const who=s?.lastAt?(s.lastBy===myUid()?t('ch.you')+': ':x.kind==='dm'?'':String(s.lastName||'').split(' ')[0]+': '):'';
+    const sub=!x.id?t('ch.noAcc'):s?.last?who+s.last:x.sub;
+    return `<button type="button" class="ch-item${x.id&&x.id===CH.th?' on':''}${un?' un':''}" data-act="ch-open" data-id="${esc(x.id||'')}" ${x.id?'':'disabled'}>${chAv(x)}<span class="ch-it-main"><span class="ch-it-top"><b>${esc(x.name)}</b>${s?.lastAt?`<small>${esc(chWhen(s.lastAt))}</small>`:''}</span><span class="ch-it-sub">${esc(sub||'')}</span></span>${un?'<i class="ch-dot"></i>':''}</button>`};
+  const dms=ths.filter(x=>x.kind==='dm');
+  const list=`<div class="ch-list"><div class="ch-h">${esc(t('ch.channels'))}</div>${ths.filter(x=>x.kind!=='dm').map(item).join('')}<div class="ch-h">${esc(t('ch.direct'))}</div>${dms.length?dms.map(item).join(''):`<p class="ro-note" style="padding:0 14px">${esc(t('ch.noPeople'))}</p>`}</div>`;
+  let conv=`<div class="ch-conv ch-none"><div class="empty">${ico('chat')}<p>${esc(t('ch.pick'))}</p></div></div>`;
+  if(cur){
+    const vis=CH.msgs.slice(-CH.limit),more=CH.msgs.length>vis.length;
+    const att=CH.draftTk||CH.draftPhoto?`<div class="ch-att">${CH.draftTk&&S.tk.find(r=>r.id===CH.draftTk)?`<span class="ch-att-i">${chTkChip(S.tk.find(r=>r.id===CH.draftTk),'open-tk')}<button type="button" class="ch-att-x" data-act="ch-tk-clear" aria-label="${esc(t('ch.remove'))}">${ico('x')}</button></span>`:''}${CH.draftPhoto?`<span class="ch-att-i"><img src="${esc(blobSrc(CH.draftPhoto))}" alt=""><button type="button" class="ch-att-x" data-act="ch-photo-clear" aria-label="${esc(t('ch.remove'))}">${ico('x')}</button></span>`:''}</div>`:'';
+    conv=`<div class="ch-conv${phone?' ph':''}">
+      <div class="ch-head">${phone?`<button type="button" class="iconbtn ch-back" data-act="ch-back" aria-label="${esc(t('ch.back'))}"><span aria-hidden="true">‹</span></button>`:''}${chAv(cur)}<div class="ch-hd-t"><b>${esc(cur.name)}</b><small>${esc(cur.kind==='dm'?t('ch.private',{n:cur.name}):cur.sub)}</small></div></div>
+      <div class="ch-msgs" id="chMsgs" data-th="${esc(cur.id)}">${more?`<button type="button" class="btn sm ghost ch-more" data-act="ch-more">${esc(t('ch.earlier'))}</button>`:''}${vis.length?vis.map((m,i)=>chMsg(m,vis[i-1])).join(''):`<div class="empty ch-empty"><p>${esc(t('ch.empty'))}</p></div>`}</div>
+      <div class="ch-comp">${att}<div class="ch-row"><button type="button" class="iconbtn" data-act="ch-tk" aria-label="${esc(t('ch.attachTk'))}" title="${esc(t('ch.attachTk'))}">${ico('list')}</button>${S.canWrite&&(S.assets||!S.db)?`<button type="button" class="iconbtn" data-act="ch-photo" aria-label="${esc(t('ch.attachPhoto'))}" title="${esc(t('ch.attachPhoto'))}">${ico('cam')}</button>`:''}<textarea id="chText" rows="1" placeholder="${esc(t('ch.ph'))}" aria-label="${esc(t('ch.ph'))}">${esc(CH.draft)}</textarea><button type="button" class="btn primary ch-send" data-act="ch-send" aria-label="${esc(t('ch.send'))}" title="${esc(t('ch.send'))}"${CH.sending?' disabled':''}>${ico('send')}</button></div></div>
+    </div>`;
+  }
+  return topbar(esc(t('nav.chat')),esc(t('ch.sub')))+`<div class="chat${cur?' has-th':''}">${list}${conv}</div>`;
+}
+function chSnap(){const el=$('#chMsgs');return el?{th:el.dataset.th,top:el.scrollTop,bottom:el.scrollHeight-el.scrollTop-el.clientHeight<80}:null}
+function chAfter(prev){
+  const el=$('#chMsgs');
+  if(el){if(!prev||prev.th!==CH.th||CH.stick||prev.bottom)el.scrollTop=el.scrollHeight;else el.scrollTop=prev.top}
+  CH.stick=false;const ta=$('#chText');if(ta)chGrow(ta);chMarkRead();
+}
+const chGrow=ta=>{ta.style.height='auto';ta.style.height=Math.min(140,ta.scrollHeight)+'px'};
+function chTkSheet(){
+  sheet(esc(t('ch.pickTk')),`<div class="fld full"><input class="search" id="chTkQ" type="search" placeholder="${esc(t('ch.searchTk'))}" autofocus></div><div class="wo-list" id="chTkList" style="grid-column:1/-1">${chTkList('')}</div>`,`<button type="button" class="btn" data-act="close-sheet">${esc(t('btn.close'))}</button>`);
+  S.form={type:'chtk'};
+}
+function chTkList(q){const ql=q.trim().toLowerCase();
+  const list=[...S.tk].filter(x=>!ql||`${x.no} ${x.title} ${trT(x)} ${eqById(x.assetId)?.code||''}`.toLowerCase().includes(ql))
+    .sort((a,b)=>(a.status==='done')-(b.status==='done')||String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||''))).slice(0,40);
+  return list.map(x=>woRow(x).replace('data-act="open-tk"','data-act="ch-tk-pick"')).join('')||`<p class="ro-note">${esc(t('plan.noMatch'))}</p>`}
+document.addEventListener('load',ev=>{const im=ev.target;if(im?.tagName!=='IMG'||!im.closest?.('#chMsgs'))return;const el=$('#chMsgs');if(el&&el.scrollHeight-el.scrollTop-el.clientHeight<im.clientHeight+120)el.scrollTop=el.scrollHeight},true);
 /* people register */
 /* people in the Management crew are shown on the People page only to administrators */
 const MGMT=['management','менеджмент','руководство','მენეჯმენტი','ხელმძღვანელობა'];
@@ -2647,7 +2836,9 @@ function renderAll(){
   const sc=$('#planScroll');const sx=sc?.scrollLeft,sy=sc?.scrollTop;
   renderNav();
   const fab=$('#fab');if(fab){const show=S.canWrite&&['plan','tickets','equipment','schedule','people','dashboard'].includes(S.view)&&!S.placing;fab.hidden=!show;fab.setAttribute('aria-label',t('btn.newWo'));fab.title=t('btn.newWo')}
-  $('#main').innerHTML=({plan:vPlan,tickets:vTickets,schedule:vSchedule,equipment:vEquipment,people:vPeople,dashboard:vDashboard})[S.view]();
+  const chp=chSnap();
+  $('#main').innerHTML=({plan:vPlan,tickets:vTickets,schedule:vSchedule,equipment:vEquipment,people:vPeople,dashboard:vDashboard,chat:vChat})[S.view]();
+  if(S.view==='chat')chAfter(chp);
   const sc2=$('#planScroll');if(sc2&&sx!=null){sc2.scrollLeft=sx;sc2.scrollTop=sy}
   if(id){const el=document.getElementById(id);if(el){el.focus();try{if(ss!=null)el.setSelectionRange(ss,ss)}catch{}}}
   renderDrawer();
@@ -2724,9 +2915,20 @@ document.addEventListener('click',async ev=>{
     case 'tr-toggle':TR.origTk=TR.origTk===id?null:id;renderAll();break;
     case 'tr-on':setTrOn(true);break;
     case 'tr-off':setTrOn(false);break;
-    case 'view':closeSheet();S.bulk=null;S.view=id;S.placing=null;if(S.drawer)S.drawer=null;renderAll();scrollTo(0,0);break;
+    case 'view':closeSheet();S.bulk=null;if(id==='chat'&&S.view!=='chat'&&CH.th&&!isPhone()){chOpen(CH.th);break}S.view=id;S.placing=null;if(S.drawer)S.drawer=null;renderAll();scrollTo(0,0);break;
     case 'settings':settingsSheet();break;
     case 'f-status':S.f.status=id;renderAll();break;
+    case 'ch-open':chOpen(id);break;
+    case 'ch-back':CH.unsub?.();CH.unsub=null;CH.th=null;renderAll();break;
+    case 'ch-send':chSend();break;
+    case 'ch-del':chDel(id);break;
+    case 'ch-more':CH.limit+=150;{const el=$('#chMsgs');const h0=el?.scrollHeight||0;renderAll();const el2=$('#chMsgs');if(el2)el2.scrollTop=el2.scrollHeight-h0}break;
+    case 'ch-tk':chTkSheet();break;
+    case 'ch-tk-pick':CH.draftTk=id;closeSheet();renderAll();setTimeout(()=>$('#chText')?.focus(),0);break;
+    case 'ch-tk-clear':CH.draftTk=null;renderAll();break;
+    case 'ch-photo':$('#chPhotoIn').click();break;
+    case 'ch-photo-clear':CH.draftPhoto=null;renderAll();break;
+    case 'tk-chat':CH.draftTk=id;S.viewer=null;closeDrawer();chOpen(CH.th||'team');break;
     case 'cluster':{const c=S.clusters[+id];if(!c)break;
       /* zoom in on the bubble; when zooming can't separate the pins any more, list them */
       if(S.zoom<4&&c.spread>0.15){S.zoom=Math.min(4,S.zoom+1);renderAll();requestAnimationFrame(()=>centerOn(c));break}
@@ -2825,6 +3027,8 @@ document.addEventListener('submit',ev=>{/* refuse to save a half-typed date or t
   if(bad){ev.preventDefault();ev.stopImmediatePropagation();bad.focus();toast(t(bad.classList.contains('hm')?'dt.badT':'dt.bad'))}
 },true);
 document.addEventListener('keydown',ev=>{if(ev.key!=='Enter')return;const el=ev.target;
+  if(el.id==='chText'&&!ev.shiftKey&&!ev.isComposing&&!isPhone()){ev.preventDefault();chSend();return}
+  if(el.id==='chTkQ'){ev.preventDefault();return}
   if(el.dataset?.enter==='ls-add'){ev.preventDefault();document.querySelector(`[data-act="ls-add"][data-id="${el.dataset.kind}"]`)?.click()}
   else if(el.classList?.contains('ls-name')){ev.preventDefault();el.blur()}},true);
 document.addEventListener('change',ev=>{const el=ev.target;
@@ -2833,7 +3037,8 @@ document.addEventListener('change',ev=>{const el=ev.target;
   if(el.classList?.contains('dmy')){const iso=dmyToIso(el.value);if(iso)el.value=isoToDmy(iso);el.classList.toggle('bad',!!el.value&&!iso)}
   if(el.classList?.contains('hm')){const n=normHM(el.value);if(n===null)el.classList.add('bad');else{el.value=n;el.classList.remove('bad')}if(el.id==='tStartTime')tkDatesSync('start')}
 });
-document.addEventListener('input',ev=>{if(ev.target.id==='fQ'){S.f.q=ev.target.value;renderAll()}
+document.addEventListener('input',ev=>{if(ev.target.id==='chText'){CH.draft=ev.target.value;chGrow(ev.target);return}if(ev.target.id==='chTkQ'){const l=$('#chTkList');if(l)l.innerHTML=chTkList(ev.target.value);return}
+  if(ev.target.id==='fQ'){S.f.q=ev.target.value;renderAll()}
   if(ev.target.id==='ppAcct'&&S.user){const q=ev.target.value.trim();if(!q){renderAcctBox([]);return}S.user.search(q).then(h=>{if(S.form?.type==='person'&&!S.form.userId&&$('#ppAcct')?.value.trim()===q)renderAcctBox(h)})}
   if(['lPeople','lHours','lMins'].includes(ev.target.id)){const c=$('#lCalc');if(c)c.textContent=labCalc()}
   if(['mQty','mCost'].includes(ev.target.id)){const c=$('#mCalc');if(c)c.textContent=matCalc()}});
@@ -2844,6 +3049,8 @@ $('#photoInput').addEventListener('change',async ev=>{
   toast(t('ts.uploadingPhoto'));
   try{const id=await uploadImage(file,1600);const x=S.tk.find(r=>r.id===tid);await Store.update('tickets/'+tid,{photos:[...(x.photos||[]),id],updatedAt:nowIso()});await addSys(tid,'log.photo');toast(t('ts.photoAdded'))}catch(e){console.error(e)}
 });
+$('#chPhotoIn').addEventListener('change',async ev=>{const f=ev.target.files[0];ev.target.value='';if(!f||!CH.th)return;toast(t('ts.uploadingPhoto'));
+  try{CH.draftPhoto=await uploadImage(f,1600);renderAll();setTimeout(()=>$('#chText')?.focus(),0)}catch(e){console.error(e);toast(t('ts.saveFail'))}});
 $('#bkInput').addEventListener('change',async ev=>{const f=ev.target.files[0];ev.target.value='';if(f)await importBackup(f)});
 $('#mspInput').addEventListener('change',async ev=>{const f=ev.target.files[0];ev.target.value='';if(f)await importMSFile(f)});
 $('#dwgInput').addEventListener('change',async ev=>{
@@ -2988,7 +3195,7 @@ async function sbBoot(){
   S.sb=sb;S.sbEmail=(session.user.email||'').toLowerCase();
   const db=sbDb(sb);
   sbHeartbeat(sb,session.user.id,db);
-  db.collection('users').onSnapshot(s=>{let ch=false;s.docs.forEach(d=>{const v=d.data(),nm=v.name||v.email||'';if(S.names[d.id]!==nm){S.names[d.id]=nm;ch=true}
+  db.collection('users').onSnapshot(s=>{let ch=false;s.docs.forEach(d=>{const v=d.data(),nm=v.name||v.email||'';const em=String(v.email||'').trim().toLowerCase();if(em&&CH.uidByEmail[em]!==d.id){CH.uidByEmail[em]=d.id;ch=true}if(S.names[d.id]!==nm){S.names[d.id]=nm;ch=true}
       if(d.id===session.user.id){if(v.ntSeenAt&&v.ntSeenAt!==S.ntSeenSrv){S.ntSeenSrv=v.ntSeenAt;ch=true}
       }});
     if(ch)renderAll()},()=>{});
@@ -3036,6 +3243,7 @@ renderAll();
     renderAll()},()=>{});
   db.collection('signatures').onSnapshot(s=>{S.sig=s.docs.map(d=>({id:d.id,...d.data()}));renderAll()},()=>{});
   db.collection('notifications').onSnapshot(s=>{onNotes(s.docs.map(d=>({id:d.id,...d.data()})));renderAll()},()=>{});
+  chSubscribe(db);
   db.doc('meta/site').onSnapshot(s=>{S.site=s.exists?s.data():{};renderAll()},()=>{});
   db.collection('i18n').onSnapshot(s=>{const c={};s.docs.forEach(d=>{c[d.id]=d.data()});for(const [k,v] of Object.entries(TR.cache))if(!(k in c))c[k]=v;TR.cache=c;renderAll()},()=>{});
 })();
