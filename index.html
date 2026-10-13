@@ -148,6 +148,11 @@ input.search{min-width:0;width:220px}
 .lg-star{clip-path:polygon(50% 0,62% 34%,98% 36%,70% 58%,80% 95%,50% 74%,20% 95%,30% 58%,2% 36%,38% 34%)}
 .nt-h{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:6px 0 6px}.nt-h b{color:var(--ink)}
 .nt-list+.nt-h{margin-top:14px}.nt-ico.due{color:var(--warn)}.nt-ico.due.over{color:var(--crit)}.nt-item.due.over{border-left:3px solid var(--crit)}.nt-item.due.soon{border-left:3px solid var(--warn)}
+.pin.done-p{opacity:.78;scale:.82}.pin.done-p.sel,.pin.done-p:hover{opacity:1;scale:1}
+.pin-cl{position:absolute;transform:translate(-50%,-50%);min-width:34px;height:34px;padding:0 9px;border-radius:17px;border:3px solid var(--surface);background:var(--c);color:#fff;font:700 13px/1 var(--f-display);box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 28%,transparent),0 2px 6px rgba(0,0,0,.35);z-index:3;cursor:pointer;display:grid;place-items:center}
+.pin-cl:hover{filter:brightness(1.08)}
+.pin-cl.crit::after{content:"!";position:absolute;top:-8px;right:-8px;width:17px;height:17px;border-radius:50%;background:var(--crit);color:#fff;font-size:11px;display:grid;place-items:center;border:2px solid var(--surface)}
+.closed-sel{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}.closed-sel .ico,.closed-sel svg{flex:none}
 .pin.crit-p::after{content:"";position:absolute;inset:-16.5px;border-radius:50%;border:2.5px solid var(--c);pointer-events:none;opacity:.6;animation:pulse 1.8s ease-out infinite}
 @keyframes pulse{from{transform:scale(.6);opacity:.8}to{transform:scale(1.25);opacity:0}}
 @media (prefers-reduced-motion:reduce){.pin.crit-p::after{animation:none;opacity:.5}}
@@ -551,7 +556,7 @@ en:{
  'st.open':'Open','st.progress':'In progress','st.hold':'On hold','st.done':'Done','status':'Status',
  'pr.critical':'Critical','pr.high':'High','pr.medium':'Medium','pr.low':'Low',
  'kind.scheduled':'Scheduled (PM)','kind.unscheduled':'Unscheduled','kind.tag':'Scheduled PM','kind.formUns':'Unscheduled (breakdown / defect)',
- 'f.active':'Active','f.overdue':'Overdue','f.done':'Done','f.all':'All','f.allPrio':'All priorities','f.allZones':'All zones','f.allKinds':'Scheduled + unscheduled','f.search':'Search title, code, crew…',
+ 'f.active':'Active','f.overdue':'Overdue','f.done':'Done','f.all':'All','f.closedL':'Period for completed orders','f.closed.7':'Closed in the last 7 days','f.closed.30':'Closed in the last 30 days','f.closed.90':'Closed in the last 3 months','f.closed.year':'Closed this year','f.closed.all':'Closed: all time','cl.title':'{n} work orders here','dr.historyAll':'All {n} completed orders','f.allPrio':'All priorities','f.allZones':'All zones','f.allKinds':'Scheduled + unscheduled','f.search':'Search title, code, crew…',
  'due.none':'No due date','due.on':'Due {d}','due.over':'{n} d overdue','due.today':'Due today','due.todayAt':'Due today at {t}','due.overT':'Overdue since {t}','fm.timeOpt':'Time (optional)','due.in':'Due in {n} d','pm.notSched':'Not scheduled',
  'tag.example':'Example','row.noEq':'No equipment','row.mh':'{n}','row.mat':'materials ×{n}',
  'empty.loading':'Loading terminal data…','empty.loadingP':'Fetching equipment, work orders and maintenance plans.',
@@ -593,7 +598,7 @@ ka:{
  'st.open':'ღია','st.progress':'მიმდინარე','st.hold':'შეჩერებული','st.done':'დასრულებული','status':'სტატუსი',
  'pr.critical':'კრიტიკული','pr.high':'მაღალი','pr.medium':'საშუალო','pr.low':'დაბალი',
  'kind.scheduled':'გეგმიური (გტმ)','kind.unscheduled':'არაგეგმიური','kind.tag':'გეგმიური ტმ','kind.formUns':'არაგეგმიური (ავარია / დეფექტი)',
- 'f.active':'აქტიური','f.overdue':'ვადაგადაცილებული','f.done':'დასრულებული','f.all':'ყველა','f.allPrio':'ყველა პრიორიტეტი','f.allZones':'ყველა ზონა','f.allKinds':'გეგმიური + არაგეგმიური','f.search':'ძიება: სათაური, კოდი, ბრიგადა…',
+ 'f.active':'აქტიური','f.overdue':'ვადაგადაცილებული','f.done':'დასრულებული','f.all':'ყველა','f.closedL':'დასრულებული დავალებების პერიოდი','f.closed.7':'დასრულდა ბოლო 7 დღეში','f.closed.30':'დასრულდა ბოლო 30 დღეში','f.closed.90':'დასრულდა ბოლო 3 თვეში','f.closed.year':'დასრულდა წელს','f.closed.all':'დასრულებული: ყველა','cl.title':'აქ {n} დავალებაა','dr.historyAll':'ყველა დასრულებული ({n})','f.allPrio':'ყველა პრიორიტეტი','f.allZones':'ყველა ზონა','f.allKinds':'გეგმიური + არაგეგმიური','f.search':'ძიება: სათაური, კოდი, ბრიგადა…',
  'due.none':'ვადა არ არის','due.on':'ვადა {d}','due.over':'{n} დღით გადაცილებული','due.today':'ვადა დღესაა','due.todayAt':'ვადა დღეს, {t}','due.overT':'გადაცილებულია {t}-დან','fm.timeOpt':'დრო (არასავალდებულო)','due.in':'ვადამდე {n} დღე','pm.notSched':'არ არის დაგეგმილი',
  'tag.example':'მაგალითი','row.noEq':'აღჭურვილობის გარეშე','row.mh':'{n}','row.mat':'მასალა ×{n}',
  'empty.loading':'ტერმინალის მონაცემები იტვირთება…','empty.loadingP':'იტვირთება აღჭურვილობა, სამუშაო დავალებები და ტექმომსახურების გეგმები.',
@@ -635,7 +640,7 @@ ru:{
  'st.open':'Открыт','st.progress':'В работе','st.hold':'Приостановлен','st.done':'Выполнен','status':'Статус',
  'pr.critical':'Критический','pr.high':'Высокий','pr.medium':'Средний','pr.low':'Низкий',
  'kind.scheduled':'Плановый (ППР)','kind.unscheduled':'Внеплановый','kind.tag':'Плановое ТО','kind.formUns':'Внеплановый (авария / дефект)',
- 'f.active':'Активные','f.overdue':'Просроченные','f.done':'Выполненные','f.all':'Все','f.allPrio':'Все приоритеты','f.allZones':'Все зоны','f.allKinds':'Плановые + внеплановые','f.search':'Поиск: название, код, бригада…',
+ 'f.active':'Активные','f.overdue':'Просроченные','f.done':'Выполненные','f.all':'Все','f.closedL':'Период выполненных нарядов','f.closed.7':'Выполнены за 7 дней','f.closed.30':'Выполнены за 30 дней','f.closed.90':'Выполнены за 3 месяца','f.closed.year':'Выполнены в этом году','f.closed.all':'Выполненные: за всё время','cl.title':'Нарядов здесь: {n}','dr.historyAll':'Все выполненные ({n})','f.allPrio':'Все приоритеты','f.allZones':'Все зоны','f.allKinds':'Плановые + внеплановые','f.search':'Поиск: название, код, бригада…',
  'due.none':'Без срока','due.on':'Срок {d}','due.over':'Просрочен на {n} дн.','due.today':'Срок сегодня','due.todayAt':'Срок сегодня в {t}','due.overT':'Просрочен с {t}','fm.timeOpt':'Время (необязательно)','due.in':'Через {n} дн.','pm.notSched':'Не запланировано',
  'tag.example':'Пример','row.noEq':'Без оборудования','row.mh':'{n}','row.mat':'материалы ×{n}',
  'empty.loading':'Загрузка данных терминала…','empty.loadingP':'Загружаем оборудование, наряды и графики ТО.',
@@ -753,7 +758,7 @@ const ico=(n,cls='ico')=>`<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="t
 const mobile=matchMedia('(max-width:700px)').matches;
 const S={eq:[],tk:[],pm:[],site:{},log:[],view:'plan',
   f:{status:'active',prio:'all',zone:'all',kind:'all',resp:'all',q:''},people:[],sig:[],notes:[],
-  zoom:mobile?1.7:1,showEq:(()=>{try{const v=localStorage.getItem('mp-showEq');return v==null?true:v==='1'}catch{return true}})(),showGrid:true,placing:null,drawer:null,confirmDel:false,confirmRow:null,
+  zoom:mobile?1.7:1,showEq:(()=>{try{const v=localStorage.getItem('mp-showEq');return v==null?true:v==='1'}catch{return true}})(),showGrid:true,closed:(()=>{try{return localStorage.getItem('mp-closed')||'30'}catch{return '30'}})(),clusters:[],placing:null,drawer:null,confirmDel:false,confirmRow:null,
   me:null,canWrite:true,db:null,user:null,assets:null,dl:null,ready:false,live:false,names:{},avatars:{},logUnsub:null,memBlobs:{}};
 
 /* ---------- utils ---------- */
@@ -994,11 +999,18 @@ async function resolveNames(ids){
 const nameOf=id=>id?(id===S.me?.id?(S.names[id]||t('who.you')):(S.names[id]||t('who.member'))):t('who.someone');
 
 /* ---------- filtering ---------- */
+/* closed work orders: only those closed in the chosen period are shown under "Done" and "All",
+   so a year of finished jobs doesn't pile up on the site plan. Nothing is deleted. */
+const CLOSED_OPTS=['7','30','90','year','all'];
+const closedDay=x=>String(x.closedAt||x.updatedAt||x.due||'').slice(0,10);
+function closedInRange(x){const p=S.closed;if(p==='all')return true;const d=closedDay(x);if(!d)return true;
+  if(p==='year')return d.slice(0,4)===today().slice(0,4);return d>addDays(today(),-(+p||30))}
 function filtered(st=S.f.status){
   const f=S.f,q=f.q.trim().toLowerCase();
   return S.tk.filter(x=>{
     if(st==='active'&&x.status==='done') return false;
     if(st==='done'&&x.status!=='done') return false;
+    if((st==='done'||st==='all')&&x.status==='done'&&!closedInRange(x)) return false;
     if(st==='overdue'&&!isOverdue(x)) return false;
     if(st==='progress'&&x.status!=='progress') return false;
     if(st==='unsigned'&&!needsSig(x)) return false;
@@ -1011,7 +1023,7 @@ function filtered(st=S.f.status){
     if(f.zone!=='all'&&e?.zone!==f.zone) return false;
     if(q&&!`${x.title} ${trT(x)} ${x.no} ${e?.code||''} ${e?.name||''} ${x.crew||''} ${tv(x.crew)||''} ${x.category||''} ${tv(x.category)||''}`.toLowerCase().includes(q)) return false;
     return true;
-  }).sort((a,b)=>(a.status==='done')-(b.status==='done')||(PRIO[b.priority]?.n||0)-(PRIO[a.priority]?.n||0)||String((a.due||'9')+(a.dueTime||'99')).localeCompare(String((b.due||'9')+(b.dueTime||'99'))));
+  }).sort((a,b)=>(a.status==='done')-(b.status==='done')||(a.status==='done'&&b.status==='done'?closedDay(b).localeCompare(closedDay(a)):0)||(PRIO[b.priority]?.n||0)-(PRIO[a.priority]?.n||0)||String((a.due||'9')+(a.dueTime||'99')).localeCompare(String((b.due||'9')+(b.dueTime||'99'))));
 }
 
 /* ---------- render: nav ---------- */
@@ -1039,7 +1051,7 @@ function topbar(title,sub,actions=''){
 }
 const newBtn=()=>S.canWrite?`<button class="btn primary desk-only" data-act="new-pin">${ico('pin')}${esc(t('btn.newWo'))}</button>`:'';
 
-const statusCount=k=>['active','progress','overdue','unsigned'].includes(k)?filtered(k).length:null; // counts follow the other filters (type, priority, zone, person, search)
+const statusCount=k=>['active','progress','overdue','done','unsigned'].includes(k)?filtered(k).length:null; // counts follow the other filters (type, priority, zone, person, search)
 const isPhone=()=>!matchMedia('(min-width:900px)').matches;
 function filterBar(withSearch){
   const f=S.f;
@@ -1048,6 +1060,7 @@ function filterBar(withSearch){
   return `<div class="toolbar${phone&&!S.fOpen?' f-closed':''}">
    ${phone?`<button class="btn sm f-toggle${n?' on':''}" data-act="filters" aria-expanded="${!!S.fOpen}">${ico('list')}${esc(t('f.filters'))}${n?` <b class="f-n">${n}</b>`:''}</button>`:''}
    <div class="seg" role="group" aria-label="${esc(t('status'))}">${['active','progress','overdue','done','unsigned','all'].map(k=>{const c=statusCount(k);return `<button data-act="f-status" data-id="${k}" aria-pressed="${f.status===k}">${esc(t('f.'+k))}${c!=null?` <span class="seg-n">${c}</span>`:''}</button>`}).join('')}</div>
+   ${f.status==='done'||f.status==='all'?`<label class="closed-sel" title="${esc(t('f.closedL'))}">${ico('cal')}<select class="sel" id="fClosed" aria-label="${esc(t('f.closedL'))}">${opts(CLOSED_OPTS.map(k=>[k,t('f.closed.'+k)]),S.closed)}</select></label>`:''}
    <select class="sel" id="fPrio" aria-label="${esc(t('fm.priority'))}">${opts([['all',t('f.allPrio')],...Object.keys(PRIO).map(k=>[k,prL(k)])],f.prio)}</select>
    <select class="sel" id="fZone" aria-label="${esc(t('dr.zone'))}">${opts([['all',t('f.allZones')],...zones().map(z=>[z,tv(z)])],f.zone)}</select>
    <select class="sel" id="fResp" aria-label="${esc(t('fm.resp'))}">${opts([['all',t('f.allPeople')],...(myPerson()?[['me',t('f.me')]]:[]),...activePeople().filter(p=>!isMgmt(p)||p.id===f.resp).map(p=>[p.id,p.name]),['none',t('f.unassigned')]],f.resp)}</select>
@@ -1121,7 +1134,7 @@ function crewStyle(x){const c=crewOf(x);if(!c)return null;const lbl=tv(c)||c;
   return {k:'x'+h,shape:'star',c:col,icon:lbl.trim().charAt(0).toUpperCase(),tagBg:col+'22',tagFg:col,label:lbl}}
 const isElec=x=>crewStyle(x)?.k==='elec';
 const shaped=x=>{const st=crewStyle(x);return st&&st.shape!=='circle'?st:null};
-const pinCls=x=>(x.priority==='critical'&&x.status!=='done'?' crit-p':'')+(shaped(x)?' shp shp-'+shaped(x).shape:'');
+const pinCls=x=>(x.priority==='critical'&&x.status!=='done'?' crit-p':'')+(x.status==='done'?' done-p':'')+(shaped(x)?' shp shp-'+shaped(x).shape:'');
 const pinMark=x=>x.priority==='critical'?'!':x.kind==='scheduled'?'P':'';
 /* the colour a shaped pin is filled with (and its pulsing ring): crew colour while open, status colour afterwards */
 const pinFill=x=>{const st=shaped(x);return !st?(STATUS[x.status]||STATUS.open).c:x.status&&x.status!=='open'?(STATUS[x.status]||STATUS.open).c:st.c};
@@ -1156,7 +1169,7 @@ const tkGrid=x=>{const p=tkPos(x);return p?gridRef(p[0],p[1]):''};
 function gridHtml(){return `<div class="plan-grid" aria-hidden="true">${Array.from({length:GRID.c},(_,i)=>`<span style="left:${(i+.5)/GRID.c*100}%;top:0">${String.fromCharCode(65+i)}</span>`).join('')}${Array.from({length:GRID.r},(_,j)=>`<span class="r" style="top:${(j+.5)/GRID.r*100}%;left:0">${j+1}</span>`).join('')}</div>`}
 const PIN_RANK={done:0,hold:1,open:2,progress:3};
 const pinRank=x=>(PIN_RANK[x.status]??2)+(x.priority==='critical'&&x.status!=='done'?2:0);
-function pinLayout(list,aspect=.62,near=1.8){
+function pinLayout(list,aspect=.62,near=1.8,maxFan=Infinity){
   const pts=list.map(x=>{const p=tkPos(x);return p?{x,px:p[0],py:p[1]}:null}).filter(Boolean);
   const par=pts.map((_,i)=>i),find=i=>par[i]===i?i:(par[i]=find(par[i]));
   for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j];if(Math.hypot(a.px-b.px,(a.py-b.py)*aspect)<near)par[find(i)]=find(j)}
@@ -1165,6 +1178,7 @@ function pinLayout(list,aspect=.62,near=1.8){
   Object.values(groups).forEach(g=>{
     const cx=g.reduce((a,p)=>a+p.px,0)/g.length,cy=g.reduce((a,p)=>a+p.py,0)/g.length;
     g.sort((a,b)=>pinRank(b.x)-pinRank(a.x)||String(a.x.no).localeCompare(String(b.x.no)));
+    if(g.length>maxFan){out.push({cl:true,x:g[0].x,xs:g.map(p=>p.x),px:cx,py:cy,spread:Math.max(...g.map(p=>Math.hypot(p.px-cx,p.py-cy)))});return}
     g.forEach((p,i)=>out.push(g.length>1?{x:p.x,px:cx,py:cy,i,n:g.length}:{x:p.x,px:p.px,py:p.py,i:0,n:1}));
   });
   /* draw low-rank first so in-progress and critical pins end up on top */
@@ -1184,7 +1198,12 @@ function vPlan(){
   const plan=S.site.planImg?`<img class="plan-img" src="${esc(blobSrc(S.site.planImg))}" alt="${esc(t('plan.alt'))}">`:planSvg();
   const unplaced=list.filter(x=>!tkPos(x));
   const planPx=Math.max(300,(document.getElementById('planScroll')?.clientWidth||Math.min(innerWidth,900)-40)*S.zoom);
-  const pins=pinLayout(list,.62,30/planPx*100).map(({x,px,py,i,n})=>{
+  S.clusters=[];
+  const pins=pinLayout(list,.62,30/planPx*100,6).map(({x,px,py,i,n,cl,xs,spread})=>{
+     if(cl){const k=S.clusters.push({x:px,y:py,ids:xs.map(r=>r.id),spread})-1,st=STATUS[x.status]||STATUS.open,crit=xs.some(r=>r.priority==='critical'&&r.status!=='done');
+       const by=Object.keys(STATUS).map(s=>[s,xs.filter(r=>r.status===s).length]).filter(([,c])=>c).map(([s,c])=>stL(s)+' '+c).join(' · ');
+       const tip=t('cl.title',{n:xs.length})+' — '+by;
+       return `<button class="pin-cl${crit?' crit':''}" style="left:${px}%;top:${py}%;--c:${st.c}" data-act="cluster" data-id="${k}" title="${esc(tip)}" aria-label="${esc(tip)}">${xs.length}</button>`}
      let ox=0,oy=0;if(n>1){const r=13+n*3,a=2*Math.PI*i/n-Math.PI/2;ox=Math.round(Math.cos(a)*r);oy=Math.round(Math.sin(a)*r)}
      const st=STATUS[x.status]||STATUS.open;
      return `<button class="pin${pinCls(x)}${sel===x.id?' sel':''}" style="left:${px}%;top:${py}%;--c:${st.c};--ring:${pinFill(x)};--ox:${ox}px;--oy:${oy}px" data-act="open-tk" data-id="${x.id}" title="${esc(x.no+' · '+trT(x))}" aria-label="${esc(trT(x))}">${pinInner(x)}</button>`}).join('');
@@ -1363,7 +1382,7 @@ function renderDrawer(){
     </div>`;
   } else if(d.type==='eq'){
     const e=eqById(d.id);if(!e){root.innerHTML='';return}
-    const tks=S.tk.filter(x=>x.assetId===e.id);const open=tks.filter(x=>x.status!=='done'),done=tks.filter(x=>x.status==='done');
+    const tks=S.tk.filter(x=>x.assetId===e.id);const open=tks.filter(x=>x.status!=='done'),done=tks.filter(x=>x.status==='done').sort((a,b)=>closedDay(b).localeCompare(closedDay(a)));
     const pms=S.pm.filter(p=>p.assetId===e.id);
     html=`<div class="dr-head"><div class="grow"><div class="wo-top" style="margin-bottom:4px"><span class="eq-code">${esc(e.code)}</span><span class="tag">${esc(tv(e.type)||'')}</span>${e.demo?exTag():''}</div><h2>${esc(eqN(e))}</h2></div><button class="iconbtn" data-act="close-drawer" aria-label="${esc(t('btn.close'))}">${ico('x')}</button></div>
     <div class="dr-body">
@@ -1378,7 +1397,7 @@ function renderDrawer(){
      <div class="sec"><h3>${esc(t('dr.openWos'))} <span class="mono">${open.length}</span></h3><div class="wo-list">${open.map(x=>woRow(x)).join('')||`<p class="ro-note">${esc(t('dr.none'))}</p>`}</div></div>
      <div class="sec"><h3>${esc(t('dr.plans'))} <span class="mono">${pms.length}</span></h3>${pms.map(p=>{const st=pmState(p);return `<div class="pm" style="--c:${st.c}"><div><div class="pm-title">${esc(T('pm',p.id,'title',p.title))}</div><div class="pm-meta"><span class="interval">${esc(t('pm.every',{n:p.intervalDays}))}</span><span>${esc(st.txt)}</span></div></div></div>`}).join('')||`<p class="ro-note">${esc(t('dr.noPlans'))}</p>`}
       ${S.canWrite?`<div style="margin-top:8px"><button class="btn sm" data-act="pm-new" data-id="${e.id}">${ico('plus')}${esc(t('dr.addPm'))}</button></div>`:''}</div>
-     <div class="sec"><h3>${esc(t('dr.history'))} <span class="mono">${done.length}</span></h3><div class="wo-list">${done.slice(0,10).map(x=>woRow(x)).join('')||`<p class="ro-note">${esc(t('dr.noHistory'))}</p>`}</div></div>
+     <div class="sec"><h3>${esc(t('dr.history'))} <span class="mono">${done.length}</span></h3><div class="wo-list">${done.slice(0,10).map(x=>woRow(x)).join('')||`<p class="ro-note">${esc(t('dr.noHistory'))}</p>`}</div>${done.length>10?`<div style="margin-top:8px"><button class="btn sm" data-act="eq-history" data-id="${e.id}">${ico('list')}${esc(t('dr.historyAll',{n:done.length}))}</button></div>`:''}</div>
      ${canDel()?`<div><button class="btn sm danger" data-act="del-eq" data-id="${e.id}">${esc(S.confirmDel?t('dr.confirmDel'):t('dr.delEq'))}</button></div>`:''}
     </div>`;
   }
@@ -2708,6 +2727,13 @@ document.addEventListener('click',async ev=>{
     case 'view':closeSheet();S.bulk=null;S.view=id;S.placing=null;if(S.drawer)S.drawer=null;renderAll();scrollTo(0,0);break;
     case 'settings':settingsSheet();break;
     case 'f-status':S.f.status=id;renderAll();break;
+    case 'cluster':{const c=S.clusters[+id];if(!c)break;
+      /* zoom in on the bubble; when zooming can't separate the pins any more, list them */
+      if(S.zoom<4&&c.spread>0.15){S.zoom=Math.min(4,S.zoom+1);renderAll();requestAnimationFrame(()=>centerOn(c));break}
+      const xs=c.ids.map(i=>S.tk.find(x=>x.id===i)).filter(Boolean).sort((a,b)=>(a.status==='done')-(b.status==='done')||pinRank(b)-pinRank(a)||closedDay(b).localeCompare(closedDay(a)));
+      sheet(esc(t('cl.title',{n:xs.length})),`<div class="wo-list" style="grid-column:1/-1">${xs.map(x=>woRow(x).replace('data-act="open-tk"','data-act="cl-open"')).join('')}</div>`,`<button type="button" class="btn" data-act="close-sheet">${esc(t('btn.close'))}</button>`);break}
+    case 'cl-open':closeSheet();S.viewer=null;openTicket(id);break;
+    case 'eq-history':{const e=eqById(id);if(!e)break;S.drawer=null;S.view='tickets';S.f={status:'done',prio:'all',zone:'all',kind:'all',resp:'all',q:e.code};S.closed='all';renderAll();scrollTo(0,0);break}
     case 'go-filter':S.view='tickets';S.f={status:id==='critical'?'active':id,prio:id==='critical'?'critical':'all',zone:'all',kind:'all',resp:'all',q:''};renderAll();break;
     case 'zoom':S.zoom=Math.min(4,Math.max(1,+(S.zoom+(+id)*0.5).toFixed(1)));renderAll();break;
     case 'new-pin':S.view='plan';S.drawer=null;S.placing={kind:'new'};renderAll();break;
@@ -2770,6 +2796,7 @@ document.addEventListener('submit',ev=>{ev.preventDefault();const f=S.form;if(!f
 document.addEventListener('change',ev=>{
   const x=ev.target;
   if(x.id==='fPrio'){S.f.prio=x.value;renderAll()}
+  else if(x.id==='fClosed'){S.closed=x.value;try{localStorage.setItem('mp-closed',x.value)}catch{};renderAll()}
   else if(x.id==='fZone'){S.f.zone=x.value;renderAll()}
   else if(x.id==='fKind'){S.f.kind=x.value;renderAll()}
   else if(x.id==='fResp'){S.f.resp=x.value;renderAll()}
