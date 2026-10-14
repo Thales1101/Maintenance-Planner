@@ -2116,8 +2116,11 @@ function vChat(){
     const who=s?.lastAt?(s.lastBy===myUid()?t('ch.you')+': ':x.kind==='dm'?'':String(s.lastName||'').split(' ')[0]+': '):'';
     const sub=!x.id?t('ch.noAcc'):s?.last?who+s.last:x.sub;
     return `<button type="button" class="ch-item${x.id&&x.id===CH.th?' on':''}${un?' un':''}" data-act="ch-open" data-id="${esc(x.id||'')}" ${x.id?'':'disabled'}>${chAv(x)}<span class="ch-it-main"><span class="ch-it-top"><b>${esc(x.name)}</b>${s?.lastAt?`<small>${esc(chWhen(s.lastAt))}</small>`:''}</span><span class="ch-it-sub">${esc(sub||'')}</span></span>${un?'<i class="ch-dot"></i>':''}</button>`};
-  const dms=ths.filter(x=>x.kind==='dm');
-  const list=`<div class="ch-list"><div class="ch-h">${esc(t('ch.channels'))}</div>${ths.filter(x=>x.kind!=='dm').map(item).join('')}<div class="ch-h">${esc(t('ch.direct'))}</div>${dms.length?dms.map(item).join(''):`<p class="ro-note" style="padding:0 14px">${esc(t('ch.noPeople'))}</p>`}</div>`;
+  /* most recent conversation first: people you are talking with move to the top; others stay alphabetical below */
+  const recent=(a,b)=>String(CH.threads[b.id]?.lastAt||'').localeCompare(String(CH.threads[a.id]?.lastAt||''));
+  const dms=ths.filter(x=>x.kind==='dm').map((x,i)=>({x,i})).sort((a,b)=>recent(a.x,b.x)||(!a.x.id)-(!b.x.id)||a.i-b.i).map(r=>r.x);
+  const chans=[ths[0],...ths.filter(x=>x.kind==='crew').map((x,i)=>({x,i})).sort((a,b)=>recent(a.x,b.x)||a.i-b.i).map(r=>r.x)];
+  const list=`<div class="ch-list"><div class="ch-h">${esc(t('ch.channels'))}</div>${chans.map(item).join('')}<div class="ch-h">${esc(t('ch.direct'))}</div>${dms.length?dms.map(item).join(''):`<p class="ro-note" style="padding:0 14px">${esc(t('ch.noPeople'))}</p>`}</div>`;
   let conv=`<div class="ch-conv ch-none"><div class="empty">${ico('chat')}<p>${esc(t('ch.pick'))}</p></div></div>`;
   if(cur){
     const vis=CH.msgs.slice(-CH.limit),more=CH.msgs.length>vis.length;
