@@ -2119,7 +2119,7 @@ function vChat(){
   /* most recent conversation first: people you are talking with move to the top; others stay alphabetical below */
   const recent=(a,b)=>String(CH.threads[b.id]?.lastAt||'').localeCompare(String(CH.threads[a.id]?.lastAt||''));
   const dms=ths.filter(x=>x.kind==='dm').map((x,i)=>({x,i})).sort((a,b)=>recent(a.x,b.x)||(!a.x.id)-(!b.x.id)||a.i-b.i).map(r=>r.x);
-  const chans=[ths[0],...ths.filter(x=>x.kind==='crew').map((x,i)=>({x,i})).sort((a,b)=>recent(a.x,b.x)||a.i-b.i).map(r=>r.x)];
+  const chans=ths.filter(x=>x.kind!=='dm').map((x,i)=>({x,i})).sort((a,b)=>recent(a.x,b.x)||a.i-b.i).map(r=>r.x);
   const list=`<div class="ch-list"><div class="ch-h">${esc(t('ch.channels'))}</div>${chans.map(item).join('')}<div class="ch-h">${esc(t('ch.direct'))}</div>${dms.length?dms.map(item).join(''):`<p class="ro-note" style="padding:0 14px">${esc(t('ch.noPeople'))}</p>`}</div>`;
   let conv=`<div class="ch-conv ch-none"><div class="empty">${ico('chat')}<p>${esc(t('ch.pick'))}</p></div></div>`;
   if(cur){
