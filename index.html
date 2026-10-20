@@ -112,7 +112,7 @@ input.search{min-width:0;width:220px}
 .plan-layout{display:grid;gap:16px;grid-template-columns:minmax(0,1fr);align-items:start}
 @media (min-width:1200px){.plan-layout{grid-template-columns:minmax(0,1fr) 340px}}
 .plan-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative;min-width:0}
-.plan-scroll{overflow:auto;max-height:72vh;-webkit-overflow-scrolling:touch}
+.plan-scroll{overflow:auto;max-height:72vh;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overscroll-behavior:contain}
 .plan-canvas{position:relative;min-width:100%;background:#fff;--pl-ground:#EEF1F2;--pl-bldg:#D4DCE1;--pl-bldg-line:#93A3AE;--pl-belt:#2B3A44;--pl-water:#BFD5E2;--pl-label:#3A4C58;--pl-quay:#C9CFD3}
 .plan-canvas>svg,.plan-canvas>img.plan-img{filter:grayscale(1) contrast(.92);opacity:.58}
 .plan-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(to right,var(--grid-line) 1px,transparent 1px),linear-gradient(to bottom,var(--grid-line) 1px,transparent 1px);background-size:calc(100% / 12) calc(100% / 8);box-shadow:inset -1px -1px 0 var(--grid-line)}
@@ -253,9 +253,9 @@ input.search{min-width:0;width:220px}
 .pin.crit-p::after{content:"";position:absolute;inset:-16.5px;border-radius:50%;border:2.5px solid var(--c);pointer-events:none;opacity:.6;animation:pulse 1.8s ease-out infinite}
 @keyframes pulse{from{transform:scale(.6);opacity:.8}to{transform:scale(1.25);opacity:0}}
 @media (prefers-reduced-motion:reduce){.pin.crit-p::after{animation:none;opacity:.5}}
-.eqm{position:absolute;transform:translate(-5px,-5px);display:flex;align-items:center;gap:4px;background:none;border:0;padding:0;z-index:1}
-.eqm i{width:10px;height:10px;transform:rotate(45deg);background:var(--surface);border:2px solid var(--steel);flex:none}
-.eqm span{font:700 10px/1 var(--f-mono);background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--steel);padding:2px 4px;border-radius:3px;white-space:nowrap}
+.eqm{position:absolute;transform:translate(calc(-5px*var(--lab,1)),calc(-5px*var(--lab,1)));display:flex;align-items:center;gap:4px;background:none;border:0;padding:0;z-index:1}
+.eqm i{width:calc(10px*var(--lab,1));height:calc(10px*var(--lab,1));transform:rotate(45deg);background:var(--surface);border:2px solid var(--steel);flex:none}
+.eqm span{font:700 calc(10px*var(--lab,1))/1 var(--f-mono);background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--steel);padding:calc(2px*var(--lab,1)) calc(4px*var(--lab,1));border-radius:3px;white-space:nowrap}
 .eqm:hover i{background:var(--steel)}
 .eqm-k{font-style:normal;font-weight:600;color:var(--muted);margin-left:3px}
 
@@ -1432,6 +1432,7 @@ function vPlan(){
   const list=filtered();
   const sel=S.drawer?.type==='tk'?S.drawer.id:null;
   const pl=S.placing;
+  const labScale=px=>Math.min(1.3,Math.max(.72,px/1100)).toFixed(3);
   const plan=S.site.planImg?`<img class="plan-img" src="${esc(blobSrc(S.site.planImg))}" alt="${esc(t('plan.alt'))}">`:planSvg();
   const unplaced=list.filter(x=>!tkPos(x));
   const planPx=Math.max(300,(document.getElementById('planScroll')?.clientWidth||Math.min(innerWidth,900)-40)*S.zoom);
@@ -1451,7 +1452,7 @@ function vPlan(){
    filterBar(false)+(planPortrait()?`<div class="notice up-note">${ico('plan')}<div style="min-width:0"><b>${esc(t('rot.legacy'))}</b>${S.canWrite&&(S.assets||!S.db)?`<div class="up-list"><button class="btn sm" data-act="rot-layout" data-id="ccw">${esc(t('rot.left'))}</button><button class="btn sm" data-act="rot-layout" data-id="cw">${esc(t('rot.right'))}</button></div>`:''}</div></div>`:'')+unplacedNote(unplaced)+
    `<div class="plan-layout"><div class="plan-card">${banner}
      <div style="position:relative"><div class="zoom"><button data-act="zoom" data-id="1" aria-label="${esc(t('zoom.in'))}">+</button><button data-act="zoom" data-id="-1" aria-label="${esc(t('zoom.out'))}">−</button></div>
-     <div class="plan-scroll" id="planScroll"><div class="plan-canvas${pl?' placing':''}" id="planCanvas" style="width:${S.zoom*100}%">${plan}${S.showGrid?gridHtml():''}<div class="pins" id="pins">${eqs}${pins}</div></div></div></div>
+     <div class="plan-scroll" id="planScroll"><div class="plan-canvas${pl?' placing':''}" id="planCanvas" style="width:${S.zoom*100}%;--lab:${labScale(planPx)}">${plan}${S.showGrid?gridHtml():''}<div class="pins" id="pins">${eqs}${pins}</div></div></div></div>
      <div class="plan-foot">${Object.entries(STATUS).map(([k,s])=>`<span class="lg"><i style="background:${s.c}"></i>${esc(stL(k))}</span>`).join('')}<span class="lg"><b>!</b> ${esc(prL('critical'))}</span><span class="lg"><b>P</b> ${esc(t('plan.pm'))}</span>${crewLegend(list)}
       <label class="check" style="margin-left:auto"><input type="checkbox" id="showGrid" ${S.showGrid?'checked':''}> ${esc(t('plan.grid'))}</label>
       <label class="check"><input type="checkbox" id="showEq" ${S.showEq?'checked':''}> ${esc(t('plan.eqLabels'))}</label>
@@ -3687,13 +3688,13 @@ document.addEventListener('click',async ev=>{
     case 'tk-chat':CH.draftTk=id;S.viewer=null;closeDrawer();chOpen(CH.th||'team');break;
     case 'cluster':{const c=S.clusters[+id];if(!c)break;
       /* zoom in on the bubble; when zooming can't separate the pins any more, list them */
-      if(S.zoom<4&&c.spread>0.15){S.zoom=Math.min(4,S.zoom+1);renderAll();requestAnimationFrame(()=>centerOn(c));break}
+      if(S.zoom<ZMAX&&c.spread>0.15){S.zoom=Math.min(ZMAX,S.zoom+1);renderAll();requestAnimationFrame(()=>centerOn(c));break}
       const xs=c.ids.map(i=>S.tk.find(x=>x.id===i)).filter(Boolean).sort((a,b)=>tkClosed(a)-tkClosed(b)||pinRank(b)-pinRank(a)||closedDay(b).localeCompare(closedDay(a)));
       sheet(esc(t('cl.title',{n:xs.length})),`<div class="wo-list" style="grid-column:1/-1">${xs.map(x=>woRow(x).replace('data-act="open-tk"','data-act="cl-open"')).join('')}</div>`,`<button type="button" class="btn" data-act="close-sheet">${esc(t('btn.close'))}</button>`);break}
     case 'cl-open':closeSheet();S.viewer=null;openTicket(id);break;
     case 'eq-history':{const e=eqById(id);if(!e)break;S.drawer=null;S.view='tickets';S.f={status:'done',prio:'all',zone:'all',kind:'all',resp:'all',q:e.code};S.closed='all';renderAll();scrollTo(0,0);break}
     case 'go-filter':S.view='tickets';S.f={status:id==='critical'?'active':id,prio:id==='critical'?'critical':'all',zone:'all',kind:'all',resp:'all',q:''};renderAll();break;
-    case 'zoom':S.zoom=Math.min(4,Math.max(1,+(S.zoom+(+id)*0.5).toFixed(1)));renderAll();break;
+    case 'zoom':{const z=Math.min(ZMAX,Math.max(1,+(S.zoom+(+id)*0.5).toFixed(1)));planZoomTo(z);break}
     case 'new-pin':S.view='plan';S.drawer=null;S.placing={kind:'new'};renderAll();break;
     case 'cancel-place':S.placing=null;renderAll();break;
     case 'open-tk':S.viewer=null;openTicket(id);break;
@@ -3756,6 +3757,32 @@ document.addEventListener('click',async ev=>{
     case 'copy-csv':{const ta=$('#csvOut');try{await navigator.clipboard.writeText(ta.value);toast(t('ts.copied'))}catch{ta.select();toast(t('ts.selected'))}break}
   }}catch(e){console.error(e)}
 });
+/* ---------- plan zoom: buttons and two-finger pinch (phones and tablets) ---------- */
+const ZMAX=6;
+/* zoom so that the point at (fx,fy) inside the visible plan area stays where it is */
+function planZoomTo(z,fx,fy){
+  const sc=$('#planScroll');if(!sc){S.zoom=z;renderAll();return}
+  if(fx==null){fx=sc.clientWidth/2;fy=sc.clientHeight/2}
+  const px=(sc.scrollLeft+fx)/sc.scrollWidth,py=(sc.scrollTop+fy)/sc.scrollHeight;
+  S.zoom=z;renderAll();const s2=$('#planScroll');if(!s2)return;
+  s2.scrollLeft=px*s2.scrollWidth-fx;s2.scrollTop=py*s2.scrollHeight-fy;
+}
+const PZ={on:false};
+document.addEventListener('touchstart',ev=>{const sc=ev.target.closest?.('#planScroll');if(!sc||ev.touches.length!==2)return;
+  const [a,b]=ev.touches,r=sc.getBoundingClientRect();
+  Object.assign(PZ,{on:true,sc,d0:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)||1,z0:S.zoom,z:S.zoom,fx:(a.clientX+b.clientX)/2-r.left,fy:(a.clientY+b.clientY)/2-r.top});
+  PZ.px=(sc.scrollLeft+PZ.fx)/sc.scrollWidth;PZ.py=(sc.scrollTop+PZ.fy)/sc.scrollHeight},{passive:true});
+document.addEventListener('touchmove',ev=>{if(!PZ.on||ev.touches.length!==2)return;ev.preventDefault();
+  const [a,b]=ev.touches,d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);const z=Math.min(ZMAX,Math.max(1,PZ.z0*d/PZ.d0));PZ.z=z;
+  const cv=$('#planCanvas'),sc=PZ.sc;if(!cv||!sc)return;
+  /* live preview: stretch the canvas; pins and labels keep their screen size and spread apart */
+  cv.style.width=z*100+'%';const w=Math.max(300,sc.clientWidth*z);cv.style.setProperty('--lab',Math.min(1.3,Math.max(.72,w/1100)).toFixed(3));
+  sc.scrollLeft=PZ.px*sc.scrollWidth-PZ.fx;sc.scrollTop=PZ.py*sc.scrollHeight-PZ.fy},{passive:false});
+document.addEventListener('touchend',ev=>{if(!PZ.on||ev.touches.length>=2)return;PZ.on=false;
+  if(Math.abs(PZ.z-PZ.z0)>0.02)planZoomTo(+PZ.z.toFixed(2),PZ.fx,PZ.fy)});
+document.addEventListener('touchcancel',()=>{if(PZ.on){PZ.on=false;planZoomTo(+PZ.z.toFixed(2),PZ.fx,PZ.fy)}});
+/* iPhone Safari: stop the page itself from zooming while pinching the plan */
+['gesturestart','gesturechange'].forEach(k=>document.addEventListener(k,ev=>{if(ev.target.closest?.('#planScroll'))ev.preventDefault()},{passive:false}));
 function centerOn(o){if(!o)return;const x=o.x,y=o.y;const sc=$('#planScroll'),cv=$('#planCanvas');if(!sc||x==null)return;sc.scrollLeft=cv.offsetWidth*x/100-sc.clientWidth/2;sc.scrollTop=cv.offsetHeight*y/100-sc.clientHeight/2;$('#main').scrollIntoView({block:'start'})}
 
 document.addEventListener('submit',ev=>{ev.preventDefault();const f=S.form;if(!f)return;({tk:submitTicket,eq:submitEq,pm:submitPm,person:submitPerson,inv:submitInv,seller:submitSeller,ivsend:submitIvSend})[f.type]?.().catch(()=>{})});
