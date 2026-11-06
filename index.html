@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1f2a36">
 <title>Maintenance Planner</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" href="icons/favicon-64.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest?v=2">
+<link rel="icon" type="image/png" href="icons/favicon-64.png?v=2">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=2">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <!-- Server settings. Fill in config.js to share data between computers (see README). -->
@@ -2679,7 +2679,7 @@ function vrPlay(mid){
 /* ---------- signal for new messages and notifications ----------
    A short sound (and vibration on phones) when something new arrives, and a system notification
    when the app is in the background. Each device remembers its own choice. */
-const SIG={icon:'icons/icon-192.png',ctx:null,on:(()=>{try{return localStorage.getItem('mp-sound')!=='0'}catch{return true}})()};
+const SIG={icon:'icons/icon-192.png?v=2',ctx:null,on:(()=>{try{return localStorage.getItem('mp-sound')!=='0'}catch{return true}})()};
 function sigUnlock(){if(!SIG.ctx){try{const C=window.AudioContext||window.webkitAudioContext;if(C)SIG.ctx=new C()}catch{}}try{SIG.ctx?.resume?.()}catch{}}
 document.addEventListener('pointerdown',sigUnlock,{capture:true,passive:true});
 document.addEventListener('keydown',sigUnlock,{capture:true});
@@ -2706,7 +2706,7 @@ async function sysNotify(title,body,go,force){
   if(!force&&document.visibilityState==='visible')return;
   if(window.mpNativeNotify){try{window.mpNativeNotify(title,body,go)}catch{}return}
   if(!('Notification' in window)||Notification.permission!=='granted')return;
-  const opts={body,tag:'mp-'+(go?.th||go?.tk||'x'),renotify:true,icon:S.sb?SIG.icon:undefined,badge:S.sb?'icons/badge-96.png':undefined,data:{mpGo:go||null}};
+  const opts={body,tag:'mp-'+(go?.th||go?.tk||'x'),renotify:true,icon:S.sb?SIG.icon:undefined,badge:S.sb?'icons/badge-96.png?v=2':undefined,data:{mpGo:go||null}};
   try{const n=new Notification(title,opts);n.onclick=()=>{try{window.focus()}catch{}sigGo(go);n.close()};return}catch{}
   try{const r=await (SW||Promise.resolve(null));const reg=r||await navigator.serviceWorker?.getRegistration?.();await reg?.showNotification(title,opts)}catch{}
 }
