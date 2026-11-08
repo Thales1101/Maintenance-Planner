@@ -1796,9 +1796,23 @@ function planSvg(){
 
 /* ---------- drawer ---------- */
 const fact=(l,v)=>`<div class="fact"><div class="l">${esc(t(l))}</div><div class="v">${v}</div></div>`;
+/* ---------- keep scroll position across redraws ----------
+   Redrawing a panel replaces its HTML, which would send every inner scroll area back to the top.
+   Remember where each one was and put it back; if images are still loading, try again for a moment. */
+const SC_SEL='.dr-body,.sheet-body,.side-list,.ch-list,.yp-wrap,.tree-wrap,.msp-wrap,.seg';
+function scEach(root,fn){if(!root)return;const n={};root.querySelectorAll(SC_SEL).forEach(el=>{const k=el.id||el.className;n[k]=(n[k]||0)+1;fn(el,k+'#'+n[k])})}
+function scSnap(root){const m=new Map();scEach(root,(el,k)=>{if(el.scrollTop||el.scrollLeft)m.set(k,[el.scrollLeft,el.scrollTop])});return m}
+function scRestore(root,m){
+  if(!m||!m.size)return;const set=[];
+  scEach(root,(el,k)=>{const v=m.get(k);if(v){el.scrollLeft=v[0];el.scrollTop=v[1];set.push([el,v,el.scrollLeft,el.scrollTop])}});
+  /* content still growing (pictures loading): re-apply where the browser had to stop short and nobody has scrolled since */
+  const again=()=>set.forEach(r=>{const [el,v]=r;if(!el.isConnected)return;if(el.scrollLeft===r[2]&&el.scrollTop===r[3]&&(el.scrollTop<v[1]||el.scrollLeft<v[0])){el.scrollLeft=v[0];el.scrollTop=v[1];r[2]=el.scrollLeft;r[3]=el.scrollTop}});
+  if(set.length){requestAnimationFrame(again);setTimeout(again,150);setTimeout(again,500)}
+}
 function renderDrawer(){
   const root=$('#drawerRoot');const d=S.drawer;
-  if(!d){root.innerHTML='';return}
+  if(!d){root.innerHTML='';root.dataset.k='';return}
+  const dk=d.type+':'+(d.id||''),dsc=root.dataset.k===dk?scSnap(root):null;
   const keep={};document.querySelectorAll('#drawerRoot input[id],#drawerRoot textarea[id],#drawerRoot select[id]').forEach(i=>{if(i.type!=='checkbox')keep[i.id]=i.value});if(S.matReset){['mName','mPart','mQty','mUnit','mCost'].forEach(k=>delete keep[k]);S.matReset=false}const focusId=document.activeElement?.closest?.('#drawerRoot')?document.activeElement.id:null;
   let html='';
   if(d.type==='tk'){
@@ -1875,6 +1889,7 @@ function renderDrawer(){
     </div>`;
   }
   root.innerHTML=`<div class="backdrop" data-act="close-drawer"></div><aside class="drawer" role="dialog" aria-modal="true">${html}</aside>`;
+  root.dataset.k=dk;scRestore(root,dsc);
   for(const [k,v] of Object.entries(keep)){const i=document.getElementById(k);if(i)i.value=v}
   if(focusId) document.getElementById(focusId)?.focus();
 }
@@ -2005,8 +2020,10 @@ function closeDrawer(){TR.origTk=null;S.logUnsub?.();S.logUnsub=null;S.drawer=nu
 
 /* ---------- sheets (forms) ---------- */
 function sheet(title,body,foot){
+  const sr=$('#sheetRoot'),same=sr.dataset.t===title&&!!sr.innerHTML,ssc=same?scSnap(sr):null;
   $('#sheetRoot').innerHTML=`<div class="sheet-wrap" data-act="sheet-bg"><form class="sheet" id="sheetForm" novalidate><div class="sheet-head"><h2>${title}</h2><button type="button" class="iconbtn" data-act="close-sheet" aria-label="${esc(t('btn.close'))}">${ico('x')}</button></div><div class="sheet-body">${body}</div><div class="sheet-foot">${foot}</div></form></div>`;
-  setTimeout(()=>$('#sheetForm [autofocus]')?.focus(),30);
+  sr.dataset.t=title;scRestore(sr,ssc);
+  if(!same)setTimeout(()=>$('#sheetForm [autofocus]')?.focus(),30);
 }
 function closeSheet(){const f=S.form;$('#sheetRoot').innerHTML='';S.form=null;if(f?.resolve)f.resolve(null)}
 const eqOptions=sel=>`<option value="">${esc(t('fm.none'))}</option>`+zones().concat('Unassigned').map(z=>{const items=eqTreeOrder(S.eq.filter(e=>(e.zone||'Unassigned')===z));return items.length?`<optgroup label="${esc(tv(z))}">${items.map(e=>`<option value="${e.id}" ${e.id===sel?'selected':''}>${'   '.repeat(eqLevel(e))}${eqLevel(e)?'└ ':''}${esc(e.code)} · ${esc(eqN(e))}</option>`).join('')}</optgroup>`:''}).join('');
@@ -3759,7 +3776,9 @@ function renderAll(){
   renderNav();
   const fab=$('#fab');if(fab){const show=S.canWrite&&['plan','tickets','equipment','schedule','people','dashboard'].includes(S.view)&&!S.placing;fab.hidden=!show;fab.setAttribute('aria-label',t('btn.newWo'));fab.title=t('btn.newWo')}
   const chp=chSnap();
+  const mn=$('#main'),msc=mn.dataset.v===S.view?scSnap(mn):null;
   $('#main').innerHTML=({plan:vPlan,tickets:vTickets,schedule:vSchedule,equipment:vEquipment,people:vPeople,dashboard:vDashboard,chat:vChat,invoices:vInvoices})[S.view]();
+  mn.dataset.v=S.view;scRestore(mn,msc);
   if(S.view==='chat')chAfter(chp);
   const sc2=$('#planScroll');if(sc2&&sx!=null){sc2.scrollLeft=sx;sc2.scrollTop=sy}
   if(id){const el=document.getElementById(id);if(el){el.focus();try{if(ss!=null)el.setSelectionRange(ss,ss)}catch{}}}
